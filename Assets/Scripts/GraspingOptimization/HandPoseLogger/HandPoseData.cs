@@ -29,12 +29,26 @@ namespace GraspingOptimization
         public string sequenceId;
         public int frameCount;
         public List<HandData> handDataList;
+        public ObjectData objectData;
 
 
         public HandPoseData(string sequenceId)
         {
             this.sequenceId = sequenceId;
             handDataList = new List<HandData>();
+        }
+    }
+
+    [System.Serializable]
+    public class ObjectData
+    {
+        public Vector3 position;
+        public Quaternion rotation;
+
+        public ObjectData(Vector3 position, Quaternion rotation)
+        {
+            this.position = position;
+            this.rotation = rotation;
         }
     }
 

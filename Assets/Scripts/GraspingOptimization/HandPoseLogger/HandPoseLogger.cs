@@ -16,6 +16,9 @@ namespace GraspingOptimization
         [SerializeField]
         List<GameObject> handObjectList;
 
+        [SerializeField]
+        GameObject realObject;
+
         string dt;
 
         HandPoseDataList handPoseDataList = new HandPoseDataList();
@@ -64,6 +67,13 @@ namespace GraspingOptimization
             string filePath = $"hand-pose-log/{dt}.json";
             HandPoseData handPoseData = new HandPoseData(dt);
             handPoseData.frameCount = frameCount;
+
+            // オブジェクトの位置・回転をログに記録
+            ObjectData objectData = new ObjectData(
+                realObject.transform.position,
+                realObject.transform.rotation
+            );
+            handPoseData.objectData = objectData;
 
 
             foreach (Hand hand in hands)
