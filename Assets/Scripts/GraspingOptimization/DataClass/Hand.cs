@@ -18,7 +18,10 @@ namespace GraspingOptimization
         public List<Finger> fingerList;
         public HandType handType;
 
-        public Hand(List<GameObject> fingerObjectList, HandType handType)
+        public GameObject elbowObject;
+        public GameObject wristObject;
+
+        public Hand(List<GameObject> fingerObjectList, HandType handType, GameObject elbowObject, GameObject wristObject)
         {
             this.fingerList = new List<Finger>();
             foreach (GameObject fingerObject in fingerObjectList)
@@ -30,6 +33,9 @@ namespace GraspingOptimization
                 this.fingerList.Add(fingerObject.GetComponent<FingerManager>().finger);
             }
             this.handType = handType;
+
+            this.elbowObject = elbowObject;
+            this.wristObject = wristObject;
         }
 
         public void SetJointRotation(Quaternion[] jointRotations)

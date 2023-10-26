@@ -1193,6 +1193,8 @@ MonoBehaviour:
   hand:
     fingerList: []
     handType: 0
+    elbowObject: {fileID: 0}
+    wristObject: {fileID: 0}
   fingerObjectList:
   - {fileID: 638612580}
   - {fileID: 1985884748}
@@ -1200,6 +1202,8 @@ MonoBehaviour:
   - {fileID: 1318912704}
   - {fileID: 1751893104}
   handType: 0
+  elbowObject: {fileID: 0}
+  wristObject: {fileID: 0}
 --- !u!114 &156637059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7398,6 +7402,8 @@ MonoBehaviour:
   hand:
     fingerList: []
     handType: 0
+    elbowObject: {fileID: 0}
+    wristObject: {fileID: 0}
   fingerObjectList:
   - {fileID: 640625644}
   - {fileID: 2042576287}
@@ -7405,6 +7411,8 @@ MonoBehaviour:
   - {fileID: 2010063820}
   - {fileID: 1476057552}
   handType: 0
+  elbowObject: {fileID: 0}
+  wristObject: {fileID: 0}
 --- !u!114 &1488090272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7851,6 +7859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a10a45c2e339cc84ab098292361b5860, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hands: []
   handObjectList:
   - {fileID: 683176479}
 --- !u!1 &1597068241 stripped
@@ -18271,7 +18280,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8105953348771381896, guid: 9c21586619d13ca4ba65adf12182f19d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8585401006988627542, guid: 9c21586619d13ca4ba65adf12182f19d, type: 3}
       propertyPath: _leapProvider
@@ -18392,6 +18401,8 @@ MonoBehaviour:
   hand:
     fingerList: []
     handType: 0
+    elbowObject: {fileID: 0}
+    wristObject: {fileID: 0}
   fingerObjectList:
   - {fileID: 1234110477}
   - {fileID: 828894663}
@@ -18399,6 +18410,8 @@ MonoBehaviour:
   - {fileID: 1323922769}
   - {fileID: 542401979}
   handType: 0
+  elbowObject: {fileID: 1137744782}
+  wristObject: {fileID: 1007516950}
 --- !u!1001 &6787574852177603282
 PrefabInstance:
   m_ObjectHideFlags: 0

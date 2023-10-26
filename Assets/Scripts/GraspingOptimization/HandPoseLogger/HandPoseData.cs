@@ -6,18 +6,34 @@ using LeapInternal;
 
 namespace GraspingOptimization
 {
+    [System.Serializable]
+    public class HandPoseDataList
+    {
+        /// <summary>
+        /// UnityのjsonUtilityがルートがリストのjsonを作成できないため，ダミーのリストを作成
+        /// </summary>
+        public List<HandPoseData> data;
+
+        public HandPoseDataList()
+        {
+            data = new List<HandPoseData>();
+        }
+    }
+
     /// <summary>
     /// jsonで保存するためのデータクラス
     /// </summary>
     [System.Serializable]
     public class HandPoseData
     {
+        public string sequenceId;
         public int frameCount;
         public List<HandData> handDataList;
 
 
-        public HandPoseData()
+        public HandPoseData(string sequenceId)
         {
+            this.sequenceId = sequenceId;
             handDataList = new List<HandData>();
         }
     }
@@ -27,6 +43,9 @@ namespace GraspingOptimization
     {
         public HandType handType;
         public List<FingerData> fingerDataList;
+
+        public JointData wristJoint;
+        public JointData elbowJoint;
 
 
         public HandData(HandType handType)
@@ -54,15 +73,18 @@ namespace GraspingOptimization
     public class JointData
     {
         public JointType jointType;
-        public Vector3 localPosition;
-        public Quaternion localRotation;
+        public Vector3 position;
+        public Quaternion rotation;
+
+        public Vector3 localScale;
 
 
-        public JointData(Vector3 localPosition, Quaternion localRotation, JointType jointType)
+        public JointData(Vector3 position, Quaternion rotation, Vector3 localScale, JointType jointType)
         {
             this.jointType = jointType;
-            this.localPosition = localPosition;
-            this.localRotation = localRotation;
+            this.position = position;
+            this.rotation = rotation;
+            this.localScale = localScale;
         }
     }
 }

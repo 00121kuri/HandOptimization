@@ -15,11 +15,16 @@ namespace GraspingOptimization
         [SerializeField]
         HandType handType;
 
+        [SerializeField]
+        GameObject elbowObject;
+        [SerializeField]
+        GameObject wristObject;
+
 
         // Start is called before the first frame update
         void Start()
         {
-            hand = new Hand(fingerObjectList, handType);
+            hand = new Hand(fingerObjectList, handType, elbowObject, wristObject);
         }
     }
 }
