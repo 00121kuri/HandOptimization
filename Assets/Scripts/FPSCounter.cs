@@ -21,7 +21,7 @@ public class FPSCounter : MonoBehaviour
         m_accum += Time.timeScale / Time.deltaTime;
         m_frames++;
 
-        if ( 0 < m_timeleft ) return;
+        if (0 < m_timeleft) return;
 
         m_fps = m_accum / m_frames;
         m_timeleft = m_updateInterval;
@@ -31,6 +31,6 @@ public class FPSCounter : MonoBehaviour
 
     private void OnGUI()
     {
-        GUILayout.Label( "FPS: " + m_fps.ToString( "f2" ) );
+        GUILayout.Label("FPS: " + m_fps.ToString("f2"));
     }
 }

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.IO;
 using UnityEngine.UIElements;
 using Unity.VisualScripting.FullSerializer;
+using System.Data.Common;
 //using static GraspingOptimization.HandPfGA;
 
 namespace GraspingOptimization
@@ -66,7 +67,11 @@ namespace GraspingOptimization
         [SerializeField]
         bool isRunning = false;
         [SerializeField]
-        bool isCollision = false;
+        bool autoStart = false;
+
+        [SerializeField]
+        bool outputLogImages = false;
+        bool isEnd = false;
 
         /// <summary>
         /// 探索を打ち切る最大の世代数
@@ -85,6 +90,18 @@ namespace GraspingOptimization
         [SerializeField]
         HandChromosome minScoreChromosome;
 
+        [SerializeField]
+        HandPoseReader handPoseReader;
+
+        HandPoseData handPoseData;
+
+        [SerializeField]
+        int frameCount = 0;
+
+        [SerializeField]
+        string dataDir;
+
+
 
         GUIStyle guiStyle;
         void Start()
@@ -95,8 +112,6 @@ namespace GraspingOptimization
             guiStyle.normal.textColor = Color.white;
 
             hand = handObject.GetComponent<HandManager>().hand;
-            // 評価関数によって変える
-            //targetScore = targetScore * targetScore;
             Physics.autoSimulation = false;
             Debug.Log("PhysicsManager: Physics.autoSimulation = " + Physics.autoSimulation);
         }
@@ -104,45 +119,33 @@ namespace GraspingOptimization
         // Update is called once per frame
         void FixedUpdate()
         {
-            if ((!isRunning) && isCollision)
-            {
-                // 遺伝的アルゴリズムによる最適化
-                StartCoroutine(StartOpti());
-            }
+            if (isEnd) { return; }
 
-            if (!isRunning)
+            if (!isRunning && (Input.GetKey(KeyCode.Return) || autoStart))
             {
-                // LeapMotionの情報に合わせる
-                wist.Follow();
-                elbow.Follow();
-                foreach (Finger finger in hand.fingerList)
+                // 初期状態取得
+                handPoseData = handPoseReader.ReadHandPoseData(frameCount);
+                if (handPoseData == null)
                 {
-                    foreach (Joint joint in finger.jointList)
-                    {
-                        joint.followTarget.Follow();
-                    }
+                    isEnd = true;
+                    return;
                 }
-                Physics.Simulate(Time.fixedDeltaTime);
+                handPoseReader.SetHandPose(handPoseData);
+                // 最適化
+                StartCoroutine(StartOpti(handPoseData.sequenceId, handPoseData.frameCount));
+                frameCount++;
             }
-
-            // Test
-            /*
-            float sigma = 10f;
-            float ave = 45f;
-            float z = Gaussian(sigma, ave);
-            Debug.Log($"Gaussian: {z}");
-            FileLog.AppendLog($"log/gaussian-s-{(int)sigma}-ave-{(int)ave}.csv", $"{z}\n");
-            */
         }
 
-        IEnumerator StartOpti()
+        IEnumerator StartOpti(string sequenceId, int frameCount)
         {
             float temperature_found = temperature; // 暫定解が見つかった時の温度
             int notUpdatedCnt = 0;
             int total_cnt = 0; // 評価回数
 
-            string dt = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
-            string logDir = $"log/opti-log-{dt}";
+            //string dt = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
+            string optiId = Guid.NewGuid().ToString("N");
+            string logDir = $"{dataDir}/logs/{sequenceId}/{frameCount}/{optiId}";
             string logfile = $"{logDir}/score.csv";
             System.IO.Directory.CreateDirectory(logDir); // スクリーンショット用のフォルダ
             LogParams($"{logDir}/params.csv");
@@ -166,8 +169,12 @@ namespace GraspingOptimization
             minScoreChromosome.EvaluationHand(hand, initChromosome.jointRotations, tangibleObj, virtualObj, initPosition, initRotation, worstScore);
 
             FileLog.AppendLog(logfile, $"{step},{minScoreChromosome.score},{minScoreChromosome.score}\n");
-            string capturefilefirst = $"log/opti-log-{dt}/{step}.png";
-            ScreenCapture.CaptureScreenshot(capturefilefirst);
+
+            if (outputLogImages)
+            {
+                string capturefilefirst = $"{logDir}/{step}.png";
+                ScreenCapture.CaptureScreenshot(capturefilefirst);
+            }
 
             yield return null;
 
@@ -183,7 +190,6 @@ namespace GraspingOptimization
                 if (step > maxSteps)
                 {
                     Debug.Log("Cannot find Ans");
-                    isCollision = false;
                     break;
                 }
 
@@ -223,8 +229,11 @@ namespace GraspingOptimization
                 if (child.score < minScoreChromosome.score)
                 {
                     minScoreChromosome = child;
-                    string capturefile = $"log/opti-log-{dt}/{step}.png";
-                    ScreenCapture.CaptureScreenshot(capturefile);
+                    if (outputLogImages)
+                    {
+                        string capturefile = $"{logDir}/{step}.png";
+                        ScreenCapture.CaptureScreenshot(capturefile);
+                    }
                     temperature_found = temperature;
                     notUpdatedCnt = 0;
                 }
@@ -237,8 +246,11 @@ namespace GraspingOptimization
                     if (UnityEngine.Random.Range(0f, 1f) < acceptRate)
                     {
                         minScoreChromosome = child;
-                        string capturefile = $"log/opti-log-{dt}/{step}.png";
-                        ScreenCapture.CaptureScreenshot(capturefile);
+                        if (outputLogImages)
+                        {
+                            string capturefile = $"{logDir}/{step}.png";
+                            ScreenCapture.CaptureScreenshot(capturefile);
+                        }
                         notUpdatedCnt = 0;
                     }
                 }
@@ -270,7 +282,8 @@ namespace GraspingOptimization
                     initRotation
                     );
 
-            Invoke(nameof(RunPhysics), 2f);
+            //Invoke(nameof(RunPhysics), 2f);
+            isRunning = false;
             yield break;
         }
 

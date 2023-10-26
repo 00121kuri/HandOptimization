@@ -19,6 +19,9 @@ namespace GraspingOptimization
         [SerializeField]
         GameObject realObject;
 
+        [SerializeField]
+        string dataDir;
+
         string dt;
 
         HandPoseDataList handPoseDataList = new HandPoseDataList();
@@ -52,7 +55,7 @@ namespace GraspingOptimization
                 if (!isExported)
                 {
                     string json = JsonUtility.ToJson(handPoseDataList);
-                    string filePath = $"hand-pose-log/{dt}.json";
+                    string filePath = $"{dataDir}/input/{dt}.json";
                     ExportJson(json, filePath);
                     isExported = true;
                     handObjectList.Clear();
@@ -64,7 +67,6 @@ namespace GraspingOptimization
 
         void GetHandPoseData(string dt)
         {
-            string filePath = $"hand-pose-log/{dt}.json";
             HandPoseData handPoseData = new HandPoseData(dt);
             handPoseData.frameCount = frameCount;
 
