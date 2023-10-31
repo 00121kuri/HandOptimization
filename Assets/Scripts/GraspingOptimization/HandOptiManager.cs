@@ -193,6 +193,12 @@ namespace GraspingOptimization
                     break;
                 }
 
+                if (notUpdatedCnt > maxSteps / 10)
+                {
+                    Debug.Log("Not Updated for a long time");
+                    break;
+                }
+
                 // 生成
                 HandChromosome child = HandPfGA.GenerateNeighbor(hand, minScoreChromosome, mutationRate, sigma);
                 // 評価

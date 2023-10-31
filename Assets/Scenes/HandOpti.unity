@@ -2784,9 +2784,9 @@ MonoBehaviour:
   targetScore: 0.005
   worstScore: 0.05
   isRunning: 0
-  autoStart: 0
+  autoStart: 1
   outputLogImages: 0
-  maxSteps: 1000
+  maxSteps: 10000
   wist: {fileID: 1962831632}
   elbow: {fileID: 1993217029}
   minScoreChromosome:
@@ -3686,15 +3686,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 67eea97b06bdcba45a60ab0230e4a67e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.4
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 67eea97b06bdcba45a60ab0230e4a67e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.4
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 67eea97b06bdcba45a60ab0230e4a67e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.4
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 67eea97b06bdcba45a60ab0230e4a67e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7106,7 +7106,7 @@ Transform:
   m_GameObject: {fileID: 1439434365}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.04, y: 0.04, z: 0.04}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 390075672}
@@ -10542,7 +10542,7 @@ MonoBehaviour:
   - {fileID: 156637051}
   realObject: {fileID: 1439434365}
   dataDir: C:\Users\Kuribayashi\ResearchProjects\HandOptimization\opti-data
-  fileName: 2023-10-26-18-05-10
+  fileName: 2023-10-31-15-48-29
   frameCount: 0
   handPoseDataList:
     data: []

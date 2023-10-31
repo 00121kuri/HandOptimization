@@ -75,6 +75,7 @@ crashlytics-build.properties
 Assets/Samples
 Assets/SAColliderBuilder
 Assets/OpenCV+Unity
+Assets/Plugins
 
 # logs
 log
