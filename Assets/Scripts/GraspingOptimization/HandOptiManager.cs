@@ -43,7 +43,7 @@ namespace GraspingOptimization
         /// 0にすると単純な局所探索法になる
         /// </summary>
         [SerializeField]
-        float temperature;
+        float initTemperature;
 
         /// <summary>
         /// アニーリング法の冷却係数
@@ -101,9 +101,11 @@ namespace GraspingOptimization
         [SerializeField]
         string dataDir;
 
-
+        [SerializeField]
+        HandPoseLogger handPoseLogger;
 
         GUIStyle guiStyle;
+
         void Start()
         {
             // GUIの文字の設定
@@ -117,9 +119,15 @@ namespace GraspingOptimization
         }
 
         // Update is called once per frame
-        void FixedUpdate()
+        void Update()
         {
-            if (isEnd) { return; }
+            if (isEnd)
+            {
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPaused = true;
+#endif
+                return;
+            }
 
             if (!isRunning && (Input.GetKey(KeyCode.Return) || autoStart))
             {
@@ -139,7 +147,8 @@ namespace GraspingOptimization
 
         IEnumerator StartOpti(string sequenceId, int frameCount)
         {
-            float temperature_found = temperature; // 暫定解が見つかった時の温度
+            float temperature = initTemperature;
+            float temperature_found = initTemperature; // 暫定解が見つかった時の温度
             int notUpdatedCnt = 0;
             int total_cnt = 0; // 評価回数
 
@@ -275,6 +284,11 @@ namespace GraspingOptimization
             // 最も良かった結果を反映する
             hand.SetJointRotation(minScoreChromosome.jointRotations);
             virtualObj.transform.SetPositionAndRotation(minScoreChromosome.resultPosition, minScoreChromosome.resultRotation);
+
+            // ログを出力
+            HandPoseData outputHandPoseData = handPoseLogger.GetHandPoseData(sequenceId);
+            handPoseLogger.ExportJson(JsonUtility.ToJson(outputHandPoseData), $"{dataDir}/output/{sequenceId}.jsonl");
+
             Debug.Log("init position" + initPosition);
             //isRunning = false;
             //Time.timeScale = 0;
@@ -322,7 +336,7 @@ namespace GraspingOptimization
 
         private void OnGUI()
         {
-            GUILayout.Label($"Step: {step}", guiStyle);
+            GUILayout.Label($"Frame: {frameCount}, Step: {step}", guiStyle);
         }
 
     }

@@ -17,17 +17,17 @@ namespace GraspingOptimization
         List<GameObject> handObjectList;
 
         [SerializeField]
-        GameObject realObject;
+        GameObject logObject;
 
         [SerializeField]
         string dataDir;
-
+        [SerializeField]
+        DataType dataType;
         string dt;
 
-        HandPoseDataList handPoseDataList = new HandPoseDataList();
+        //HandPoseDataList handPoseDataList = new HandPoseDataList();
 
         int frameCount = 0;
-        bool isExported = true;
 
 
         // Start is called before the first frame update
@@ -46,34 +46,34 @@ namespace GraspingOptimization
         {
             if (Input.GetKey(KeyCode.Space))
             {
-                GetHandPoseData(dt);
-                isExported = false;
+                HandPoseData handPoseData = GetHandPoseData(dt);
+                string fileName;
+                if (dataType == DataType.Input)
+                {
+                    fileName = $"{dataDir}/input/{dt}.jsonl";
+                }
+                else
+                {
+                    fileName = $"{dataDir}/output/{dt}.jsonl";
+                }
+                ExportJson(JsonUtility.ToJson(handPoseData), fileName);
                 frameCount++;
             }
             else
             {
-                if (!isExported)
-                {
-                    string json = JsonUtility.ToJson(handPoseDataList);
-                    string filePath = $"{dataDir}/input/{dt}.json";
-                    ExportJson(json, filePath);
-                    isExported = true;
-                    handObjectList.Clear();
-                    frameCount = 0;
-                }
                 dt = System.DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
             }
         }
 
-        void GetHandPoseData(string dt)
+        public HandPoseData GetHandPoseData(string dt)
         {
             HandPoseData handPoseData = new HandPoseData(dt);
             handPoseData.frameCount = frameCount;
 
             // オブジェクトの位置・回転をログに記録
             ObjectData objectData = new ObjectData(
-                realObject.transform.position,
-                realObject.transform.rotation
+                logObject.transform.position,
+                logObject.transform.rotation
             );
             handPoseData.objectData = objectData;
 
@@ -118,17 +118,17 @@ namespace GraspingOptimization
                 }
                 handPoseData.handDataList.Add(handData);
             }
-
-            handPoseDataList.data.Add(handPoseData);
+            //handPoseDataList.data.Add(handPoseData);
+            return handPoseData;
         }
 
-        void ExportJson(string json, string filePath)
+        public void ExportJson(string json, string filePath)
         {
             StreamWriter sw = new StreamWriter(filePath, true);
             sw.WriteLine(json);
             sw.Flush();
             sw.Close();
-            Debug.Log($"Exported hand pose data to {filePath}");
+            //Debug.Log($"Exported hand pose data to {filePath}");
         }
     }
 }

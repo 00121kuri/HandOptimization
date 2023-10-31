@@ -2899,6 +2899,7 @@ MonoBehaviour:
   handPoseReader: {fileID: 0}
   frameCount: 0
   dataDir: 
+  handPoseLogger: {fileID: 0}
 --- !u!1 &553511589 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 788392492115328903, guid: 9c21586619d13ca4ba65adf12182f19d, type: 3}
@@ -7491,6 +7492,67 @@ MonoBehaviour:
     followTarget: {fileID: 0}
     rb: {fileID: 0}
     jointType: 0
+--- !u!1001 &1484523360
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 773372291534395200, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
+      propertyPath: m_RootOrder
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 773372291534395200, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.22880965
+      objectReference: {fileID: 0}
+    - target: {fileID: 773372291534395200, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.15030715
+      objectReference: {fileID: 0}
+    - target: {fileID: 773372291534395200, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0873998
+      objectReference: {fileID: 0}
+    - target: {fileID: 773372291534395200, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 773372291534395200, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 773372291534395200, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 773372291534395200, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 773372291534395200, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 773372291534395200, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 773372291534395200, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 773372291534395201, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
+      propertyPath: targetFPS
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 773372291534395202, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
+      propertyPath: m_Name
+      value: FPSManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
 --- !u!1 &1488090266 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4178794706450247661, guid: e7e358565e530214c97adba8c82fedc6, type: 3}
@@ -8029,6 +8091,7 @@ MonoBehaviour:
   - {fileID: 683176479}
   realObject: {fileID: 1212284838}
   dataDir: C:\Users\Kuribayashi\ResearchProjects\HandOptimization\opti-data
+  dataType: 0
 --- !u!1 &1597068241 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 198991358448957752, guid: e7e358565e530214c97adba8c82fedc6, type: 3}
@@ -9063,7 +9126,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1699845425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9071,7 +9134,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1699845424}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62aab9021105b2d4a9af1a11a21e77a3, type: 3}
   m_Name: 

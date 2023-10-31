@@ -2730,92 +2730,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9078100778596081300, guid: 9c21586619d13ca4ba65adf12182f19d, type: 3}
   m_PrefabInstance: {fileID: 6608356818511238745}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &551013920
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 551013921}
-  - component: {fileID: 551013922}
-  m_Layer: 0
-  m_Name: HandOptiManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &551013921
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551013920}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 390075672}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &551013922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551013920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0350a17c7f7694688f4406131d90d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  handObject: {fileID: 156637051}
-  tangibleObj: {fileID: 1439434365}
-  virtualObj: {fileID: 667153788}
-  mutationRate: 1
-  sigma: 7
-  temperature: 0
-  cooling: 0.995
-  targetScore: 0.005
-  worstScore: 0.05
-  isRunning: 0
-  autoStart: 1
-  outputLogImages: 0
-  maxSteps: 10000
-  wist: {fileID: 1962831632}
-  elbow: {fileID: 1993217029}
-  minScoreChromosome:
-    jointRotations:
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    score: 3.4028235e+38
-    resultPosition: {x: 0, y: 0, z: 0}
-    resultRotation: {x: 0, y: 0, z: 0, w: 0}
-  handPoseReader: {fileID: 1977019973}
-  frameCount: 0
-  dataDir: C:\Users\Kuribayashi\ResearchProjects\HandOptimization\opti-data
 --- !u!1 &553511589 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 788392492115328903, guid: 9c21586619d13ca4ba65adf12182f19d, type: 3}
@@ -3673,6 +3587,67 @@ MonoBehaviour:
     followTarget: {fileID: 0}
     rb: {fileID: 0}
     jointType: 0
+--- !u!1001 &658640691
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 773372291534395200, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
+      propertyPath: m_RootOrder
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 773372291534395200, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.22880965
+      objectReference: {fileID: 0}
+    - target: {fileID: 773372291534395200, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.15030715
+      objectReference: {fileID: 0}
+    - target: {fileID: 773372291534395200, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0873998
+      objectReference: {fileID: 0}
+    - target: {fileID: 773372291534395200, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 773372291534395200, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 773372291534395200, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 773372291534395200, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 773372291534395200, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 773372291534395200, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 773372291534395200, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 773372291534395201, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
+      propertyPath: targetFPS
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 773372291534395202, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
+      propertyPath: m_Name
+      value: FPSManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bbb0b9d868b24d1468d71ff422068596, type: 3}
 --- !u!1001 &667153787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7110,7 +7085,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 390075672}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1439434367
 BoxCollider:
@@ -7911,8 +7886,9 @@ MonoBehaviour:
   hands: []
   handObjectList:
   - {fileID: 683176479}
-  realObject: {fileID: 1212284838}
+  logObject: {fileID: 0}
   dataDir: 
+  dataType: 0
 --- !u!1 &1597068241 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 198991358448957752, guid: e7e358565e530214c97adba8c82fedc6, type: 3}
@@ -8955,7 +8931,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1699845424}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62aab9021105b2d4a9af1a11a21e77a3, type: 3}
   m_Name: 
@@ -10542,10 +10518,82 @@ MonoBehaviour:
   - {fileID: 156637051}
   realObject: {fileID: 1439434365}
   dataDir: C:\Users\Kuribayashi\ResearchProjects\HandOptimization\opti-data
-  fileName: 2023-10-31-15-48-29
+  fileName: 2023-10-31-17-46-39
   frameCount: 0
-  handPoseDataList:
-    data: []
+  dataType: 0
+--- !u!114 &1977019974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977019972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a10a45c2e339cc84ab098292361b5860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hands: []
+  handObjectList:
+  - {fileID: 156637051}
+  logObject: {fileID: 667153788}
+  dataDir: C:\Users\Kuribayashi\ResearchProjects\HandOptimization\opti-data
+  dataType: 1
+--- !u!114 &1977019975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977019972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e0350a17c7f7694688f4406131d90d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handObject: {fileID: 156637051}
+  tangibleObj: {fileID: 1439434365}
+  virtualObj: {fileID: 667153788}
+  mutationRate: 1
+  sigma: 7
+  initTemperature: 0
+  cooling: 0.995
+  targetScore: 0.005
+  worstScore: 0.05
+  isRunning: 0
+  autoStart: 1
+  outputLogImages: 0
+  maxSteps: 10000
+  wist: {fileID: 1962831632}
+  elbow: {fileID: 1993217029}
+  minScoreChromosome:
+    jointRotations:
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    score: 3.4028235e+38
+    resultPosition: {x: 0, y: 0, z: 0}
+    resultRotation: {x: 0, y: 0, z: 0, w: 0}
+  handPoseReader: {fileID: 1977019973}
+  frameCount: 0
+  dataDir: C:\Users\Kuribayashi\ResearchProjects\HandOptimization\opti-data
+  handPoseLogger: {fileID: 1977019974}
 --- !u!1 &1985884748 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 159746023388458104, guid: e7e358565e530214c97adba8c82fedc6, type: 3}

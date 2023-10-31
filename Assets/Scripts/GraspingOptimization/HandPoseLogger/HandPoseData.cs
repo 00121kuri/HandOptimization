@@ -7,17 +7,10 @@ using LeapInternal;
 namespace GraspingOptimization
 {
     [System.Serializable]
-    public class HandPoseDataList
+    enum DataType
     {
-        /// <summary>
-        /// UnityのjsonUtilityがルートがリストのjsonを作成できないため，ダミーのリストを作成
-        /// </summary>
-        public List<HandPoseData> data;
-
-        public HandPoseDataList()
-        {
-            data = new List<HandPoseData>();
-        }
+        Input,
+        Output
     }
 
     /// <summary>

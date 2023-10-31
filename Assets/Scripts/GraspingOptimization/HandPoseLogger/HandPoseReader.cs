@@ -26,8 +26,10 @@ namespace GraspingOptimization
 
         [SerializeField]
         int frameCount;
+        [SerializeField]
+        DataType dataType;
 
-        public HandPoseDataList handPoseDataList = new HandPoseDataList();
+        //public HandPoseDataList handPoseDataList = new HandPoseDataList();
 
         void Start()
         {
@@ -36,7 +38,7 @@ namespace GraspingOptimization
                 Hand hand = handObject.GetComponent<HandManager>().hand;
                 hands.Add(hand);
             }
-            handPoseDataList = ReadHandPoseDataList(dataDir, fileName);
+            //handPoseDataList = ReadHandPoseDataList(dataDir, fileName);
         }
 
         void Update()
@@ -62,16 +64,33 @@ namespace GraspingOptimization
 
         public HandPoseData ReadHandPoseData(int frameCount)
         {
-            return handPoseDataList.data.Find(x => x.frameCount == frameCount);
+            //return handPoseDataList.data.Find(x => x.frameCount == frameCount);
+
+            string filePath;
+            if (dataType == DataType.Input)
+            {
+                filePath = $"{dataDir}/input/{fileName}.jsonl";
+            }
+            else
+            {
+                filePath = $"{dataDir}/output/{fileName}.jsonl";
+            }
+            string json = File.ReadLines(filePath).Skip(frameCount).FirstOrDefault();
+            if (json == null)
+            {
+                return null;
+            }
+            HandPoseData handPoseData = JsonUtility.FromJson<HandPoseData>(json);
+            return handPoseData;
         }
 
-        HandPoseDataList ReadHandPoseDataList(string dataDir, string fileName)
-        {
-            string filePath = $"{dataDir}/input/{fileName}.json";
-            string json = File.ReadAllText(filePath);
-            handPoseDataList = JsonUtility.FromJson<HandPoseDataList>(json);
-            return handPoseDataList;
-        }
+        //HandPoseDataList ReadHandPoseDataList(string dataDir, string fileName)
+        //{
+        //    string filePath = $"{dataDir}/input/{fileName}.json";
+        //    string json = File.ReadAllText(filePath);
+        //    handPoseDataList = JsonUtility.FromJson<HandPoseDataList>(json);
+        //    return handPoseDataList;
+        //}
 
         public void SetHandPose(HandPoseData handPoseData)
         {

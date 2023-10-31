@@ -10,11 +10,6 @@ public class FPSCounter : MonoBehaviour
     private float m_timeleft;
     private float m_fps;
 
-    private void Awake()
-    {
-        //Application.targetFrameRate = 90;
-    }
-
     private void Update()
     {
         m_timeleft -= Time.deltaTime;
