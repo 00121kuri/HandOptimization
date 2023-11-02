@@ -10518,7 +10518,7 @@ MonoBehaviour:
   - {fileID: 156637051}
   realObject: {fileID: 1439434365}
   dataDir: C:\Users\Kuribayashi\ResearchProjects\HandOptimization\opti-data
-  fileName: 2023-11-01-15-49-37
+  fileName: 2023-11-02-15-26-13
   frameCount: 0
   dataType: 0
 --- !u!114 &1977019974
@@ -10568,7 +10568,7 @@ MonoBehaviour:
   tangibleObj: {fileID: 1439434365}
   isRunning: 0
   autoStart: 1
-  outputLogImages: 0
+  outputLogImages: 1
   minScoreChromosome:
     jointRotations:
     - {x: 0, y: 0, z: 0, w: 0}
@@ -10618,16 +10618,16 @@ MonoBehaviour:
     cooling: 0.995
     targetScore: 0
     worstScore: 0.05
-    maxSteps: 20000
+    maxSteps: 100
   dataDir: C:\Users\Kuribayashi\ResearchProjects\HandOptimization\opti-data
-  settingHash: c8716521efcdad10828584d69f2dae5d
+  settingHash: f754136de1c384fad24bcf360fa2e108
   mutationRate: 0.05263158
   sigma: 7
   initTemperature: 0.001
   cooling: 0.995
   targetScore: 0
   worstScore: 0.05
-  maxSteps: 20000
+  maxSteps: 100
 --- !u!114 &1977019977
 MonoBehaviour:
   m_ObjectHideFlags: 0

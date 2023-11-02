@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using GraspingOptimization;
 using LeapInternal;
+using System;
 
 namespace GraspingOptimization
 {
@@ -20,15 +21,18 @@ namespace GraspingOptimization
     public class HandPoseData
     {
         public string sequenceId;
+
+        public string dateTime;
         public int frameCount;
         public List<HandData> handDataList;
         public ObjectData objectData;
 
 
-        public HandPoseData(string sequenceId, int frameCount)
+        public HandPoseData(string sequenceId, string dateTime, int frameCount)
         {
             this.sequenceId = sequenceId;
             this.frameCount = frameCount;
+            this.dateTime = dateTime;
             handDataList = new List<HandData>();
         }
     }

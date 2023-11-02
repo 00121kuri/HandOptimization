@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEditor;  //AssetDatabaseを使うために追加
 using System.IO;  //StreamWriterなどを使うために追加
 using System.Linq;  //Selectを使うために追加
+using System;
 
 
 namespace GraspingOptimization
@@ -24,6 +25,7 @@ namespace GraspingOptimization
         [SerializeField]
         DataType dataType;
         string dt;
+        string sequenceId = "inputdata";
 
 
         int frameCount = 0;
@@ -45,7 +47,7 @@ namespace GraspingOptimization
         {
             if (Input.GetKey(KeyCode.Space))
             {
-                HandPoseData handPoseData = GetHandPoseData(dt, frameCount);
+                HandPoseData handPoseData = GetHandPoseData(sequenceId, dt, frameCount);
                 string fileName;
                 if (dataType == DataType.Input)
                 {
@@ -65,9 +67,9 @@ namespace GraspingOptimization
             }
         }
 
-        public HandPoseData GetHandPoseData(string dt, int frameCount)
+        public HandPoseData GetHandPoseData(string sequenceId, string dt, int frameCount)
         {
-            HandPoseData handPoseData = new HandPoseData(dt, frameCount);
+            HandPoseData handPoseData = new HandPoseData(sequenceId, dt, frameCount);
 
             // オブジェクトの位置・回転をログに記録
             ObjectData objectData = new ObjectData(

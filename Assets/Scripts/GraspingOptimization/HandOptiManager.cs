@@ -70,6 +70,8 @@ namespace GraspingOptimization
 
         GUIStyle guiStyle;
 
+        string sequenceId;
+
         void Start()
         {
             // GUIの文字の設定
@@ -84,6 +86,9 @@ namespace GraspingOptimization
             envSetting = envSettingManager.envSetting;
             virtualObj = envSetting.virtualObject;
 
+
+            sequenceId = Guid.NewGuid().ToString("N");
+
             Debug.Log("PhysicsManager: Physics.autoSimulation = " + Physics.autoSimulation);
         }
 
@@ -92,6 +97,7 @@ namespace GraspingOptimization
         {
             if (isEnd)
             {
+                sequenceId = Guid.NewGuid().ToString("N");
 #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPaused = true;
 #endif
@@ -109,24 +115,23 @@ namespace GraspingOptimization
                     return;
                 }
                 handPoseReader.SetHandPose(handPoseData);
+
                 // 最適化
-                StartCoroutine(StartOpti(handPoseData.sequenceId, handPoseData.frameCount));
+                StartCoroutine(StartOpti(sequenceId, handPoseData.dateTime, handPoseData.frameCount));
             }
         }
 
-        IEnumerator StartOpti(string sequenceId, int frameCount)
+        IEnumerator StartOpti(string sequenceId, string dt, int frameCount)
         {
             float temperature = optiSetting.initTemperature;
             float temperature_found = optiSetting.initTemperature; // 暫定解が見つかった時の温度
             int notUpdatedCnt = 0;
             int total_cnt = 0; // 評価回数
 
-            //string dt = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
-            string optiId = Guid.NewGuid().ToString("N");
-            string logDir = $"{dataDir}/logs/{sequenceId}/{frameCount}/{optiId}";
+            string logDir = $"{dataDir}/logs/{dt}/{sequenceId}/{frameCount}";
             string logfile = $"{logDir}/score.csv";
             System.IO.Directory.CreateDirectory(logDir); // スクリーンショット用のフォルダ
-            LogParams($"{logDir}/params.csv");
+
             FileLog.AppendLog(logfile, "Step,minScore,childScore\n");
             // 初期化
             Debug.Log("init Opti");
@@ -255,22 +260,30 @@ namespace GraspingOptimization
             virtualObj.transform.SetPositionAndRotation(minScoreChromosome.resultPosition, minScoreChromosome.resultRotation);
 
             // ログを出力
-            HandPoseData outputHandPoseData = handPoseLogger.GetHandPoseData(sequenceId, frameCount);
+            HandPoseData outputHandPoseData = handPoseLogger.GetHandPoseData(sequenceId, dt, frameCount);
             string settingHash = Helper.GetHash(JsonUtility.ToJson(optiSetting));
-            handPoseLogger.ExportJson(JsonUtility.ToJson(outputHandPoseData), $"{dataDir}/output/{sequenceId}-{settingHash}.jsonl");
+            // 出力フォルダ作成
+            System.IO.Directory.CreateDirectory($"{dataDir}/output/{dt}");
+            handPoseLogger.ExportJson(JsonUtility.ToJson(outputHandPoseData), $"{dataDir}/output/{dt}/{sequenceId}.jsonl");
 
             Debug.Log("init position" + initPosition);
             //isRunning = false;
             //Time.timeScale = 0;
             Debug.Log($"total cnt: {total_cnt}");
 
-            LogResults(
-                    $"{logDir}/result.csv",
+            OptiResult optiResult = new OptiResult(
+                    sequenceId,
+                    dt,
+                    frameCount,
+                    minScoreChromosome.score,
                     minScoreChromosome.resultPosition,
                     minScoreChromosome.resultRotation,
                     initPosition,
                     initRotation
-                    );
+                );
+            System.IO.Directory.CreateDirectory($"{dataDir}/result/{dt}");
+            optiResult.Export($"{dataDir}/result/{dt}/{sequenceId}.jsonl");
+
 
             //Invoke(nameof(RunPhysics), 2f);
             isRunning = false;
@@ -283,26 +296,6 @@ namespace GraspingOptimization
             Physics.autoSimulation = true;
             Debug.Log("PhysicsManager: Physics.autoSimulation = " + Physics.autoSimulation);
         }
-
-        void LogParams(string filePath)
-        {
-            FileLog.AppendLog(filePath, $"Mutation Rate,{optiSetting.mutationRate}\n");
-            FileLog.AppendLog(filePath, $"sigma,{optiSetting.sigma}\n");
-            FileLog.AppendLog(filePath, $"Target Score,{optiSetting.targetScore}\n");
-            FileLog.AppendLog(filePath, $"Worst Score,{optiSetting.worstScore}\n");
-            FileLog.AppendLog(filePath, $"Max Steps,{optiSetting.maxSteps}\n");
-        }
-
-        void LogResults(string filePath, Vector3 resultPos, Quaternion resultRot, Vector3 initPos, Quaternion initRot)
-        {
-            FileLog.AppendLog(filePath, $"Result Pos,{resultPos.x},{resultPos.y},{resultPos.z}\n");
-            FileLog.AppendLog(filePath, $"Result Rot,{resultRot.x},{resultRot.y},{resultRot.z},{resultRot.w}\n");
-            FileLog.AppendLog(filePath, $"Init Pos,{initPos.x},{initPos.y},{initPos.z}\n");
-            FileLog.AppendLog(filePath, $"Init Rot,{initRot.x},{initRot.y},{initRot.z},{initRot.w}\n");
-            FileLog.AppendLog(filePath, $"Distance,{Vector3.Distance(initPos, resultPos)}\n");
-            FileLog.AppendLog(filePath, $"AngleDiff,{Quaternion.Angle(initRot, resultRot)}\n");
-        }
-
 
         private void OnGUI()
         {
