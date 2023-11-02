@@ -17,52 +17,19 @@ namespace GraspingOptimization
 {
     public class HandOptiManager : MonoBehaviour
     {
+        [SerializeField]
+        OptiSetting optiSetting;
+
+        [SerializeField]
+        EnvSetting envSetting;
+
         Hand hand;
         [SerializeField]
         GameObject handObject;
 
         public GameObject tangibleObj;
-        public GameObject virtualObj;
+        private GameObject virtualObj;
 
-        /// <summary>
-        /// 変異確率
-        /// 近傍探索の際にそれぞれの指が変化する確率
-        /// 1にすると全ての指にノイズが加えられる
-        /// </summary>
-        [SerializeField]
-        float mutationRate;
-
-        /// <summary>
-        /// 近傍探索で用いるノイズの正規分布のSigma
-        /// </summary>
-        [SerializeField]
-        float sigma;
-
-        /// <summary>
-        /// アニーリング法の初期温度
-        /// 0にすると単純な局所探索法になる
-        /// </summary>
-        [SerializeField]
-        float initTemperature;
-
-        /// <summary>
-        /// アニーリング法の冷却係数
-        /// </summary>
-        [SerializeField]
-        float cooling = 0.95f;
-
-        /// <summary>
-        /// 終了条件のスコア
-        /// </summary>
-        [SerializeField]
-        float targetScore;
-
-        /// <summary>
-        /// 仮想オブジェクトの位置をリセットするときの閾値
-        /// 0にすると毎回リセットされる
-        /// </summary>
-        [SerializeField]
-        float worstScore;
 
         [SerializeField]
         bool isRunning = false;
@@ -73,36 +40,33 @@ namespace GraspingOptimization
         bool outputLogImages = false;
         bool isEnd = false;
 
-        /// <summary>
-        /// 探索を打ち切る最大の世代数
-        /// </summary>
-        [SerializeField]
-        int maxSteps;
-
         int step = 0;
-
-        [SerializeField]
-        FollowTarget wist;
-        [SerializeField]
-        FollowTarget elbow;
 
         HandChromosome initChromosome;
         [SerializeField]
         HandChromosome minScoreChromosome;
 
-        [SerializeField]
-        HandPoseReader handPoseReader;
+
 
         HandPoseData handPoseData;
 
         [SerializeField]
-        int frameCount = 0;
+        int frameCount = -1;
 
         [SerializeField]
         string dataDir;
 
         [SerializeField]
+        HandPoseReader handPoseReader;
+
+        [SerializeField]
         HandPoseLogger handPoseLogger;
+
+        [SerializeField]
+        OptiSettingManager optiSettingManager;
+
+        [SerializeField]
+        EnvSettingManager envSettingManager;
 
         GUIStyle guiStyle;
 
@@ -115,6 +79,11 @@ namespace GraspingOptimization
 
             hand = handObject.GetComponent<HandManager>().hand;
             Physics.autoSimulation = false;
+
+            optiSetting = optiSettingManager.optiSetting;
+            envSetting = envSettingManager.envSetting;
+            virtualObj = envSetting.virtualObject;
+
             Debug.Log("PhysicsManager: Physics.autoSimulation = " + Physics.autoSimulation);
         }
 
@@ -131,6 +100,7 @@ namespace GraspingOptimization
 
             if (!isRunning && (Input.GetKey(KeyCode.Return) || autoStart))
             {
+                frameCount++; // 表示上の都合で-1からスタート
                 // 初期状態取得
                 handPoseData = handPoseReader.ReadHandPoseData(frameCount);
                 if (handPoseData == null)
@@ -141,14 +111,13 @@ namespace GraspingOptimization
                 handPoseReader.SetHandPose(handPoseData);
                 // 最適化
                 StartCoroutine(StartOpti(handPoseData.sequenceId, handPoseData.frameCount));
-                frameCount++;
             }
         }
 
         IEnumerator StartOpti(string sequenceId, int frameCount)
         {
-            float temperature = initTemperature;
-            float temperature_found = initTemperature; // 暫定解が見つかった時の温度
+            float temperature = optiSetting.initTemperature;
+            float temperature_found = optiSetting.initTemperature; // 暫定解が見つかった時の温度
             int notUpdatedCnt = 0;
             int total_cnt = 0; // 評価回数
 
@@ -175,7 +144,7 @@ namespace GraspingOptimization
             initChromosome = HandPfGA.Init(hand);
             // 初期生成
             minScoreChromosome = initChromosome;
-            minScoreChromosome.EvaluationHand(hand, initChromosome.jointRotations, tangibleObj, virtualObj, initPosition, initRotation, worstScore);
+            minScoreChromosome.EvaluationHand(hand, initChromosome.jointRotations, tangibleObj, virtualObj, initPosition, initRotation, optiSetting.worstScore);
 
             FileLog.AppendLog(logfile, $"{step},{minScoreChromosome.score},{minScoreChromosome.score}\n");
 
@@ -189,30 +158,30 @@ namespace GraspingOptimization
 
 
 
-            while (minScoreChromosome.score > targetScore)
+            while (minScoreChromosome.score > optiSetting.targetScore)
             {
                 // 初期値
                 //minScore = float.MaxValue;
                 //minScoreIndex = 0;
                 step++;
 
-                if (step > maxSteps)
+                if (step > optiSetting.maxSteps)
                 {
                     Debug.Log("Cannot find Ans");
                     break;
                 }
 
-                if (notUpdatedCnt > maxSteps / 10)
+                if (notUpdatedCnt > optiSetting.maxSteps / 10)
                 {
                     Debug.Log("Not Updated for a long time");
                     break;
                 }
 
                 // 生成
-                HandChromosome child = HandPfGA.GenerateNeighbor(hand, minScoreChromosome, mutationRate, sigma);
+                HandChromosome child = HandPfGA.GenerateNeighbor(hand, minScoreChromosome, optiSetting.mutationRate, optiSetting.sigma);
                 // 評価
                 // 評価がworstScoreより悪かった場合は，仮想物体の位置をリセット
-                if (minScoreChromosome.score > worstScore)
+                if (minScoreChromosome.score > optiSetting.worstScore)
                 {
 
                     child.EvaluationHand(
@@ -222,7 +191,7 @@ namespace GraspingOptimization
                             virtualObj,
                             initPosition,
                             initRotation,
-                            worstScore
+                            optiSetting.worstScore
                             );
                 }
                 else
@@ -234,13 +203,13 @@ namespace GraspingOptimization
                             virtualObj,
                             minScoreChromosome.resultPosition,
                             minScoreChromosome.resultRotation,
-                            worstScore
+                            optiSetting.worstScore
                             );
                 }
                 total_cnt++;
                 // 選択
                 // アニーリング法
-                temperature *= cooling;
+                temperature *= optiSetting.cooling;
                 if (child.score < minScoreChromosome.score)
                 {
                     minScoreChromosome = child;
@@ -257,7 +226,7 @@ namespace GraspingOptimization
                     float acceptRate = Mathf.Exp((-(child.score - minScoreChromosome.score)) / temperature);
                     //Debug.Log($"accept rate: {acceptRate}");
                     notUpdatedCnt++;
-                    if (notUpdatedCnt > maxSteps / 100) { temperature = temperature_found; } // しばらく更新されていないときは，温度をあげる
+                    if (notUpdatedCnt > optiSetting.maxSteps / 100) { temperature = temperature_found; } // しばらく更新されていないときは，温度をあげる
                     if (UnityEngine.Random.Range(0f, 1f) < acceptRate)
                     {
                         minScoreChromosome = child;
@@ -286,8 +255,9 @@ namespace GraspingOptimization
             virtualObj.transform.SetPositionAndRotation(minScoreChromosome.resultPosition, minScoreChromosome.resultRotation);
 
             // ログを出力
-            HandPoseData outputHandPoseData = handPoseLogger.GetHandPoseData(sequenceId);
-            handPoseLogger.ExportJson(JsonUtility.ToJson(outputHandPoseData), $"{dataDir}/output/{sequenceId}.jsonl");
+            HandPoseData outputHandPoseData = handPoseLogger.GetHandPoseData(sequenceId, frameCount);
+            string settingHash = Helper.GetHash(JsonUtility.ToJson(optiSetting));
+            handPoseLogger.ExportJson(JsonUtility.ToJson(outputHandPoseData), $"{dataDir}/output/{sequenceId}-{settingHash}.jsonl");
 
             Debug.Log("init position" + initPosition);
             //isRunning = false;
@@ -316,11 +286,11 @@ namespace GraspingOptimization
 
         void LogParams(string filePath)
         {
-            FileLog.AppendLog(filePath, $"Mutation Rate,{mutationRate}\n");
-            FileLog.AppendLog(filePath, $"Sigma,{sigma}\n");
-            FileLog.AppendLog(filePath, $"Target Score,{targetScore}\n");
-            FileLog.AppendLog(filePath, $"Worst Score,{worstScore}\n");
-            FileLog.AppendLog(filePath, $"Max Steps,{maxSteps}\n");
+            FileLog.AppendLog(filePath, $"Mutation Rate,{optiSetting.mutationRate}\n");
+            FileLog.AppendLog(filePath, $"sigma,{optiSetting.sigma}\n");
+            FileLog.AppendLog(filePath, $"Target Score,{optiSetting.targetScore}\n");
+            FileLog.AppendLog(filePath, $"Worst Score,{optiSetting.worstScore}\n");
+            FileLog.AppendLog(filePath, $"Max Steps,{optiSetting.maxSteps}\n");
         }
 
         void LogResults(string filePath, Vector3 resultPos, Quaternion resultRot, Vector3 initPos, Quaternion initRot)

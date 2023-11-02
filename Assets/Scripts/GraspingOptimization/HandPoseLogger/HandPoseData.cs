@@ -25,9 +25,10 @@ namespace GraspingOptimization
         public ObjectData objectData;
 
 
-        public HandPoseData(string sequenceId)
+        public HandPoseData(string sequenceId, int frameCount)
         {
             this.sequenceId = sequenceId;
+            this.frameCount = frameCount;
             handDataList = new List<HandData>();
         }
     }

@@ -25,7 +25,6 @@ namespace GraspingOptimization
         DataType dataType;
         string dt;
 
-        //HandPoseDataList handPoseDataList = new HandPoseDataList();
 
         int frameCount = 0;
 
@@ -46,7 +45,7 @@ namespace GraspingOptimization
         {
             if (Input.GetKey(KeyCode.Space))
             {
-                HandPoseData handPoseData = GetHandPoseData(dt);
+                HandPoseData handPoseData = GetHandPoseData(dt, frameCount);
                 string fileName;
                 if (dataType == DataType.Input)
                 {
@@ -62,13 +61,13 @@ namespace GraspingOptimization
             else
             {
                 dt = System.DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
+                frameCount = 0;
             }
         }
 
-        public HandPoseData GetHandPoseData(string dt)
+        public HandPoseData GetHandPoseData(string dt, int frameCount)
         {
-            HandPoseData handPoseData = new HandPoseData(dt);
-            handPoseData.frameCount = frameCount;
+            HandPoseData handPoseData = new HandPoseData(dt, frameCount);
 
             // オブジェクトの位置・回転をログに記録
             ObjectData objectData = new ObjectData(

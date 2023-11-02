@@ -204,16 +204,17 @@ namespace GraspingOptimization
                 {
                     Vector3 jointAngle = handChromosome.jointRotations[i].eulerAngles;
                     // 関節を動かす
-                    for (int j = 0; j < 3; j++)
+                    if (Random.Range(0f, 1f) < mutationRate)
                     {
-                        if (Random.Range(0f, 1f) < mutationRate)
+                        for (int j = 0; j < 3; j++)
                         {
+
                             float z = Gaussian(sd, 0f);
                             //Debug.Log($"jointAngle[{j}]: {jointAngle[j]}, z: {z}");
                             jointAngle[j] = ClampAngle(
                                     jointAngle[j] + z,
-                                    Setting.GetMinRotation(finger.fingerType, joint.jointType)[j],
-                                    Setting.GetMaxRotation(finger.fingerType, joint.jointType)[j]
+                                    JointLimit.GetMinRotation(finger.fingerType, joint.jointType)[j],
+                                    JointLimit.GetMaxRotation(finger.fingerType, joint.jointType)[j]
                                 );
                         }
                     }

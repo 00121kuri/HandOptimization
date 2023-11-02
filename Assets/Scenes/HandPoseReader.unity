@@ -1083,7 +1083,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1015311468456129628, guid: e7e358565e530214c97adba8c82fedc6, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1038226463728940174, guid: e7e358565e530214c97adba8c82fedc6, type: 3}
       propertyPath: m_LocalScale.y
@@ -10133,19 +10133,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e0350a17c7f7694688f4406131d90d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  optiSetting:
+    mutationRate: 0
+    sigma: 0
+    initTemperature: 0
+    cooling: 0
+    targetScore: 0
+    worstScore: 0
+    maxSteps: 0
   handObject: {fileID: 156637051}
   tangibleObj: {fileID: 1439434365}
   virtualObj: {fileID: 667153788}
-  mutationRate: 1
-  sigma: 7
-  temperature: 0
-  cooling: 0.995
-  targetScore: 0.005
-  worstScore: 0.05
   isRunning: 0
   autoStart: 0
   outputLogImages: 0
-  maxSteps: 10000
   wist: {fileID: 1962831632}
   elbow: {fileID: 1993217029}
   minScoreChromosome:
@@ -10172,10 +10173,11 @@ MonoBehaviour:
     score: 3.4028235e+38
     resultPosition: {x: 0, y: 0, z: 0}
     resultRotation: {x: 0, y: 0, z: 0, w: 0}
-  handPoseReader: {fileID: 0}
   frameCount: 0
   dataDir: 
+  handPoseReader: {fileID: 0}
   handPoseLogger: {fileID: 0}
+  optiSettingManager: {fileID: 0}
 --- !u!1 &553511589 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 788392492115328903, guid: 9c21586619d13ca4ba65adf12182f19d, type: 3}
@@ -12133,19 +12135,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e0350a17c7f7694688f4406131d90d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  optiSetting:
+    mutationRate: 0
+    sigma: 0
+    initTemperature: 0
+    cooling: 0
+    targetScore: 0
+    worstScore: 0
+    maxSteps: 0
   handObject: {fileID: 1174319418}
   tangibleObj: {fileID: 1088340421}
   virtualObj: {fileID: 667153788}
-  mutationRate: 1
-  sigma: 7
-  temperature: 0
-  cooling: 0.995
-  targetScore: 0.005
-  worstScore: 0.05
   isRunning: 0
   autoStart: 0
   outputLogImages: 0
-  maxSteps: 10000
   wist: {fileID: 585406695}
   elbow: {fileID: 154956270}
   minScoreChromosome:
@@ -12172,10 +12175,11 @@ MonoBehaviour:
     score: 3.4028235e+38
     resultPosition: {x: 0, y: 0, z: 0}
     resultRotation: {x: 0, y: 0, z: 0, w: 0}
-  handPoseReader: {fileID: 0}
   frameCount: 0
   dataDir: 
+  handPoseReader: {fileID: 0}
   handPoseLogger: {fileID: 0}
+  optiSettingManager: {fileID: 0}
 --- !u!1 &683176479 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1838165518763322351, guid: 9c21586619d13ca4ba65adf12182f19d, type: 3}
@@ -20183,7 +20187,7 @@ MonoBehaviour:
   - {fileID: 1174319418}
   realObject: {fileID: 1088340421}
   dataDir: C:\Users\Kuribayashi\ResearchProjects\HandOptimization\opti-data
-  fileName: 2023-10-31-17-46-39
+  fileName: 2023-11-01-15-49-37
   frameCount: 0
   dataType: 0
 --- !u!4 &1509916674 stripped
@@ -20804,7 +20808,7 @@ MonoBehaviour:
   hands: []
   handObjectList:
   - {fileID: 683176479}
-  realObject: {fileID: 1212284838}
+  logObject: {fileID: 0}
   dataDir: 
   dataType: 0
 --- !u!1 &1597068241 stripped
@@ -24689,7 +24693,7 @@ MonoBehaviour:
   - {fileID: 156637051}
   realObject: {fileID: 667153788}
   dataDir: C:\Users\Kuribayashi\ResearchProjects\HandOptimization\opti-data
-  fileName: 2023-10-31-17-46-39
+  fileName: 2023-11-01-15-49-37-51a79a047efa9f16c83c99a789ffee80
   frameCount: 0
   dataType: 1
 --- !u!1 &1980565626 stripped

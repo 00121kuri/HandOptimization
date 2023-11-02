@@ -6,7 +6,7 @@ using GraspingOptimization;
 
 namespace GraspingOptimization
 {
-    public static class Setting
+    public static class JointLimit
     {
         /// <summary>
         /// 関節可動域の最大値を返す
@@ -40,7 +40,7 @@ namespace GraspingOptimization
                 {
                     // 親指の場合
                     case JointType.Proximal:
-                        return new Vector3(60, 30, 10);
+                        return new Vector3(60, -30, 10);
                     case JointType.Intermediate:
                         return new Vector3(0, 0, 10);
                     case JointType.Distal:

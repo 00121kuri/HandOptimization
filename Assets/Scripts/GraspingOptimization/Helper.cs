@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using System.IO.Compression;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
+using GraspingOptimization;
+using System.Security.Cryptography;
+using System.Text;
+using System.IO;
 
 namespace GraspingOptimization
 {
@@ -64,6 +68,19 @@ namespace GraspingOptimization
             angle = Mathf.Clamp(angle, from, to);
 
             return angle;
+        }
+
+        // Jsonに変換し，ハッシュを返す
+        public static string GetHash(string json)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(json);
+            byte[] hashBytes = new MD5CryptoServiceProvider().ComputeHash(bytes);
+            StringBuilder sb = new StringBuilder();
+            foreach (byte b in hashBytes)
+            {
+                sb.Append(b.ToString("x2"));
+            }
+            return sb.ToString();
         }
     }
 }

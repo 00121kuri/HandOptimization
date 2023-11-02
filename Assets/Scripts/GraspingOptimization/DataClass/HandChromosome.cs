@@ -46,8 +46,8 @@ namespace GraspingOptimization
                 foreach (Joint joint in finger.jointList)
                 {
                     this.jointRotations[i] = GenerateRandomRotation(
-                            Setting.GetMinRotation(finger.fingerType, joint.jointType),
-                            Setting.GetMaxRotation(finger.fingerType, joint.jointType)
+                            JointLimit.GetMinRotation(finger.fingerType, joint.jointType),
+                            JointLimit.GetMaxRotation(finger.fingerType, joint.jointType)
                         );
                     i++;
                 }
