@@ -46,7 +46,7 @@ namespace GraspingOptimization
             if (Input.GetKey(KeyCode.Space))
             {
 
-                HandPoseData handPoseData = ReadHandPoseData(frameCount);
+                HandPoseData handPoseData = ReadHandPoseData(fileName, frameCount);
                 if (handPoseData != null)
                 {
                     Debug.Log($"Frame: {handPoseData.frameCount}");
@@ -62,18 +62,18 @@ namespace GraspingOptimization
             }
         }
 
-        public HandPoseData ReadHandPoseData(int frameCount)
+        public HandPoseData ReadHandPoseData(string dt, int frameCount)
         {
             //return handPoseDataList.data.Find(x => x.frameCount == frameCount);
 
             string filePath;
             if (dataType == DataType.Input)
             {
-                filePath = $"{dataDir}/input/{fileName}.jsonl";
+                filePath = $"{dataDir}/input/{dt}.jsonl";
             }
             else
             {
-                filePath = $"{dataDir}/output/{fileName}.jsonl";
+                filePath = $"{dataDir}/output/{dt}.jsonl";
             }
             string json = File.ReadLines(filePath).Skip(frameCount).FirstOrDefault();
             if (json == null)
@@ -84,13 +84,7 @@ namespace GraspingOptimization
             return handPoseData;
         }
 
-        //HandPoseDataList ReadHandPoseDataList(string dataDir, string fileName)
-        //{
-        //    string filePath = $"{dataDir}/input/{fileName}.json";
-        //    string json = File.ReadAllText(filePath);
-        //    handPoseDataList = JsonUtility.FromJson<HandPoseDataList>(json);
-        //    return handPoseDataList;
-        //}
+
 
         public void SetHandPose(HandPoseData handPoseData)
         {

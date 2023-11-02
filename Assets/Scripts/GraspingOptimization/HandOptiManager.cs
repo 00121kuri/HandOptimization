@@ -11,6 +11,7 @@ using System.IO;
 using UnityEngine.UIElements;
 using Unity.VisualScripting.FullSerializer;
 using System.Data.Common;
+using Palmmedia.ReportGenerator.Core;
 //using static GraspingOptimization.HandPfGA;
 
 namespace GraspingOptimization
@@ -68,9 +69,18 @@ namespace GraspingOptimization
         [SerializeField]
         EnvSettingManager envSettingManager;
 
+        [SerializeField]
+        OptiSettingList optiSettingList;
+
         GUIStyle guiStyle;
 
         string sequenceId;
+        int sequenceCount = 0;
+        int totalSequenceCount = 0;
+
+        string optiSettingHash;
+        string envSettingHash;
+        string sequenceDt;
 
         void Start()
         {
@@ -82,12 +92,20 @@ namespace GraspingOptimization
             hand = handObject.GetComponent<HandManager>().hand;
             Physics.autoSimulation = false;
 
-            optiSetting = optiSettingManager.optiSetting;
-            envSetting = envSettingManager.envSetting;
+            // 設定読み込み
+            var settings = optiSettingList.GetSettings(sequenceCount);
+            optiSettingHash = settings.optiSettingHash;
+            envSettingHash = settings.envSettingHash;
+            sequenceDt = settings.dt;
+
+            optiSetting.LoadOptiSetting(dataDir, optiSettingHash);
+            envSetting.LoadEnvSetting(dataDir, envSettingHash);
+
             virtualObj = envSetting.virtualObject;
 
 
             sequenceId = Guid.NewGuid().ToString("N");
+            totalSequenceCount = optiSettingList.GetTotalSequenceCount();
 
             Debug.Log("PhysicsManager: Physics.autoSimulation = " + Physics.autoSimulation);
         }
@@ -98,17 +116,37 @@ namespace GraspingOptimization
             if (isEnd)
             {
                 sequenceId = Guid.NewGuid().ToString("N");
+                sequenceCount++;
+                if (sequenceCount >= totalSequenceCount)
+                {
+                    Debug.Log("Optimization Finished");
 #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPaused = true;
+                    UnityEditor.EditorApplication.isPaused = true;
 #endif
-                return;
+                    return;
+                }
+
+                isEnd = false;
+                // 設定読み込み
+                var settings = optiSettingList.GetSettings(sequenceCount);
+                optiSettingHash = settings.optiSettingHash;
+                envSettingHash = settings.envSettingHash;
+                sequenceDt = settings.dt;
+
+                optiSetting.LoadOptiSetting(dataDir, optiSettingHash);
+                envSetting.LoadEnvSetting(dataDir, envSettingHash);
+                virtualObj = envSetting.virtualObject;
+                frameCount = -1;
             }
 
             if (!isRunning && (Input.GetKey(KeyCode.Return) || autoStart))
             {
                 frameCount++; // 表示上の都合で-1からスタート
-                // 初期状態取得
-                handPoseData = handPoseReader.ReadHandPoseData(frameCount);
+
+                Debug.Log("Sequence datetime: " + sequenceDt);
+                handPoseData = handPoseReader.ReadHandPoseData(sequenceDt, frameCount);
+
+
                 if (handPoseData == null)
                 {
                     isEnd = true;
@@ -307,7 +345,7 @@ namespace GraspingOptimization
 
         private void OnGUI()
         {
-            GUILayout.Label($"Frame: {frameCount}, Step: {step}", guiStyle);
+            GUILayout.Label($"Sequence: {sequenceDt}\nFrame: {frameCount}, Step: {step}", guiStyle);
         }
 
     }
