@@ -15,6 +15,9 @@ namespace GraspingOptimization
         public string dateTime;
         public int frameCount;
 
+        public string optiSettingHash;
+        public string envSettingHash;
+
         public float score;
         public float distance;
         public float angleDiff;
@@ -24,11 +27,13 @@ namespace GraspingOptimization
         public Vector3 initPos;
         public Quaternion initRot;
 
-        public OptiResult(string sequenceId, string dateTime, int frameCount, float score, Vector3 resultPos, Quaternion resultRot, Vector3 initPos, Quaternion initRot)
+        public OptiResult(string sequenceId, string dateTime, int frameCount, string optiSettingHash, string envSettingHash, float score, Vector3 resultPos, Quaternion resultRot, Vector3 initPos, Quaternion initRot)
         {
             this.sequenceId = sequenceId;
             this.dateTime = dateTime;
             this.frameCount = frameCount;
+            this.optiSettingHash = optiSettingHash;
+            this.envSettingHash = envSettingHash;
             this.score = score;
             this.resultPos = resultPos;
             this.resultRot = resultRot;

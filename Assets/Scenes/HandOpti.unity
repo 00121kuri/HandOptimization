@@ -10568,7 +10568,7 @@ MonoBehaviour:
   tangibleObj: {fileID: 1439434365}
   isRunning: 0
   autoStart: 1
-  outputLogImages: 1
+  outputLogImages: 0
   minScoreChromosome:
     jointRotations:
     - {x: 0, y: 0, z: 0, w: 0}
@@ -10643,10 +10643,10 @@ MonoBehaviour:
   envSetting:
     virtualObject: {fileID: 667153788}
     objectPosOffset: {x: 0, y: 0, z: 0}
-    objectRotOffset: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-    objectScale: {x: 0.4, y: 0.4, z: 0.4}
+    objectRotOffset: {x: 0, y: 0, z: 0, w: 1}
+    objectScale: {x: 0.3, y: 0.3, z: 0.3}
   dataDir: C:\Users\Kuribayashi\ResearchProjects\HandOptimization\opti-data
-  settingHash: db9526ab18e5cda8151c4e3bbe0c8f35
+  settingHash: 2f34b80fa3625c9f57584c0315790df5
   virtualObject: {fileID: 667153788}
 --- !u!1 &1985884748 stripped
 GameObject:

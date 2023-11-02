@@ -128,10 +128,14 @@ namespace GraspingOptimization
             int notUpdatedCnt = 0;
             int total_cnt = 0; // 評価回数
 
-            string logDir = $"{dataDir}/logs/{dt}/{sequenceId}/{frameCount}";
-            string logfile = $"{logDir}/score.csv";
-            System.IO.Directory.CreateDirectory(logDir); // スクリーンショット用のフォルダ
+            string logDir = $"{dataDir}/logs/{dt}/{sequenceId}";
+            System.IO.Directory.CreateDirectory(logDir);
+            if (outputLogImages)
+            {
+                System.IO.Directory.CreateDirectory($"{logDir}/{frameCount}"); // スクリーンショット用のフォルダ
+            }
 
+            string logfile = $"{logDir}/{frameCount}-score.csv";
             FileLog.AppendLog(logfile, "Step,minScore,childScore\n");
             // 初期化
             Debug.Log("init Opti");
@@ -155,7 +159,7 @@ namespace GraspingOptimization
 
             if (outputLogImages)
             {
-                string capturefilefirst = $"{logDir}/{step}.png";
+                string capturefilefirst = $"{logDir}/{frameCount}/{step}.png";
                 ScreenCapture.CaptureScreenshot(capturefilefirst);
             }
 
@@ -220,7 +224,7 @@ namespace GraspingOptimization
                     minScoreChromosome = child;
                     if (outputLogImages)
                     {
-                        string capturefile = $"{logDir}/{step}.png";
+                        string capturefile = $"{logDir}/{frameCount}/{step}.png";
                         ScreenCapture.CaptureScreenshot(capturefile);
                     }
                     temperature_found = temperature;
@@ -237,7 +241,7 @@ namespace GraspingOptimization
                         minScoreChromosome = child;
                         if (outputLogImages)
                         {
-                            string capturefile = $"{logDir}/{step}.png";
+                            string capturefile = $"{logDir}/{frameCount}/{step}.png";
                             ScreenCapture.CaptureScreenshot(capturefile);
                         }
                         notUpdatedCnt = 0;
@@ -261,7 +265,7 @@ namespace GraspingOptimization
 
             // ログを出力
             HandPoseData outputHandPoseData = handPoseLogger.GetHandPoseData(sequenceId, dt, frameCount);
-            string settingHash = Helper.GetHash(JsonUtility.ToJson(optiSetting));
+
             // 出力フォルダ作成
             System.IO.Directory.CreateDirectory($"{dataDir}/output/{dt}");
             handPoseLogger.ExportJson(JsonUtility.ToJson(outputHandPoseData), $"{dataDir}/output/{dt}/{sequenceId}.jsonl");
@@ -271,10 +275,14 @@ namespace GraspingOptimization
             //Time.timeScale = 0;
             Debug.Log($"total cnt: {total_cnt}");
 
+            string optiSettingHash = Helper.GetHash(JsonUtility.ToJson(optiSetting));
+            string envSettingHash = Helper.GetHash(JsonUtility.ToJson(envSetting));
             OptiResult optiResult = new OptiResult(
                     sequenceId,
                     dt,
                     frameCount,
+                    optiSettingHash,
+                    envSettingHash,
                     minScoreChromosome.score,
                     minScoreChromosome.resultPosition,
                     minScoreChromosome.resultRotation,
