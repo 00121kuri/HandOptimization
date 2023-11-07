@@ -30,7 +30,7 @@ namespace GraspingOptimization
         {
             EnvSetting envSetting = new EnvSetting();
             envSetting.LoadEnvSetting(dataDir, settingHash);
-            virtualObject = envSetting.virtualObject;
+            virtualObject = envSetting.LoadObjectPrefab();
             virtualObject.transform.localPosition = envSetting.objectPosOffset;
             virtualObject.transform.localRotation = envSetting.objectRotOffset;
             virtualObject.transform.localScale = envSetting.objectScale;

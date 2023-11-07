@@ -131,5 +131,10 @@ namespace GraspingOptimization
             sw.Close();
             //Debug.Log($"Exported hand pose data to {filePath}");
         }
+
+        public void SetLogObject(GameObject setObject)
+        {
+            logObject = setObject;
+        }
     }
 }

@@ -9,7 +9,8 @@ namespace GraspingOptimization
     [System.Serializable]
     public class EnvSetting
     {
-        public GameObject virtualObject;
+        //public GameObject virtualObject;
+        public string objectPath;
         public Vector3 objectPosOffset;
         public Quaternion objectRotOffset;
         public Vector3 objectScale;
@@ -21,7 +22,8 @@ namespace GraspingOptimization
 
         public EnvSetting(GameObject virtualObject)
         {
-            this.virtualObject = virtualObject;
+            this.objectPath = virtualObject.name;
+
             objectPosOffset = virtualObject.transform.localPosition;
             objectRotOffset = virtualObject.transform.localRotation;
             objectScale = virtualObject.transform.localScale;
@@ -44,6 +46,26 @@ namespace GraspingOptimization
             sw.Flush();
             sw.Close();
             return hash;
+        }
+
+        public GameObject LoadObjectInstance()
+        {
+            // ResourcesからGameObjectをロードします。
+            GameObject loadedObject = Resources.Load<GameObject>(this.objectPath);
+
+            GameObject instance = GameObject.Instantiate(loadedObject);
+            instance.transform.localPosition = objectPosOffset;
+            instance.transform.localRotation = objectRotOffset;
+            instance.transform.localScale = objectScale;
+
+            return instance;
+        }
+
+        public GameObject LoadObjectPrefab()
+        {
+            // ResourcesからGameObjectをロードします。
+            GameObject loadedObject = Resources.Load<GameObject>(this.objectPath);
+            return loadedObject;
         }
     }
 }

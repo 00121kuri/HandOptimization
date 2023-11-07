@@ -101,8 +101,8 @@ namespace GraspingOptimization
             optiSetting.LoadOptiSetting(dataDir, optiSettingHash);
             envSetting.LoadEnvSetting(dataDir, envSettingHash);
 
-            virtualObj = envSetting.virtualObject;
-
+            virtualObj = envSetting.LoadObjectInstance();
+            handPoseLogger.SetLogObject(virtualObj);
 
             sequenceId = Guid.NewGuid().ToString("N");
             totalSequenceCount = optiSettingList.GetTotalSequenceCount();
@@ -135,7 +135,8 @@ namespace GraspingOptimization
 
                 optiSetting.LoadOptiSetting(dataDir, optiSettingHash);
                 envSetting.LoadEnvSetting(dataDir, envSettingHash);
-                virtualObj = envSetting.virtualObject;
+                virtualObj = envSetting.LoadObjectInstance();
+                handPoseLogger.SetLogObject(virtualObj);
                 frameCount = -1;
             }
 

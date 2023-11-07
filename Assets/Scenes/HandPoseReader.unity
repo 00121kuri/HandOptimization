@@ -10089,95 +10089,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9078100778596081300, guid: 9c21586619d13ca4ba65adf12182f19d, type: 3}
   m_PrefabInstance: {fileID: 6608356818511238745}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &551013920
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 551013921}
-  - component: {fileID: 551013922}
-  m_Layer: 0
-  m_Name: HandOptiManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &551013921
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551013920}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 390075672}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &551013922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551013920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0350a17c7f7694688f4406131d90d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  optiSetting:
-    mutationRate: 0
-    sigma: 0
-    initTemperature: 0
-    cooling: 0
-    targetScore: 0
-    worstScore: 0
-    maxSteps: 0
-  handObject: {fileID: 156637051}
-  tangibleObj: {fileID: 1439434365}
-  virtualObj: {fileID: 667153788}
-  isRunning: 0
-  autoStart: 0
-  outputLogImages: 0
-  wist: {fileID: 1962831632}
-  elbow: {fileID: 1993217029}
-  minScoreChromosome:
-    jointRotations:
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    - {x: 0, y: 0, z: 0, w: 0}
-    score: 3.4028235e+38
-    resultPosition: {x: 0, y: 0, z: 0}
-    resultRotation: {x: 0, y: 0, z: 0, w: 0}
-  frameCount: 0
-  dataDir: 
-  handPoseReader: {fileID: 0}
-  handPoseLogger: {fileID: 0}
-  optiSettingManager: {fileID: 0}
 --- !u!1 &553511589 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 788392492115328903, guid: 9c21586619d13ca4ba65adf12182f19d, type: 3}
@@ -12143,14 +12054,16 @@ MonoBehaviour:
     targetScore: 0
     worstScore: 0
     maxSteps: 0
+  envSetting:
+    objectPath: 
+    objectPosOffset: {x: 0, y: 0, z: 0}
+    objectRotOffset: {x: 0, y: 0, z: 0, w: 0}
+    objectScale: {x: 0, y: 0, z: 0}
   handObject: {fileID: 1174319418}
   tangibleObj: {fileID: 1088340421}
-  virtualObj: {fileID: 667153788}
   isRunning: 0
   autoStart: 0
   outputLogImages: 0
-  wist: {fileID: 585406695}
-  elbow: {fileID: 154956270}
   minScoreChromosome:
     jointRotations:
     - {x: 0, y: 0, z: 0, w: 0}
@@ -12180,6 +12093,8 @@ MonoBehaviour:
   handPoseReader: {fileID: 0}
   handPoseLogger: {fileID: 0}
   optiSettingManager: {fileID: 0}
+  envSettingManager: {fileID: 0}
+  optiSettingList: {fileID: 0}
 --- !u!1 &683176479 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1838165518763322351, guid: 9c21586619d13ca4ba65adf12182f19d, type: 3}
@@ -19605,7 +19520,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 390075672}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1439434367
 BoxCollider:
@@ -24692,8 +24607,8 @@ MonoBehaviour:
   handObjectList:
   - {fileID: 156637051}
   realObject: {fileID: 667153788}
-  dataDir: C:\Users\Kuribayashi\ResearchProjects\HandOptimization\opti-data
-  fileName: 2023-11-01-15-49-37-51a79a047efa9f16c83c99a789ffee80
+  dataDir: D:\ResearchProjects\HandOptimization\opti-data
+  fileName: 2023-11-02-18-39-56\2dd34debbf914cb8b0ea9ad1f43ca371
   frameCount: 0
   dataType: 1
 --- !u!1 &1980565626 stripped
