@@ -3,9 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 using GraspingOptimization;
 using System.IO;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace GraspingOptimization
 {
+    [System.Serializable]
+    public class EnvSettingWrapper
+    {
+        public string _id; // MongoDBのためのユニークなID 
+        public EnvSetting envSetting;
+
+        public EnvSettingWrapper()
+        {
+
+        }
+
+        public EnvSettingWrapper(EnvSetting envSetting)
+        {
+            this.envSetting = envSetting;
+            // hashを計算
+            string json = JsonUtility.ToJson(envSetting);
+            this._id = Helper.GetHash(json);
+        }
+
+        public void LoadEnvSetting(string hash)
+        {
+            // MongoDBから読み込み
+            IMongoCollection<BsonDocument> collection = MongoDB.GetCollection("opti-data", "env-setting");
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", hash);
+            var result = collection.Find(filter).FirstOrDefault();
+            string json = result.ToJson();
+            JsonUtility.FromJsonOverwrite(json, this);
+        }
+
+        public string ExportEnvSetting()
+        {
+            // MongoDBに書き込み
+            IMongoCollection<BsonDocument> collection = MongoDB.GetCollection("opti-data", "env-setting");
+            string json = JsonUtility.ToJson(this);
+            BsonDocument document = BsonDocument.Parse(json);
+            collection.InsertOne(document);
+            return this._id;
+        }
+    }
+
     [System.Serializable]
     public class EnvSetting
     {

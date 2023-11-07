@@ -93,16 +93,7 @@ namespace GraspingOptimization
             Physics.autoSimulation = false;
 
             // 設定読み込み
-            var settings = optiSettingList.GetSettings(sequenceCount);
-            optiSettingHash = settings.optiSettingHash;
-            envSettingHash = settings.envSettingHash;
-            sequenceDt = settings.dt;
-
-            optiSetting.LoadOptiSetting(dataDir, optiSettingHash);
-            envSetting.LoadEnvSetting(dataDir, envSettingHash);
-
-            virtualObj = envSetting.LoadObjectInstance();
-            handPoseLogger.SetLogObject(virtualObj);
+            LoadSettings();
 
             sequenceId = Guid.NewGuid().ToString("N");
             totalSequenceCount = optiSettingList.GetTotalSequenceCount();
@@ -128,15 +119,7 @@ namespace GraspingOptimization
 
                 isEnd = false;
                 // 設定読み込み
-                var settings = optiSettingList.GetSettings(sequenceCount);
-                optiSettingHash = settings.optiSettingHash;
-                envSettingHash = settings.envSettingHash;
-                sequenceDt = settings.dt;
-
-                optiSetting.LoadOptiSetting(dataDir, optiSettingHash);
-                envSetting.LoadEnvSetting(dataDir, envSettingHash);
-                virtualObj = envSetting.LoadObjectInstance();
-                handPoseLogger.SetLogObject(virtualObj);
+                LoadSettings();
                 frameCount = -1;
             }
 
@@ -145,7 +128,9 @@ namespace GraspingOptimization
                 frameCount++; // 表示上の都合で-1からスタート
 
                 Debug.Log("Sequence datetime: " + sequenceDt);
-                handPoseData = handPoseReader.ReadHandPoseData(sequenceDt, frameCount);
+                handPoseData = handPoseReader.ReadHandPoseData("inputdata", sequenceDt, frameCount);
+                //handPoseData = handPoseReader.ReadHandPoseDataFromDB("inputdata", sequenceDt, frameCount);
+
 
 
                 if (handPoseData == null)
@@ -306,8 +291,9 @@ namespace GraspingOptimization
             HandPoseData outputHandPoseData = handPoseLogger.GetHandPoseData(sequenceId, dt, frameCount);
 
             // 出力フォルダ作成
-            System.IO.Directory.CreateDirectory($"{dataDir}/output/{dt}");
-            handPoseLogger.ExportJson(JsonUtility.ToJson(outputHandPoseData), $"{dataDir}/output/{dt}/{sequenceId}.jsonl");
+            //System.IO.Directory.CreateDirectory($"{dataDir}/output/{dt}");
+            //handPoseLogger.ExportJson(JsonUtility.ToJson(outputHandPoseData), $"{dataDir}/output/{dt}/{sequenceId}.jsonl");
+            handPoseLogger.ExportDB(JsonUtility.ToJson(outputHandPoseData));
 
             Debug.Log("init position" + initPosition);
             //isRunning = false;
@@ -328,13 +314,37 @@ namespace GraspingOptimization
                     initPosition,
                     initRotation
                 );
-            System.IO.Directory.CreateDirectory($"{dataDir}/result/{dt}");
-            optiResult.Export($"{dataDir}/result/{dt}/{sequenceId}.jsonl");
+            //System.IO.Directory.CreateDirectory($"{dataDir}/result/{dt}");
+            //optiResult.Export($"{dataDir}/result/{dt}/{sequenceId}.jsonl");
+            optiResult.ExportDB();
 
 
             //Invoke(nameof(RunPhysics), 2f);
             isRunning = false;
             yield break;
+        }
+
+        private void LoadSettings()
+        {
+            var settings = optiSettingList.GetSettings(sequenceCount);
+            optiSettingHash = settings.optiSettingHash;
+            envSettingHash = settings.envSettingHash;
+            sequenceDt = settings.dt;
+
+            // ファイルから読み込み
+            //optiSetting.LoadOptiSetting(dataDir, optiSettingHash);
+            //envSetting.LoadEnvSetting(dataDir, envSettingHash);
+
+            // DBから読み込み
+            OptiSettingWrapper optiSettingWrapper = new OptiSettingWrapper();
+            optiSettingWrapper.LoadOptiSetting(optiSettingHash);
+            optiSetting = optiSettingWrapper.optiSetting;
+            EnvSettingWrapper envSettingWrapper = new EnvSettingWrapper();
+            envSettingWrapper.LoadEnvSetting(envSettingHash);
+            envSetting = envSettingWrapper.envSetting;
+
+            virtualObj = envSetting.LoadObjectInstance();
+            handPoseLogger.SetLogObject(virtualObj);
         }
 
         void RunPhysics()

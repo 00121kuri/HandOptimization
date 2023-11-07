@@ -4,6 +4,7 @@ using UnityEngine;
 using GraspingOptimization;
 using LeapInternal;
 using System;
+using UnityEngine.UIElements;
 
 namespace GraspingOptimization
 {
@@ -20,6 +21,7 @@ namespace GraspingOptimization
     [System.Serializable]
     public class HandPoseData
     {
+        public string _id; // MongoDBのためのユニークなID
         public string sequenceId;
 
         public string dateTime;
@@ -33,6 +35,7 @@ namespace GraspingOptimization
             this.sequenceId = sequenceId;
             this.frameCount = frameCount;
             this.dateTime = dateTime;
+            this._id = $"{dateTime}-{sequenceId}-{frameCount}";
             handDataList = new List<HandData>();
         }
     }

@@ -33,15 +33,23 @@ namespace GraspingOptimization
         public void Export()
         {
             optiSetting = new OptiSetting(mutationRate, sigma, initTemperature, cooling, targetScore, worstScore, maxSteps);
-            string hash = optiSetting.ExportOptiSetting(dataDir);
+            //string hash = optiSetting.ExportOptiSetting(dataDir);
+            // DBへ保存する場合
+            OptiSettingWrapper optiSettingWrapper = new OptiSettingWrapper(optiSetting);
+            string hash = optiSettingWrapper.ExportOptiSetting();
             settingHash = hash;
             Debug.Log($"Exported OptiSetting: {hash}");
         }
 
         public void Load()
         {
-            OptiSetting optiSetting = new OptiSetting();
-            optiSetting.LoadOptiSetting(dataDir, settingHash);
+            //OptiSetting optiSetting = new OptiSetting();
+            //optiSetting.LoadOptiSetting(dataDir, settingHash);
+            // DBから読みだす場合
+            OptiSettingWrapper optiSettingWrapper = new OptiSettingWrapper();
+            optiSettingWrapper.LoadOptiSetting(settingHash);
+            optiSetting = optiSettingWrapper.optiSetting;
+
             mutationRate = optiSetting.mutationRate;
             sigma = optiSetting.sigma;
             initTemperature = optiSetting.initTemperature;

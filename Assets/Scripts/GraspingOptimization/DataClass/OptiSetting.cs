@@ -5,9 +5,51 @@ using GraspingOptimization;
 using System.Security.Cryptography;
 using System.Text;
 using System.IO;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace GraspingOptimization
 {
+    [System.Serializable]
+    public class OptiSettingWrapper
+    {
+        public string _id; // MongoDBのためのユニークなID 
+        public OptiSetting optiSetting;
+
+        public OptiSettingWrapper()
+        {
+
+        }
+
+        public OptiSettingWrapper(OptiSetting optiSetting)
+        {
+            this.optiSetting = optiSetting;
+            // hashを計算
+            string json = JsonUtility.ToJson(optiSetting);
+            this._id = Helper.GetHash(json);
+        }
+
+        public void LoadOptiSetting(string hash)
+        {
+            // MongoDBから読み込み
+            IMongoCollection<BsonDocument> collection = MongoDB.GetCollection("opti-data", "opti-setting");
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", hash);
+            var result = collection.Find(filter).FirstOrDefault();
+            string json = result.ToJson();
+            JsonUtility.FromJsonOverwrite(json, this);
+        }
+
+        public string ExportOptiSetting()
+        {
+            // MongoDBに書き込み
+            IMongoCollection<BsonDocument> collection = MongoDB.GetCollection("opti-data", "opti-setting");
+            string json = JsonUtility.ToJson(this);
+            BsonDocument document = BsonDocument.Parse(json);
+            collection.InsertOne(document);
+            return this._id;
+        }
+    }
+
     [System.Serializable]
     public class OptiSetting
     {

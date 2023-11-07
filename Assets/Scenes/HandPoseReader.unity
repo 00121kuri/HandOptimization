@@ -20102,7 +20102,8 @@ MonoBehaviour:
   - {fileID: 1174319418}
   realObject: {fileID: 1088340421}
   dataDir: C:\Users\Kuribayashi\ResearchProjects\HandOptimization\opti-data
-  fileName: 2023-11-01-15-49-37
+  sequenceId: 
+  dateTime: 
   frameCount: 0
   dataType: 0
 --- !u!4 &1509916674 stripped
@@ -24608,7 +24609,8 @@ MonoBehaviour:
   - {fileID: 156637051}
   realObject: {fileID: 667153788}
   dataDir: D:\ResearchProjects\HandOptimization\opti-data
-  fileName: 2023-11-02-18-39-56\2dd34debbf914cb8b0ea9ad1f43ca371
+  sequenceId: b56b2ca2f20d49dba39840c6b04378b1
+  dateTime: 2023-11-02-18-39-56
   frameCount: 0
   dataType: 1
 --- !u!1 &1980565626 stripped

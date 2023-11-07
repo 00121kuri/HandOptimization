@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
+using System.Text;
 
 using UnityEditor;  //AssetDatabaseを使うために追加
 using System.IO;  //StreamWriterなどを使うために追加
 using System.Linq;  //Selectを使うために追加
 using System;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 
 namespace GraspingOptimization
@@ -30,6 +34,11 @@ namespace GraspingOptimization
 
         int frameCount = 0;
 
+        private IMongoCollection<BsonDocument> collection;
+
+        // MongoDBに接続するための接続文字列
+        private string connectionString = "mongodb://localhost:27017";
+
 
         // Start is called before the first frame update
         void Start()
@@ -39,6 +48,16 @@ namespace GraspingOptimization
             {
                 Hand hand = handObject.GetComponent<HandManager>().hand;
                 hands.Add(hand);
+            }
+
+            // MongoDBクライアントの初期化
+            if (dataType == DataType.Input)
+            {
+                collection = MongoDB.GetCollection("opti-data", "input");
+            }
+            else if (dataType == DataType.Output)
+            {
+                collection = MongoDB.GetCollection("opti-data", "output");
             }
         }
 
@@ -130,6 +149,14 @@ namespace GraspingOptimization
             sw.Flush();
             sw.Close();
             //Debug.Log($"Exported hand pose data to {filePath}");
+        }
+
+        public void ExportDB(string json)
+        {
+            // MongoDBにデータを送信
+            var document = BsonDocument.Parse(json);
+            collection.InsertOne(document);
+            Debug.Log("Export to MongoDB");
         }
 
         public void SetLogObject(GameObject setObject)

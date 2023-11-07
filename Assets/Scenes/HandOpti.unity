@@ -2854,8 +2854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optiSettingHasheList:
-  - 0a9142a02ffd06a6b2050725aa9bb02d
-  - 325a09cebe796c8d123329b4190a981f
+  - 3d6be330c43ae84b02a27f721f476763
   envSettingHasheList:
   - 6380ea35ddce8af1f94cc17af19765d9
   dtList:
@@ -10387,7 +10386,8 @@ MonoBehaviour:
   - {fileID: 156637051}
   realObject: {fileID: 1439434365}
   dataDir: D:\ResearchProjects\HandOptimization\opti-data
-  fileName: 2023-11-02-15-26-13
+  sequenceId: inputdata
+  dateTime: 2023-11-02-15-26-13
   frameCount: 0
   dataType: 0
 --- !u!114 &1977019974
@@ -10488,16 +10488,16 @@ MonoBehaviour:
     cooling: 0.995
     targetScore: 0
     worstScore: 0.05
-    maxSteps: 20000
+    maxSteps: 1000
   dataDir: D:\ResearchProjects\HandOptimization\opti-data
-  settingHash: 325a09cebe796c8d123329b4190a981f
+  settingHash: 3d6be330c43ae84b02a27f721f476763
   mutationRate: 0.05263158
   sigma: 7
   initTemperature: 0.005
   cooling: 0.995
   targetScore: 0
   worstScore: 0.05
-  maxSteps: 20000
+  maxSteps: 1000
 --- !u!114 &1977019977
 MonoBehaviour:
   m_ObjectHideFlags: 0
