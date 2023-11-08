@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/HandOpti.unity
+    guid: 9d5a7b8854448a14d9fdad3008713f05
   m_configObjects: {}

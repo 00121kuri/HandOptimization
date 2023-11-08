@@ -11,8 +11,7 @@ using System.IO;
 using UnityEngine.UIElements;
 using Unity.VisualScripting.FullSerializer;
 using System.Data.Common;
-using Palmmedia.ReportGenerator.Core;
-//using static GraspingOptimization.HandPfGA;
+//using Palmmedia.ReportGenerator.Core;
 
 namespace GraspingOptimization
 {
@@ -55,7 +54,7 @@ namespace GraspingOptimization
         int frameCount = -1;
 
         [SerializeField]
-        string dataDir;
+        string dataDir = "opti-data";
 
         [SerializeField]
         HandPoseReader handPoseReader;
@@ -128,8 +127,8 @@ namespace GraspingOptimization
                 frameCount++; // 表示上の都合で-1からスタート
 
                 Debug.Log("Sequence datetime: " + sequenceDt);
-                handPoseData = handPoseReader.ReadHandPoseData("inputdata", sequenceDt, frameCount);
-                //handPoseData = handPoseReader.ReadHandPoseDataFromDB("inputdata", sequenceDt, frameCount);
+                //handPoseData = handPoseReader.ReadHandPoseData("inputdata", sequenceDt, frameCount);
+                handPoseData = handPoseReader.ReadHandPoseDataFromDB("inputdata", sequenceDt, frameCount);
 
 
 
@@ -342,7 +341,7 @@ namespace GraspingOptimization
             EnvSettingWrapper envSettingWrapper = new EnvSettingWrapper();
             envSettingWrapper.LoadEnvSetting(envSettingHash);
             envSetting = envSettingWrapper.envSetting;
-
+            Destroy(virtualObj);
             virtualObj = envSetting.LoadObjectInstance();
             handPoseLogger.SetLogObject(virtualObj);
         }
@@ -356,7 +355,7 @@ namespace GraspingOptimization
 
         private void OnGUI()
         {
-            GUILayout.Label($"Sequence: {sequenceDt}\nFrame: {frameCount}, Step: {step}", guiStyle);
+            GUILayout.Label($"Sequence: {sequenceDt}\nSequenceID: {sequenceId}\nFrame: {frameCount}, Step: {step}", guiStyle);
         }
 
     }

@@ -40,7 +40,8 @@ namespace GraspingOptimization
 
         public int GetTotalSequenceCount()
         {
-            return optiSettingHasheList.Count * envSettingHasheList.Count * dtList.Count;
+            settingCount = optiSettingHasheList.Count * envSettingHasheList.Count * dtList.Count;
+            return settingCount;
         }
     }
 }

@@ -102,11 +102,12 @@ namespace GraspingOptimization
         public HandPoseData ReadHandPoseDataFromDB(string sequenceId, string dt, int frameCount)
         {
             // MongoDBからデータを取得
-            var filter = Builders<BsonDocument>.Filter.And(
-                Builders<BsonDocument>.Filter.Eq("sequenceId", sequenceId),
-                Builders<BsonDocument>.Filter.Eq("dateTime", dt),
-                Builders<BsonDocument>.Filter.Eq("frameCount", frameCount)
-            );
+            //var filter = Builders<BsonDocument>.Filter.And(
+            //    Builders<BsonDocument>.Filter.Eq("sequenceId", sequenceId),
+            //    Builders<BsonDocument>.Filter.Eq("dateTime", dt),
+            //    Builders<BsonDocument>.Filter.Eq("frameCount", frameCount)
+            //);
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", $"{dt}-{sequenceId}-{frameCount}");
             var document = collection.Find(filter).FirstOrDefault();
             if (document != null)
             {

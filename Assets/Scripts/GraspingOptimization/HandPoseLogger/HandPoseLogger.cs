@@ -76,7 +76,8 @@ namespace GraspingOptimization
                 {
                     fileName = $"{dataDir}/output/{dt}.jsonl";
                 }
-                ExportJson(JsonUtility.ToJson(handPoseData), fileName);
+                //ExportJson(JsonUtility.ToJson(handPoseData), fileName);
+                ExportDB(JsonUtility.ToJson(handPoseData));
                 frameCount++;
             }
             else
