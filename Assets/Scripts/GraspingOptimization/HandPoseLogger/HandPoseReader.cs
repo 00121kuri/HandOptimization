@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using GraspingOptimization;
 using UnityEngine;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 using UnityEditor;  //AssetDatabaseを使うために追加
 using System.IO;  //StreamWriterなどを使うために追加
@@ -22,7 +24,9 @@ namespace GraspingOptimization
         [SerializeField]
         string dataDir;
         [SerializeField]
-        string fileName;
+        string sequenceId;
+        [SerializeField]
+        string dateTime;
 
         [SerializeField]
         int frameCount;
@@ -30,6 +34,7 @@ namespace GraspingOptimization
         DataType dataType;
 
         //public HandPoseDataList handPoseDataList = new HandPoseDataList();
+        private IMongoCollection<BsonDocument> collection;
 
         void Start()
         {
@@ -39,6 +44,15 @@ namespace GraspingOptimization
                 hands.Add(hand);
             }
             //handPoseDataList = ReadHandPoseDataList(dataDir, fileName);
+            // MongoDBクライアントの初期化
+            if (dataType == DataType.Input)
+            {
+                collection = MongoDB.GetCollection("opti-data", "input");
+            }
+            else if (dataType == DataType.Output)
+            {
+                collection = MongoDB.GetCollection("opti-data", "output");
+            }
         }
 
         void Update()
@@ -46,7 +60,8 @@ namespace GraspingOptimization
             if (Input.GetKey(KeyCode.Space))
             {
 
-                HandPoseData handPoseData = ReadHandPoseData(fileName, frameCount);
+                //HandPoseData handPoseData = ReadHandPoseData(sequenceId, dateTime, frameCount);
+                HandPoseData handPoseData = ReadHandPoseDataFromDB(sequenceId, dateTime, frameCount);
                 if (handPoseData != null)
                 {
                     Debug.Log($"Frame: {handPoseData.frameCount}");
@@ -62,7 +77,7 @@ namespace GraspingOptimization
             }
         }
 
-        public HandPoseData ReadHandPoseData(string dt, int frameCount)
+        public HandPoseData ReadHandPoseData(string sequenceId, string dt, int frameCount)
         {
             //return handPoseDataList.data.Find(x => x.frameCount == frameCount);
 
@@ -73,7 +88,7 @@ namespace GraspingOptimization
             }
             else
             {
-                filePath = $"{dataDir}/output/{dt}.jsonl";
+                filePath = $"{dataDir}/output/{dt}/{sequenceId}.jsonl";
             }
             string json = File.ReadLines(filePath).Skip(frameCount).FirstOrDefault();
             if (json == null)
@@ -82,6 +97,28 @@ namespace GraspingOptimization
             }
             HandPoseData handPoseData = JsonUtility.FromJson<HandPoseData>(json);
             return handPoseData;
+        }
+
+        public HandPoseData ReadHandPoseDataFromDB(string sequenceId, string dt, int frameCount)
+        {
+            // MongoDBからデータを取得
+            //var filter = Builders<BsonDocument>.Filter.And(
+            //    Builders<BsonDocument>.Filter.Eq("sequenceId", sequenceId),
+            //    Builders<BsonDocument>.Filter.Eq("dateTime", dt),
+            //    Builders<BsonDocument>.Filter.Eq("frameCount", frameCount)
+            //);
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", $"{dt}-{sequenceId}-{frameCount}");
+            var document = collection.Find(filter).FirstOrDefault();
+            if (document != null)
+            {
+                string json = document.ToJson();
+                HandPoseData handPoseData = JsonUtility.FromJson<HandPoseData>(json);
+                return handPoseData;
+            }
+            else
+            {
+                return null;
+            }
         }
 
 

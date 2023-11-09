@@ -90,7 +90,7 @@ namespace GraspingOptimization
             float dot = Quaternion.Dot(tangibleObj.transform.rotation, this.resultRotation);
             float angle = Quaternion.Angle(tangibleObj.transform.rotation, this.resultRotation);
             this.score = distance + 0.2f * ((1 - dot) / 2);
-            Debug.Log($"distance: {distance}, dot: {(1 - dot) / 2}, angle: {angle}, score: {this.score}");
+            //Debug.Log($"distance: {distance}, dot: {(1 - dot) / 2}, angle: {angle}, score: {this.score}");
         }
     }
 }

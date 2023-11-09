@@ -2854,14 +2854,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optiSettingHasheList:
-  - 0a9142a02ffd06a6b2050725aa9bb02d
-  - 325a09cebe796c8d123329b4190a981f
+  - 52a75e067979ae9b91232c523711d196
+  - 22c0504690d6e0ca88fe4e494a23f7d2
+  - 9729bf5fbe5c1ae6cb04861e67940646
   envSettingHasheList:
   - 6380ea35ddce8af1f94cc17af19765d9
   dtList:
-  - 2023-11-02-18-39-56
-  - 2023-11-02-15-26-13
-  - 2023-11-02-18-40-31
+  - 2023-11-08-13-59-43
+  - 2023-11-08-14-00-33
+  - 2023-11-08-14-00-21
+  - 2023-11-08-14-00-09
   settingCount: 0
 --- !u!4 &586129017
 Transform:
@@ -4644,6 +4646,90 @@ MonoBehaviour:
     followTarget: {fileID: 0}
     rb: {fileID: 0}
     jointType: 0
+--- !u!1 &861830552
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 861830555}
+  - component: {fileID: 861830554}
+  - component: {fileID: 861830553}
+  m_Layer: 0
+  m_Name: HandCam
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!81 &861830553
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861830552}
+  m_Enabled: 1
+--- !u!20 &861830554
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861830552}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.01
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &861830555
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861830552}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.327}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &896266572 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2818501201809698732, guid: 9c21586619d13ca4ba65adf12182f19d, type: 3}
@@ -8797,7 +8883,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1699845425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8805,7 +8891,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1699845424}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62aab9021105b2d4a9af1a11a21e77a3, type: 3}
   m_Name: 
@@ -9664,7 +9750,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1763604295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10386,8 +10472,9 @@ MonoBehaviour:
   handObjectList:
   - {fileID: 156637051}
   realObject: {fileID: 1439434365}
-  dataDir: D:\ResearchProjects\HandOptimization\opti-data
-  fileName: 2023-11-02-15-26-13
+  dataDir: opti-data
+  sequenceId: inputdata
+  dateTime: 2023-11-02-15-26-13
   frameCount: 0
   dataType: 0
 --- !u!114 &1977019974
@@ -10406,7 +10493,7 @@ MonoBehaviour:
   handObjectList:
   - {fileID: 156637051}
   logObject: {fileID: 667153788}
-  dataDir: D:\ResearchProjects\HandOptimization\opti-data
+  dataDir: C:\Users\Kuribayashi\ResearchProjects\HandOptimization\opti-data
   dataType: 1
 --- !u!114 &1977019975
 MonoBehaviour:
@@ -10463,7 +10550,7 @@ MonoBehaviour:
     resultPosition: {x: 0, y: 0, z: 0}
     resultRotation: {x: 0, y: 0, z: 0, w: 0}
   frameCount: -1
-  dataDir: D:\ResearchProjects\HandOptimization\opti-data
+  dataDir: opti-data
   handPoseReader: {fileID: 1977019973}
   handPoseLogger: {fileID: 1977019974}
   optiSettingManager: {fileID: 1977019976}
@@ -10484,20 +10571,20 @@ MonoBehaviour:
   optiSetting:
     mutationRate: 0.05263158
     sigma: 7
-    initTemperature: 0.005
+    initTemperature: 0
     cooling: 0.995
     targetScore: 0
     worstScore: 0.05
-    maxSteps: 20000
-  dataDir: D:\ResearchProjects\HandOptimization\opti-data
-  settingHash: 325a09cebe796c8d123329b4190a981f
+    maxSteps: 100
+  dataDir: opti-data
+  settingHash: 9729bf5fbe5c1ae6cb04861e67940646
   mutationRate: 0.05263158
   sigma: 7
-  initTemperature: 0.005
+  initTemperature: 0
   cooling: 0.995
   targetScore: 0
   worstScore: 0.05
-  maxSteps: 20000
+  maxSteps: 100
 --- !u!114 &1977019977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10515,7 +10602,7 @@ MonoBehaviour:
     objectPosOffset: {x: 0, y: 0, z: 0}
     objectRotOffset: {x: 0, y: 0, z: 0, w: 1}
     objectScale: {x: 0.3, y: 0.3, z: 0.3}
-  dataDir: D:\ResearchProjects\HandOptimization\opti-data
+  dataDir: opti-data
   settingHash: 6380ea35ddce8af1f94cc17af19765d9
   virtualObject: {fileID: 577393971069882330, guid: 95223ff4023acb746ab3530b08a0de8a, type: 3}
 --- !u!1 &1985884748 stripped
@@ -17747,7 +17834,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 577393971069882330, guid: 95223ff4023acb746ab3530b08a0de8a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95223ff4023acb746ab3530b08a0de8a, type: 3}

@@ -62,7 +62,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.20",
+      "version": "2.0.22",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -169,6 +169,206 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "org.nuget.awssdk.core": {
+      "version": "3.7.100-14",
+      "depth": 3,
+      "source": "registry",
+      "dependencies": {
+        "org.nuget.microsoft.bcl.asyncinterfaces": "1.1.0"
+      },
+      "url": "https://unitynuget-registry.azurewebsites.net"
+    },
+    "org.nuget.awssdk.securitytoken": {
+      "version": "3.7.100-14",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {
+        "org.nuget.awssdk.core": "3.7.100-14"
+      },
+      "url": "https://unitynuget-registry.azurewebsites.net"
+    },
+    "org.nuget.dnsclient": {
+      "version": "1.6.1",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {
+        "org.nuget.microsoft.win32.registry": "5.0.0",
+        "org.nuget.system.buffers": "4.5.1"
+      },
+      "url": "https://unitynuget-registry.azurewebsites.net"
+    },
+    "org.nuget.microsoft.bcl.asyncinterfaces": {
+      "version": "5.0.0",
+      "depth": 3,
+      "source": "registry",
+      "dependencies": {
+        "org.nuget.system.threading.tasks.extensions": "4.5.4"
+      },
+      "url": "https://unitynuget-registry.azurewebsites.net"
+    },
+    "org.nuget.microsoft.extensions.logging.abstractions": {
+      "version": "2.0.0",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://unitynuget-registry.azurewebsites.net"
+    },
+    "org.nuget.microsoft.win32.registry": {
+      "version": "5.0.0",
+      "depth": 3,
+      "source": "registry",
+      "dependencies": {
+        "org.nuget.system.buffers": "4.5.1",
+        "org.nuget.system.memory": "4.5.4",
+        "org.nuget.system.security.accesscontrol": "5.0.0",
+        "org.nuget.system.security.principal.windows": "5.0.0"
+      },
+      "url": "https://unitynuget-registry.azurewebsites.net"
+    },
+    "org.nuget.mongodb.bson": {
+      "version": "2.22.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "org.nuget.system.memory": "4.5.5",
+        "org.nuget.system.runtime.compilerservices.unsafe": "5.0.0"
+      },
+      "url": "https://unitynuget-registry.azurewebsites.net"
+    },
+    "org.nuget.mongodb.driver": {
+      "version": "2.22.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "org.nuget.mongodb.bson": "2.22.0",
+        "org.nuget.mongodb.driver.core": "2.22.0",
+        "org.nuget.microsoft.extensions.logging.abstractions": "2.0.0",
+        "org.nuget.mongodb.libmongocrypt": "1.8.0"
+      },
+      "url": "https://unitynuget-registry.azurewebsites.net"
+    },
+    "org.nuget.mongodb.driver.core": {
+      "version": "2.22.0",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "org.nuget.mongodb.bson": "2.22.0",
+        "org.nuget.awssdk.securitytoken": "3.7.100-14",
+        "org.nuget.dnsclient": "1.6.1",
+        "org.nuget.microsoft.extensions.logging.abstractions": "2.0.0",
+        "org.nuget.mongodb.libmongocrypt": "1.8.0",
+        "org.nuget.sharpcompress": "0.30.1",
+        "org.nuget.snappier": "1.0.0",
+        "org.nuget.system.buffers": "4.5.1",
+        "org.nuget.zstdsharp.port": "0.6.2"
+      },
+      "url": "https://unitynuget-registry.azurewebsites.net"
+    },
+    "org.nuget.mongodb.libmongocrypt": {
+      "version": "1.8.0",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://unitynuget-registry.azurewebsites.net"
+    },
+    "org.nuget.sharpcompress": {
+      "version": "0.30.1",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {
+        "org.nuget.system.memory": "4.5.4",
+        "org.nuget.system.text.encoding.codepages": "5.0.0"
+      },
+      "url": "https://unitynuget-registry.azurewebsites.net"
+    },
+    "org.nuget.snappier": {
+      "version": "1.0.0",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {
+        "org.nuget.system.memory": "4.5.4",
+        "org.nuget.system.runtime.compilerservices.unsafe": "4.7.1",
+        "org.nuget.system.threading.tasks.extensions": "4.5.4"
+      },
+      "url": "https://unitynuget-registry.azurewebsites.net"
+    },
+    "org.nuget.system.buffers": {
+      "version": "4.5.1",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://unitynuget-registry.azurewebsites.net"
+    },
+    "org.nuget.system.memory": {
+      "version": "4.5.5",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "org.nuget.system.buffers": "4.5.1",
+        "org.nuget.system.numerics.vectors": "4.4.0",
+        "org.nuget.system.runtime.compilerservices.unsafe": "4.5.3"
+      },
+      "url": "https://unitynuget-registry.azurewebsites.net"
+    },
+    "org.nuget.system.numerics.vectors": {
+      "version": "4.4.0",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://unitynuget-registry.azurewebsites.net"
+    },
+    "org.nuget.system.runtime.compilerservices.unsafe": {
+      "version": "5.0.0",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://unitynuget-registry.azurewebsites.net"
+    },
+    "org.nuget.system.security.accesscontrol": {
+      "version": "5.0.0",
+      "depth": 4,
+      "source": "registry",
+      "dependencies": {
+        "org.nuget.system.security.principal.windows": "5.0.0"
+      },
+      "url": "https://unitynuget-registry.azurewebsites.net"
+    },
+    "org.nuget.system.security.principal.windows": {
+      "version": "5.0.0",
+      "depth": 4,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://unitynuget-registry.azurewebsites.net"
+    },
+    "org.nuget.system.text.encoding.codepages": {
+      "version": "5.0.0",
+      "depth": 3,
+      "source": "registry",
+      "dependencies": {
+        "org.nuget.system.runtime.compilerservices.unsafe": "5.0.0"
+      },
+      "url": "https://unitynuget-registry.azurewebsites.net"
+    },
+    "org.nuget.system.threading.tasks.extensions": {
+      "version": "4.5.4",
+      "depth": 3,
+      "source": "registry",
+      "dependencies": {
+        "org.nuget.system.runtime.compilerservices.unsafe": "4.5.3"
+      },
+      "url": "https://unitynuget-registry.azurewebsites.net"
+    },
+    "org.nuget.zstdsharp.port": {
+      "version": "0.6.2",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {
+        "org.nuget.microsoft.bcl.asyncinterfaces": "5.0.0",
+        "org.nuget.system.memory": "4.5.4",
+        "org.nuget.system.runtime.compilerservices.unsafe": "5.0.0"
+      },
+      "url": "https://unitynuget-registry.azurewebsites.net"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

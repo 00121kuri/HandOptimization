@@ -5,12 +5,15 @@ using GraspingOptimization;
 using Unity.VisualScripting;
 using System.Runtime.Serialization;
 using System.IO;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 
 namespace GraspingOptimization
 {
     public class OptiResult
     {
+        public string _id; // MongoDBのためのユニークなID
         public string sequenceId;
         public string dateTime;
         public int frameCount;
@@ -29,6 +32,7 @@ namespace GraspingOptimization
 
         public OptiResult(string sequenceId, string dateTime, int frameCount, string optiSettingHash, string envSettingHash, float score, Vector3 resultPos, Quaternion resultRot, Vector3 initPos, Quaternion initRot)
         {
+            this._id = $"{dateTime}-{sequenceId}-{frameCount}";
             this.sequenceId = sequenceId;
             this.dateTime = dateTime;
             this.frameCount = frameCount;
@@ -50,6 +54,14 @@ namespace GraspingOptimization
             sw.WriteLine(json);
             sw.Flush();
             sw.Close();
+        }
+
+        public void ExportDB()
+        {
+            IMongoCollection<BsonDocument> collection = MongoDB.GetCollection("opti-data", "result");
+            string json = JsonUtility.ToJson(this);
+            BsonDocument document = BsonDocument.Parse(json);
+            collection.InsertOne(document);
         }
     }
 }

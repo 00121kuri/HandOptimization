@@ -26,6 +26,13 @@ public class FPSCounter : MonoBehaviour
 
     private void OnGUI()
     {
-        GUILayout.Label("FPS: " + m_fps.ToString("f2"));
+        GUILayout.BeginArea(new Rect(0, 0, Screen.width, Screen.height));
+        GUILayout.BeginVertical();
+        {
+            GUILayout.FlexibleSpace();
+            GUILayout.Label("FPS: " + m_fps.ToString("f2"));
+        }
+        GUILayout.EndVertical();
+        GUILayout.EndArea();
     }
 }
