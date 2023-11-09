@@ -112,6 +112,8 @@ namespace GraspingOptimization
                     Debug.Log("Optimization Finished");
 #if UNITY_EDITOR
                     UnityEditor.EditorApplication.isPaused = true;
+#else
+                    Application.Quit();
 #endif
                     return;
                 }

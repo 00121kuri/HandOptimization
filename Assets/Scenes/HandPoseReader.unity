@@ -24609,8 +24609,8 @@ MonoBehaviour:
   - {fileID: 156637051}
   realObject: {fileID: 667153788}
   dataDir: D:\ResearchProjects\HandOptimization\opti-data
-  sequenceId: ab5c9363478d4cc7b4d923901d756824
-  dateTime: 2023-11-02-18-40-31
+  sequenceId: 37ad479b17cd446cb8cbd8ba5f1fe214
+  dateTime: 2023-11-08-14-00-33
   frameCount: 0
   dataType: 1
 --- !u!1 &1980565626 stripped

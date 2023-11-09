@@ -2854,9 +2854,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optiSettingHasheList:
-  - 788bb257a3563bef393f68b5fa55abc0
-  - 3d6be330c43ae84b02a27f721f476763
-  - f08bb5fcc60e324fed6d300b79ec340e
+  - 52a75e067979ae9b91232c523711d196
+  - 22c0504690d6e0ca88fe4e494a23f7d2
+  - 9729bf5fbe5c1ae6cb04861e67940646
   envSettingHasheList:
   - 6380ea35ddce8af1f94cc17af19765d9
   dtList:
@@ -10571,20 +10571,20 @@ MonoBehaviour:
   optiSetting:
     mutationRate: 0.05263158
     sigma: 7
-    initTemperature: 0.005
+    initTemperature: 0
     cooling: 0.995
     targetScore: 0
     worstScore: 0.05
-    maxSteps: 10000
+    maxSteps: 100
   dataDir: opti-data
-  settingHash: f08bb5fcc60e324fed6d300b79ec340e
+  settingHash: 9729bf5fbe5c1ae6cb04861e67940646
   mutationRate: 0.05263158
   sigma: 7
-  initTemperature: 0.005
+  initTemperature: 0
   cooling: 0.995
   targetScore: 0
   worstScore: 0.05
-  maxSteps: 10000
+  maxSteps: 100
 --- !u!114 &1977019977
 MonoBehaviour:
   m_ObjectHideFlags: 0
