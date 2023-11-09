@@ -11,6 +11,7 @@ using System.IO;
 using UnityEngine.UIElements;
 using Unity.VisualScripting.FullSerializer;
 using System.Data.Common;
+using MongoDB.Driver;
 //using Palmmedia.ReportGenerator.Core;
 
 namespace GraspingOptimization
@@ -38,7 +39,7 @@ namespace GraspingOptimization
 
         [SerializeField]
         bool outputLogImages = false;
-        bool isEnd = false;
+        bool isWaiting = true;
 
         int step = 0;
 
@@ -74,8 +75,6 @@ namespace GraspingOptimization
         GUIStyle guiStyle;
 
         string sequenceId;
-        int sequenceCount = 0;
-        int totalSequenceCount = 0;
 
         string optiSettingHash;
         string envSettingHash;
@@ -91,37 +90,31 @@ namespace GraspingOptimization
             hand = handObject.GetComponent<HandManager>().hand;
             Physics.autoSimulation = false;
 
-            // 設定読み込み
-            LoadSettings();
-
-            sequenceId = Guid.NewGuid().ToString("N");
-            totalSequenceCount = optiSettingList.GetTotalSequenceCount();
-
             Debug.Log("PhysicsManager: Physics.autoSimulation = " + Physics.autoSimulation);
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (isEnd)
+            if (isWaiting)
             {
-                sequenceId = Guid.NewGuid().ToString("N");
-                sequenceCount++;
-                if (sequenceCount >= totalSequenceCount)
+                SettingHash settingHash = optiSettingList.GetNextSettingHash();
+                if (settingHash == null)
                 {
-                    Debug.Log("Optimization Finished");
-#if UNITY_EDITOR
-                    UnityEditor.EditorApplication.isPaused = true;
-#else
-                    Application.Quit();
-#endif
+                    optiSettingList.isWaiting = true;
+                    // FPSを下げる
+                    Application.targetFrameRate = 5;
                     return;
                 }
 
-                isEnd = false;
-                // 設定読み込み
-                LoadSettings();
+                LoadSettings(settingHash);
+                sequenceId = Guid.NewGuid().ToString("N");
+                isWaiting = false;
+                optiSettingList.isWaiting = false;
                 frameCount = -1;
+                // FPSを戻す
+                Application.targetFrameRate = -1;
+
             }
 
             if (!isRunning && (Input.GetKey(KeyCode.Return) || autoStart))
@@ -136,7 +129,7 @@ namespace GraspingOptimization
 
                 if (handPoseData == null)
                 {
-                    isEnd = true;
+                    isWaiting = true;
                     return;
                 }
                 handPoseReader.SetHandPose(handPoseData);
@@ -325,12 +318,11 @@ namespace GraspingOptimization
             yield break;
         }
 
-        private void LoadSettings()
+        private void LoadSettings(SettingHash settingHash)
         {
-            var settings = optiSettingList.GetSettings(sequenceCount);
-            optiSettingHash = settings.optiSettingHash;
-            envSettingHash = settings.envSettingHash;
-            sequenceDt = settings.dt;
+            optiSettingHash = settingHash.optiSettingHash;
+            envSettingHash = settingHash.envSettingHash;
+            sequenceDt = settingHash.sequenceDt;
 
             // ファイルから読み込み
             //optiSetting.LoadOptiSetting(dataDir, optiSettingHash);
@@ -357,9 +349,16 @@ namespace GraspingOptimization
 
         private void OnGUI()
         {
-            GUILayout.Label($"Sequence: {sequenceDt}\nSequenceID: {sequenceId}\nFrame: {frameCount}, Step: {step}", guiStyle);
+            if (isWaiting)
+            {
+                GUILayout.Label($"Waiting for next sequence", guiStyle);
+                return;
+            }
+            else
+            {
+                GUILayout.Label($"Sequence: {sequenceDt}\nSequenceID: {sequenceId}\nFrame: {frameCount}, Step: {step}", guiStyle);
+            }
         }
-
     }
 }
 

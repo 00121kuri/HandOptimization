@@ -2853,9 +2853,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23449ab198ad2ae4fa100d9314dcb766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isClient: 1
   optiSettingHasheList:
-  - 52a75e067979ae9b91232c523711d196
-  - 22c0504690d6e0ca88fe4e494a23f7d2
   - 9729bf5fbe5c1ae6cb04861e67940646
   envSettingHasheList:
   - 6380ea35ddce8af1f94cc17af19765d9
@@ -2865,6 +2864,9 @@ MonoBehaviour:
   - 2023-11-08-14-00-21
   - 2023-11-08-14-00-09
   settingCount: 0
+  settingHashList: []
+  serverIp: localhost
+  serverPort: 33000
 --- !u!4 &586129017
 Transform:
   m_ObjectHideFlags: 0
