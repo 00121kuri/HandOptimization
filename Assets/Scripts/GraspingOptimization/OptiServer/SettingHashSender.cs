@@ -25,8 +25,13 @@ namespace GraspingOptimization
         List<string> sequenceDtList;
 
         [SerializeField]
+        // 繰り返し回数
+        int maxIteration;
+
+        [SerializeField]
         List<SettingHash> settingHashList;
 
+        int totalSettingCount;
 
         private WebSocketServer server;
 
@@ -57,17 +62,20 @@ namespace GraspingOptimization
 
 
             server.Start();
-
-            foreach (string optiSettingHash in optiSettingHasheList)
+            for (int i = 0; i < maxIteration; i++)
             {
-                foreach (string envSettingHash in envSettingHasheList)
+                foreach (string optiSettingHash in optiSettingHasheList)
                 {
-                    foreach (string sequenceDt in sequenceDtList)
+                    foreach (string envSettingHash in envSettingHasheList)
                     {
-                        settingHashList.Add(new SettingHash(optiSettingHash, envSettingHash, sequenceDt));
+                        foreach (string sequenceDt in sequenceDtList)
+                        {
+                            settingHashList.Add(new SettingHash(optiSettingHash, envSettingHash, sequenceDt));
+                        }
                     }
                 }
             }
+            totalSettingCount = settingHashList.Count;
 
         }
 
@@ -121,7 +129,7 @@ namespace GraspingOptimization
         {
             GUILayout.BeginArea(new UnityEngine.Rect(10, 10, Screen.width - 10, Screen.height - 10)); // 位置とサイズを指定
             GUILayout.BeginVertical();
-
+            GUILayout.Label($"Remaining Setting Count: {settingHashList.Count} / {totalSettingCount}");
             GUILayout.Label($"Client Number: {clientInfos.Count}, Total steps/sec: {totalStepsPerSecond.ToString("f1")}");
             foreach (var clientInfo in clientInfos)
             {
