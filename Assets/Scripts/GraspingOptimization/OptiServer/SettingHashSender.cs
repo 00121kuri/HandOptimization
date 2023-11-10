@@ -27,7 +27,6 @@ namespace GraspingOptimization
         [SerializeField]
         List<SettingHash> settingHashList;
 
-        [SerializeField] int port;
 
         private WebSocketServer server;
 
@@ -53,7 +52,7 @@ namespace GraspingOptimization
         // Start is called before the first frame update
         void Start()
         {
-            server = new WebSocketServer(port);
+            server = new WebSocketServer(LocalConfig.serverPort);
             server.AddWebSocketService<ResSettingHash>("/");
 
 

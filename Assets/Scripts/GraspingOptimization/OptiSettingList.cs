@@ -30,10 +30,6 @@ namespace GraspingOptimization
         List<SettingHash> settingHashList;
 
 
-        [SerializeField] string serverIp;
-        [SerializeField] int serverPort;
-
-
         private WebSocket ws;
 
         private bool requestSent = false;
@@ -54,7 +50,7 @@ namespace GraspingOptimization
             settingHashList = new List<SettingHash>();
             if (isClient)
             {
-                ws = new WebSocket($"ws://{serverIp}:{serverPort}/");
+                ws = new WebSocket($"ws://{LocalConfig.serverIp}:{LocalConfig.serverPort}/");
                 ws.OnMessage += (sender, e) =>
                 {
                     Debug.Log(e.Data);

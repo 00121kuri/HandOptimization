@@ -12,7 +12,7 @@ namespace GraspingOptimization
     {
         public static IMongoCollection<BsonDocument> GetCollection(string databaseName, string collectionName)
         {
-            string connectionString = "mongodb://192.168.10.5:27017";
+            string connectionString = $"mongodb://{LocalConfig.databaseIp}:{LocalConfig.databasePort}";
             MongoClient client = new MongoClient(connectionString);
             IMongoDatabase db = client.GetDatabase(databaseName);
             IMongoCollection<BsonDocument> collection = db.GetCollection<BsonDocument>(collectionName);

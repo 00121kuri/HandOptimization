@@ -76,6 +76,8 @@ Assets/Samples
 Assets/SAColliderBuilder
 Assets/OpenCV+Unity
 Assets/Plugins/UniRx
+Assets/Scripts/GraspingOptimization/LocalConfig.cs
+Assets/Scripts/GraspingOptimization/LocalConfig.cs.meta
 
 # logs
 log
