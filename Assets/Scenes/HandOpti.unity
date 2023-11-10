@@ -2865,8 +2865,10 @@ MonoBehaviour:
   - 2023-11-08-14-00-09
   settingCount: 0
   settingHashList: []
-  serverIp: localhost
+  serverIp: 192.168.10.5
   serverPort: 33000
+  isWaiting: 0
+  fpsCounter: {fileID: 1699845425}
 --- !u!4 &586129017
 Transform:
   m_ObjectHideFlags: 0

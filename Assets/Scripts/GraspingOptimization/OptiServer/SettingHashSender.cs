@@ -32,7 +32,9 @@ namespace GraspingOptimization
         private WebSocketServer server;
 
         // クライアントの接続状態を追跡するためのディクショナリ
-        public Dictionary<string, ClientState> clientStates = new Dictionary<string, ClientState>();
+        public Dictionary<string, OptiClientInfo> clientInfos = new Dictionary<string, OptiClientInfo>();
+
+        private float totalStepsPerSecond = 0.0f;
 
 
 
@@ -87,22 +89,32 @@ namespace GraspingOptimization
             server = null;
         }
 
-        public void UpdateClientState(string clientId, ClientState state)
+        public void UpdateClientState(string clientId, OptiClientInfo clientInfo)
         {
-            if (clientStates.ContainsKey(clientId))
+            if (clientInfos.ContainsKey(clientId))
             {
-                if (state == ClientState.Disconnected)
+                if (clientInfo.clientState == ClientState.Disconnected)
                 {
-                    clientStates.Remove(clientId);
+                    clientInfos.Remove(clientId);
                 }
                 else
                 {
-                    clientStates[clientId] = state;
+                    clientInfos[clientId] = clientInfo;
+                    totalStepsPerSecond = 0.0f;
+                    foreach (var info in clientInfos)
+                    {
+                        totalStepsPerSecond += info.Value.stepsPerSecond;
+                    }
                 }
             }
             else
             {
-                clientStates.Add(clientId, state);
+                clientInfos.Add(clientId, clientInfo);
+                totalStepsPerSecond = 0.0f;
+                foreach (var info in clientInfos)
+                {
+                    totalStepsPerSecond += info.Value.stepsPerSecond;
+                }
             }
         }
 
@@ -111,9 +123,10 @@ namespace GraspingOptimization
             GUILayout.BeginArea(new UnityEngine.Rect(10, 10, Screen.width - 10, Screen.height - 10)); // 位置とサイズを指定
             GUILayout.BeginVertical();
 
-            foreach (var clientState in clientStates)
+            GUILayout.Label($"Client Number: {clientInfos.Count}, Total steps/sec: {totalStepsPerSecond.ToString("f1")}");
+            foreach (var clientInfo in clientInfos)
             {
-                string text = $"Client ID: {clientState.Key}, State: {clientState.Value}";
+                string text = $"Client ID: {clientInfo.Key}, State: {clientInfo.Value.clientState}, StepsPerSecond: {clientInfo.Value.stepsPerSecond.ToString("f1")}";
                 GUILayout.Label(text);
             }
 
@@ -127,12 +140,13 @@ namespace GraspingOptimization
         protected override void OnOpen()
         {
             Debug.Log("connected");
-            SettingHashSender.Instance.UpdateClientState(ID, ClientState.Connected);
+            OptiClientInfo clientInfo = new OptiClientInfo(ClientState.Connected);
+            SettingHashSender.Instance.UpdateClientState(ID, clientInfo);
         }
         protected override void OnMessage(MessageEventArgs e)
         {
-            Debug.Log(e.Data);
-            if (e.Data == "request")
+            OptiClientInfo clientInfo = JsonUtility.FromJson<OptiClientInfo>(e.Data);
+            if (clientInfo.clientState == ClientState.Waiting)
             {
                 SettingHash settingHash = SettingHashSender.Instance.GetSettingHash();
                 if (settingHash != null)
@@ -140,28 +154,26 @@ namespace GraspingOptimization
                     string json = JsonUtility.ToJson(settingHash);
                     Send(json);
                 }
-                SettingHashSender.Instance.UpdateClientState(ID, ClientState.Requested);
+                SettingHashSender.Instance.UpdateClientState(ID, clientInfo);
+            }
+            else if (clientInfo.clientState == ClientState.Running)
+            {
+                SettingHashSender.Instance.UpdateClientState(ID, clientInfo);
             }
         }
 
         protected override void OnClose(CloseEventArgs e)
         {
             Debug.Log("closed");
-            SettingHashSender.Instance.UpdateClientState(ID, ClientState.Disconnected);
+            OptiClientInfo clientInfo = new OptiClientInfo(ClientState.Disconnected);
+            SettingHashSender.Instance.UpdateClientState(ID, clientInfo);
         }
 
         protected override void OnError(ErrorEventArgs e)
         {
             Debug.Log("error");
-            SettingHashSender.Instance.UpdateClientState(ID, ClientState.Error);
+            OptiClientInfo clientInfo = new OptiClientInfo(ClientState.Error);
+            SettingHashSender.Instance.UpdateClientState(ID, clientInfo);
         }
-    }
-
-    public enum ClientState
-    {
-        Connected,
-        Requested,
-        Disconnected,
-        Error
     }
 }

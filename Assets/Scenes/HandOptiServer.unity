@@ -133,6 +133,8 @@ GameObject:
   m_Component:
   - component: {fileID: 46500816}
   - component: {fileID: 46500815}
+  - component: {fileID: 46500818}
+  - component: {fileID: 46500817}
   m_Layer: 0
   m_Name: SettingHashSender
   m_TagString: Untagged
@@ -154,6 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   optiSettingHasheList:
   - 788bb257a3563bef393f68b5fa55abc0
+  - 9729bf5fbe5c1ae6cb04861e67940646
   envSettingHasheList:
   - 6380ea35ddce8af1f94cc17af19765d9
   sequenceDtList:
@@ -178,6 +181,55 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &46500817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46500814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a901a9eb05407684fb28ec58946c6f1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  optiSetting:
+    mutationRate: 0.05263158
+    sigma: 7
+    initTemperature: 0.005
+    cooling: 0.995
+    targetScore: 0
+    worstScore: 0.05
+    maxSteps: 100
+  dataDir: 
+  settingHash: 788bb257a3563bef393f68b5fa55abc0
+  mutationRate: 0.05263158
+  sigma: 7
+  initTemperature: 0.005
+  cooling: 0.995
+  targetScore: 0
+  worstScore: 0.05
+  maxSteps: 100
+--- !u!114 &46500818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46500814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a33dfdca1a702a429277da317962ea8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  envSetting:
+    objectPath: bunny_zipper_res3
+    objectPosOffset: {x: 0, y: 0, z: 0}
+    objectRotOffset: {x: 0, y: 0, z: 0, w: 1}
+    objectScale: {x: 0.3, y: 0.3, z: 0.3}
+  dataDir: 
+  settingHash: 6380ea35ddce8af1f94cc17af19765d9
+  virtualObject: {fileID: 577393971069882330, guid: 95223ff4023acb746ab3530b08a0de8a, type: 3}
 --- !u!1001 &383495207
 PrefabInstance:
   m_ObjectHideFlags: 0

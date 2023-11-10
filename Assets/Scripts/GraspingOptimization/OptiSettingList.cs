@@ -40,9 +40,14 @@ namespace GraspingOptimization
 
         public bool isWaiting = false;
 
-        private float reconnectInterval = 5.0f; // 再接続の試みの間隔（秒）
+        private float reconnectInterval = 3.0f; // 再接続の試みの間隔（秒）
         private float timeSinceLastConnectAttempt = 0.0f; // 最後に接続を試みてからの経過時間
         private bool tryReconnect = false;
+
+        private float stepsPerSecond = 0.0f;
+
+        [SerializeField]
+        private FPSCounter fpsCounter;
 
         void Start()
         {
@@ -59,6 +64,7 @@ namespace GraspingOptimization
                 };
                 ws.OnOpen += (sender, e) =>
                 {
+                    tryReconnect = false; // 再接続を試みるフラグを下ろす
                     Debug.Log("WebSocket Open");
                 };
                 ws.OnError += (sender, e) =>
@@ -93,21 +99,29 @@ namespace GraspingOptimization
         {
             if (isClient)
             {
-                if (!ws.IsAlive && tryReconnect)
+                timeSinceLastConnectAttempt += Time.deltaTime;
+                if (timeSinceLastConnectAttempt >= reconnectInterval)
                 {
-                    timeSinceLastConnectAttempt += Time.deltaTime;
-                    if (timeSinceLastConnectAttempt >= reconnectInterval)
+                    timeSinceLastConnectAttempt = 0.0f; // タイマーをリセット
+                    if (!ws.IsAlive && tryReconnect)
                     {
                         ws.Connect(); // 再接続を試みる
-                        timeSinceLastConnectAttempt = 0.0f; // タイマーをリセット
                         requestSent = false;
                     }
-                }
-                else if (!requestSent && isWaiting)
-                {
-                    // サーバー側に設定を要求する
-                    ws.Send("request");
-                    requestSent = true;
+                    else if (!requestSent && isWaiting)
+                    {
+                        OptiClientInfo clientInfo = new OptiClientInfo(ClientState.Waiting);
+                        string json = JsonUtility.ToJson(clientInfo);
+                        ws.Send(json);
+                        requestSent = true;
+                    }
+                    else if (!requestSent && !isWaiting)
+                    {
+                        stepsPerSecond = fpsCounter.GetFPS();
+                        OptiClientInfo clientInfo = new OptiClientInfo(ClientState.Running, stepsPerSecond);
+                        string json = JsonUtility.ToJson(clientInfo);
+                        ws.Send(json);
+                    }
                 }
             }
         }
