@@ -24,6 +24,11 @@ public class FPSCounter : MonoBehaviour
         m_frames = 0;
     }
 
+    public float GetFPS()
+    {
+        return m_fps;
+    }
+
     private void OnGUI()
     {
         GUILayout.BeginArea(new Rect(0, 0, Screen.width, Screen.height));
