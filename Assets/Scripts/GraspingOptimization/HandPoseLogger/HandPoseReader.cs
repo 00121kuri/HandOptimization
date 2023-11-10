@@ -29,15 +29,35 @@ namespace GraspingOptimization
         string dateTime;
 
         [SerializeField]
-        int frameCount;
+        int frameCount = -1;
         [SerializeField]
         DataType dataType;
+
+        [SerializeField]
+        bool captureScreen = false;
+
+        GUIStyle guiStyle;
 
         //public HandPoseDataList handPoseDataList = new HandPoseDataList();
         private IMongoCollection<BsonDocument> collection;
 
         void Start()
         {
+            // GUIの文字の設定
+            guiStyle = new GUIStyle();
+            guiStyle.fontSize = 16;
+            guiStyle.normal.textColor = Color.white;
+
+            if (captureScreen)
+            {
+                // ディレクトリの作成
+                string dirPath = $"SequenceCapture/{dateTime}/{sequenceId}";
+                if (!Directory.Exists(dirPath))
+                {
+                    Directory.CreateDirectory(dirPath);
+                }
+            }
+
             foreach (GameObject handObject in handObjectList)
             {
                 Hand hand = handObject.GetComponent<HandManager>().hand;
@@ -59,19 +79,24 @@ namespace GraspingOptimization
         {
             if (Input.GetKey(KeyCode.Space))
             {
-
+                frameCount++;
                 //HandPoseData handPoseData = ReadHandPoseData(sequenceId, dateTime, frameCount);
                 HandPoseData handPoseData = ReadHandPoseDataFromDB(sequenceId, dateTime, frameCount);
                 if (handPoseData != null)
                 {
                     Debug.Log($"Frame: {handPoseData.frameCount}");
                     SetHandPose(handPoseData);
-                    frameCount++;
+
+                    if (captureScreen)
+                    {
+                        string path = $"SequenceCapture/{dateTime}/{sequenceId}/{frameCount}.png";
+                        ScreenCapture.CaptureScreenshot(path);
+                    }
                 }
                 else
                 {
                     Debug.Log("End of data");
-                    frameCount = 0;
+                    frameCount = -1;
                 }
 
             }
@@ -153,6 +178,14 @@ namespace GraspingOptimization
                         joint.jointObject.transform.localScale = jointData.localScale;
                     }
                 }
+            }
+        }
+
+        private void OnGUI()
+        {
+            if (captureScreen)
+            {
+                GUILayout.Label($"Sequence DateTime: {dateTime}\nSequence ID: {sequenceId}\nFrame: {frameCount}", guiStyle);
             }
         }
     }
