@@ -2859,14 +2859,9 @@ MonoBehaviour:
   envSettingHasheList:
   - 6380ea35ddce8af1f94cc17af19765d9
   dtList:
-  - 2023-11-08-13-59-43
-  - 2023-11-08-14-00-33
-  - 2023-11-08-14-00-21
-  - 2023-11-08-14-00-09
-  settingCount: 0
+  - 2023-11-13-17-20-34
+  settingCount: 5
   settingHashList: []
-  serverIp: 192.168.10.5
-  serverPort: 33000
   isWaiting: 0
   fpsCounter: {fileID: 1699845425}
 --- !u!4 &586129017
@@ -10481,6 +10476,7 @@ MonoBehaviour:
   dateTime: 2023-11-02-15-26-13
   frameCount: 0
   dataType: 0
+  captureScreen: 0
 --- !u!114 &1977019974
 MonoBehaviour:
   m_ObjectHideFlags: 0

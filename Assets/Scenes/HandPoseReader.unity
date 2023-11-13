@@ -1083,7 +1083,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1015311468456129628, guid: e7e358565e530214c97adba8c82fedc6, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1038226463728940174, guid: e7e358565e530214c97adba8c82fedc6, type: 3}
       propertyPath: m_LocalScale.y
@@ -24485,7 +24485,7 @@ MonoBehaviour:
   - {fileID: 156637051}
   realObject: {fileID: 667153788}
   dataDir: D:\ResearchProjects\HandOptimization\opti-data
-  sequenceId: 34e4d7fc4cfa4679a15b52ce530d6ded
+  sequenceId: fccc016df32c450d8ab06e91ba544370
   dateTime: 2023-11-08-14-00-33
   frameCount: -1
   dataType: 1
@@ -26662,7 +26662,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1015311468456129628, guid: e7e358565e530214c97adba8c82fedc6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1038226463728940174, guid: e7e358565e530214c97adba8c82fedc6, type: 3}
       propertyPath: m_LocalScale.y

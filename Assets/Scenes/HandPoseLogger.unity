@@ -2857,21 +2857,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e0350a17c7f7694688f4406131d90d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  optiSetting:
+    mutationRate: 0
+    sigma: 0
+    initTemperature: 0
+    cooling: 0
+    targetScore: 0
+    worstScore: 0
+    maxSteps: 0
+  envSetting:
+    objectPath: 
+    objectPosOffset: {x: 0, y: 0, z: 0}
+    objectRotOffset: {x: 0, y: 0, z: 0, w: 0}
+    objectScale: {x: 0, y: 0, z: 0}
   handObject: {fileID: 156637051}
   tangibleObj: {fileID: 175564030}
-  virtualObj: {fileID: 667153788}
-  mutationRate: 1
-  sigma: 7
-  initTemperature: 0
-  cooling: 0.995
-  targetScore: 0.005
-  worstScore: 0.05
   isRunning: 0
   autoStart: 0
   outputLogImages: 0
-  maxSteps: 10000
-  wist: {fileID: 1962831632}
-  elbow: {fileID: 1993217029}
   minScoreChromosome:
     jointRotations:
     - {x: 0, y: 0, z: 0, w: 0}
@@ -2896,10 +2899,13 @@ MonoBehaviour:
     score: 3.4028235e+38
     resultPosition: {x: 0, y: 0, z: 0}
     resultRotation: {x: 0, y: 0, z: 0, w: 0}
-  handPoseReader: {fileID: 0}
   frameCount: 0
   dataDir: 
+  handPoseReader: {fileID: 0}
   handPoseLogger: {fileID: 0}
+  optiSettingManager: {fileID: 0}
+  envSettingManager: {fileID: 0}
+  optiSettingList: {fileID: 0}
 --- !u!1 &553511589 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 788392492115328903, guid: 9c21586619d13ca4ba65adf12182f19d, type: 3}
@@ -6133,7 +6139,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1126305856}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0976, y: 0.0347, z: -0.0095}
+  m_LocalPosition: {x: -0.1041, y: 0.0347, z: -0.0112}
   m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_ConstrainProportionsScale: 1
   m_Children: []
