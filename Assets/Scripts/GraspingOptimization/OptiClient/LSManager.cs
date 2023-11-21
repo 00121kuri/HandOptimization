@@ -10,21 +10,13 @@ namespace GraspingOptimization
 {
     public class LSManager : BaseOpti
     {
-        float sigma = 7f;
         float mean = 0f;
-
-        float mutationRate = 1f;
-
 
 
         public override IEnumerator StartOptimization()
         {
-            // 暫定
-            int maxFrameCount = 100;
-            int maxStepCount = 20000;
-
             // フレームごとのループ
-            for (int frameCount = 0; frameCount < maxFrameCount; frameCount++)
+            for (int frameCount = 0; ; frameCount++)
             {
                 // 手のポーズを取得
                 HandPoseData handPoseData = handPoseReader.ReadHandPoseDataFromDB("inputdata", sequenceDt, frameCount);
@@ -48,7 +40,7 @@ namespace GraspingOptimization
                 minScoreChromosome.EvaluationHand(hands, targetObj, virtualObj, handPoseData.objectData.position, handPoseData.objectData.rotation, minScoreChromosome);
 
                 // 1ステップのループ
-                for (int stepCount = 0; stepCount < maxStepCount; stepCount++)
+                for (int stepCount = 0; stepCount < optiSetting.maxSteps; stepCount++)
                 {
                     if (minScoreChromosome.score < optiSetting.worstScore)
                     {
@@ -64,7 +56,7 @@ namespace GraspingOptimization
                     }
 
                     // 近傍のHandChromosomeを生成
-                    HandChromosome neighborChromosome = minScoreChromosome.GenerateNeighborChromosome(sigma, mean, mutationRate);
+                    HandChromosome neighborChromosome = minScoreChromosome.GenerateNeighborChromosome(optiSetting.sigma, mean, optiSetting.mutationRate);
 
                     // 評価
                     neighborChromosome.EvaluationHand(hands, targetObj, virtualObj, initPosition, initRotation, minScoreChromosome);

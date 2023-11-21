@@ -57,6 +57,10 @@ namespace GraspingOptimization
                     InitOpti(settingHash);
                     StartCoroutine(StartOptimization());
                 }
+                else
+                {
+                    Application.targetFrameRate = 3;
+                }
             }
         }
 

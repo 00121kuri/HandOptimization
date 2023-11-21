@@ -9809,6 +9809,88 @@ MonoBehaviour:
     followTarget: {fileID: 0}
     rb: {fileID: 0}
     jointType: 0
+--- !u!1 &1805669876
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1805669879}
+  - component: {fileID: 1805669878}
+  - component: {fileID: 1805669877}
+  m_Layer: 0
+  m_Name: Settings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1805669877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805669876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a33dfdca1a702a429277da317962ea8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  envSetting:
+    objectPath: bunny_zipper_res3
+    objectPosOffset: {x: 0, y: 0, z: 0}
+    objectRotOffset: {x: 0, y: 0, z: 0, w: 1}
+    objectScale: {x: 0.3, y: 0.3, z: 0.3}
+  dataDir: 
+  settingHash: 6380ea35ddce8af1f94cc17af19765d9
+  virtualObject: {fileID: 577393971069882330, guid: 95223ff4023acb746ab3530b08a0de8a, type: 3}
+--- !u!114 &1805669878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805669876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a901a9eb05407684fb28ec58946c6f1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  optiSetting:
+    mutationRate: 0.31578946
+    sigma: 7
+    initTemperature: 0
+    cooling: 0.995
+    targetScore: 0
+    worstScore: 0.005
+    maxSteps: 10
+  dataDir: 
+  settingHash: fb5c06fa325688508d1d22c9e656b68a
+  mutationRate: 0.31578946
+  sigma: 7
+  initTemperature: 0
+  cooling: 0.995
+  targetScore: 0
+  worstScore: 0.005
+  maxSteps: 10
+--- !u!4 &1805669879
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805669876}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.025482923, y: 0.14588845, z: 0.0931077}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1827177838 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6559346895385964329, guid: 9c21586619d13ca4ba65adf12182f19d, type: 3}
@@ -10399,7 +10481,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isClient: 0
   optiSettingHasheList:
-  - 52cb019f65be1abef121a5b0631f0a85
+  - fb5c06fa325688508d1d22c9e656b68a
   envSettingHasheList:
   - 6380ea35ddce8af1f94cc17af19765d9
   dtList:
