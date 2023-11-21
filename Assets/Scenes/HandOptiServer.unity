@@ -155,15 +155,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optiSettingHasheList:
-  - 22c0504690d6e0ca88fe4e494a23f7d2
+  - 52cb019f65be1abef121a5b0631f0a85
+  - 2b7bf29158520b766f777e9c8cccc7b1
+  - 6422596647978284f47b6c4fc106d049
+  - 52b4436686442da32924d7e236163134
+  - fd0849558d7b9cd05ee6c9231e35547d
+  - 4af2650f42bc83d1ccdbf4c2f9dff476
+  - 17a05af47e6ded4e1728fd8f4a66c916
   envSettingHasheList:
   - 6380ea35ddce8af1f94cc17af19765d9
   sequenceDtList:
-  - 2023-11-13-17-20-44
+  - 2023-11-16-19-18-26
+  - 2023-11-16-19-18-18
   - 2023-11-13-17-20-34
-  - 2023-11-13-17-20-23
   - 2023-11-13-17-20-13
-  maxIteration: 5
+  - 2023-11-13-17-20-23
+  - 2023-11-13-17-20-44
+  maxIteration: 3
   settingHashList: []
 --- !u!4 &46500816
 Transform:
@@ -193,22 +201,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optiSetting:
-    mutationRate: 0.05263158
+    mutationRate: 0.31578946
     sigma: 7
     initTemperature: 0
     cooling: 0.995
     targetScore: 0
-    worstScore: 0.05
-    maxSteps: 10000
+    worstScore: 0.005
+    maxSteps: 20000
   dataDir: 
-  settingHash: 22c0504690d6e0ca88fe4e494a23f7d2
-  mutationRate: 0.05263158
+  settingHash: 52cb019f65be1abef121a5b0631f0a85
+  mutationRate: 0.31578946
   sigma: 7
   initTemperature: 0
   cooling: 0.995
   targetScore: 0
-  worstScore: 0.05
-  maxSteps: 10000
+  worstScore: 0.005
+  maxSteps: 20000
 --- !u!114 &46500818
 MonoBehaviour:
   m_ObjectHideFlags: 0

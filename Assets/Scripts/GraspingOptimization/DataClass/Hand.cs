@@ -5,6 +5,52 @@ using GraspingOptimization;
 
 namespace GraspingOptimization
 {
+    [System.Serializable]
+    public class Hands
+    {
+        public List<Hand> hands;
+
+        public Hands(List<Hand> hands)
+        {
+            this.hands = hands;
+        }
+
+        public void SetHandChromosome(HandChromosome handChromosome)
+        {
+            foreach (Hand hand in this.hands)
+            {
+                foreach (Finger finger in hand.fingerList)
+                {
+                    foreach (Joint joint in finger.jointList)
+                    {
+                        Vector3 jointAngle = handChromosome.jointGeneList.Find(
+                            x => x.handType == hand.handType && x.fingerType == finger.fingerType && x.jointType == joint.jointType
+                        ).localEulerAngles;
+
+                        joint.jointObject.transform.localRotation = Quaternion.Euler(jointAngle);
+                    }
+                }
+            }
+        }
+
+        public HandChromosome GetCurrentHandChromosome()
+        {
+            HandChromosome handChromosome = new HandChromosome();
+            foreach (Hand hand in this.hands)
+            {
+                foreach (Finger finger in hand.fingerList)
+                {
+                    foreach (Joint joint in finger.jointList)
+                    {
+                        handChromosome.jointGeneList.Add(new JointGene(joint.jointType, finger.fingerType, hand.handType, joint.jointObject.transform.localEulerAngles));
+                    }
+                }
+            }
+            return handChromosome;
+        }
+    }
+
+
     /// <summary>
     /// Hand class
     /// 手の情報を格納するクラス

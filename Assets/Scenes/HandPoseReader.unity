@@ -19974,10 +19974,10 @@ MonoBehaviour:
   realObject: {fileID: 1088340421}
   dataDir: C:\Users\Kuribayashi\ResearchProjects\HandOptimization\opti-data
   sequenceId: inputdata
-  dateTime: 2023-11-08-14-00-33
+  dateTime: 2023-11-21-14-25-34
   frameCount: -1
   dataType: 0
-  captureScreen: 1
+  captureScreen: 0
 --- !u!4 &1509916674 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 57018627950740296, guid: e7e358565e530214c97adba8c82fedc6, type: 3}
@@ -24485,8 +24485,8 @@ MonoBehaviour:
   - {fileID: 156637051}
   realObject: {fileID: 667153788}
   dataDir: D:\ResearchProjects\HandOptimization\opti-data
-  sequenceId: fccc016df32c450d8ab06e91ba544370
-  dateTime: 2023-11-08-14-00-33
+  sequenceId: 1100442380c0490b98576b332d53252d
+  dateTime: 2023-11-13-17-20-34
   frameCount: -1
   dataType: 1
   captureScreen: 1

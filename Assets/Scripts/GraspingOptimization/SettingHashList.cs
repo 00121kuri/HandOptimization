@@ -13,7 +13,7 @@ using MongoDB.Driver;
 
 namespace GraspingOptimization
 {
-    public class OptiSettingList : MonoBehaviour
+    public class SettingHashList : MonoBehaviour
     {
         [SerializeField] bool isClient;
 
@@ -36,7 +36,7 @@ namespace GraspingOptimization
 
         public bool isWaiting = false;
 
-        private float reconnectInterval = 3.0f; // 再接続の試みの間隔（秒）
+        private float reconnectInterval = 10.0f; // 再接続の試みの間隔（秒）
         private float timeSinceLastConnectAttempt = 0.0f; // 最後に接続を試みてからの経過時間
         private bool tryReconnect = false;
 
@@ -71,7 +71,7 @@ namespace GraspingOptimization
                 {
                     Debug.Log("WebSocket Close");
                     tryReconnect = true; // 再接続を試みるフラグを立てる
-                    timeSinceLastConnectAttempt = 0.0f; // タイマーをリセット
+                    //timeSinceLastConnectAttempt = 0.0f; // タイマーをリセット
                 };
                 ws.Connect();
             }

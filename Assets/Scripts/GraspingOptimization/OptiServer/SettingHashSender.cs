@@ -130,8 +130,9 @@ namespace GraspingOptimization
             GUILayout.BeginArea(new UnityEngine.Rect(10, 10, Screen.width - 10, Screen.height - 10)); // 位置とサイズを指定
             GUILayout.BeginVertical();
             GUILayout.Label($"Remaining Setting Count: {settingHashList.Count} / {totalSettingCount}");
-            GUILayout.Label($"Client Number: {clientInfos.Count}, Total steps/sec: {totalStepsPerSecond.ToString("f1")}");
-            foreach (var clientInfo in clientInfos)
+            GUILayout.Label($"Client Num: {clientInfos.Count}, Total steps/sec: {totalStepsPerSecond.ToString("f1")}");
+            var currentClientInfos = new Dictionary<string, OptiClientInfo>(clientInfos);
+            foreach (var clientInfo in currentClientInfos)
             {
                 string text = $"Client ID: {clientInfo.Key}, State: {clientInfo.Value.clientState}, StepsPerSecond: {clientInfo.Value.stepsPerSecond.ToString("f1")}";
                 GUILayout.Label(text);
