@@ -7333,6 +7333,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Service Provider (Desktop)
       objectReference: {fileID: 0}
+    - target: {fileID: 166326, guid: b9c7aaf0d314cb847a3b2a20e893f1b6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 432918, guid: b9c7aaf0d314cb847a3b2a20e893f1b6, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -9859,23 +9863,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a901a9eb05407684fb28ec58946c6f1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  optiSetting:
-    mutationRate: 0.31578946
-    sigma: 7
-    initTemperature: 0
-    cooling: 0.995
-    targetScore: 0
-    worstScore: 0.005
-    maxSteps: 10
-  dataDir: 
-  settingHash: fb5c06fa325688508d1d22c9e656b68a
-  mutationRate: 0.31578946
+  optiType: 0
+  settingHash: a6c2ea9af1c4b8addc32e62361c33466
+  mutationRate: 0.05263158
   sigma: 7
-  initTemperature: 0
-  cooling: 0.995
-  targetScore: 0
-  worstScore: 0.005
-  maxSteps: 10
+  worstScore: 0.05
+  maxSteps: 20000
 --- !u!4 &1805669879
 Transform:
   m_ObjectHideFlags: 0
@@ -10479,13 +10472,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23449ab198ad2ae4fa100d9314dcb766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isClient: 0
+  isClient: 1
   optiSettingHasheList:
-  - fb5c06fa325688508d1d22c9e656b68a
+  - 81ba22df2798652ceb5813545cbe895b
   envSettingHasheList:
   - 6380ea35ddce8af1f94cc17af19765d9
   dtList:
-  - 2023-11-13-17-20-34
+  - 2023-11-08-13-59-43
   settingCount: 2
   settingHashList: []
   isWaiting: 0
@@ -10499,38 +10492,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1977019972}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64e30a15d6d108f469b66300a39833b0, type: 3}
+  m_Script: {fileID: 11500000, guid: 8713db611dd1cc542b91b2aef69d4be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  optiSetting:
-    mutationRate: 0
-    sigma: 0
-    initTemperature: 0
-    cooling: 0
-    targetScore: 0
-    worstScore: 0
-    maxSteps: 0
-  envSetting:
-    objectPath: 
-    objectPosOffset: {x: 0, y: 0, z: 0}
-    objectRotOffset: {x: 0, y: 0, z: 0, w: 0}
-    objectScale: {x: 0, y: 0, z: 0}
-  sequenceDt: 
-  sequenceId: 
-  targetObj: {fileID: 1439434365}
-  virtualObj: {fileID: 0}
   handObjectList:
   - {fileID: 156637051}
-  hands:
-    hands: []
-  handPoseLogger: {fileID: 1977019974}
-  handPoseReader: {fileID: 1977019973}
-  settingHashList: {fileID: 1977019975}
   isRunning: 0
-  settingHash:
-    optiSettingHash: 
-    envSettingHash: 
-    sequenceDt: 
+  targetObj: {fileID: 1439434365}
 --- !u!1 &1985884748 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 159746023388458104, guid: e7e358565e530214c97adba8c82fedc6, type: 3}

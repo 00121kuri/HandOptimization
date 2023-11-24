@@ -7,10 +7,11 @@ namespace GraspingOptimization
 {
     public class OptiSettingManager : MonoBehaviour
     {
+        [SerializeField]
         public OptiSetting optiSetting;
 
         [SerializeField]
-        private string dataDir;
+        private OptiType optiType;
         [SerializeField]
         private string settingHash;
 
@@ -19,45 +20,57 @@ namespace GraspingOptimization
         [SerializeField]
         private float sigma;
         [SerializeField]
-        private float initTemperature;
-        [SerializeField]
-        private float cooling;
-        [SerializeField]
-        private float targetScore;
-        [SerializeField]
         private float worstScore;
         [SerializeField]
         private int maxSteps;
 
+        //private T optiSetting;
+
 
         public void Export()
         {
-            optiSetting = new OptiSetting(mutationRate, sigma, initTemperature, cooling, targetScore, worstScore, maxSteps);
-            //string hash = optiSetting.ExportOptiSetting(dataDir);
-            // DBへ保存する場合
-            OptiSettingWrapper optiSettingWrapper = new OptiSettingWrapper(optiSetting);
-            string hash = optiSettingWrapper.ExportOptiSetting();
-            settingHash = hash;
-            Debug.Log($"Exported OptiSetting: {hash}");
+            switch (optiType)
+            {
+                case OptiType.LocalSearch:
+                    optiSetting = new LocalSearchSetting(mutationRate, sigma, worstScore, maxSteps);
+                    OptiSettingWrapper<LocalSearchSetting> localSearchSettingWrapper = new OptiSettingWrapper<LocalSearchSetting>((LocalSearchSetting)optiSetting);
+                    settingHash = localSearchSettingWrapper.ExportOptiSetting();
+                    OptiTypeWrapper optiTypeWrapper = new OptiTypeWrapper(OptiType.LocalSearch, settingHash);
+                    optiTypeWrapper.ExportOptiType();
+                    Debug.Log($"Exported OptiSetting: {settingHash}");
+                    break;
+                default:
+                    Debug.Log("OptiType is not set");
+                    break;
+            }
         }
+
 
         public void Load()
         {
-            //OptiSetting optiSetting = new OptiSetting();
-            //optiSetting.LoadOptiSetting(dataDir, settingHash);
-            // DBから読みだす場合
-            OptiSettingWrapper optiSettingWrapper = new OptiSettingWrapper();
-            optiSettingWrapper.LoadOptiSetting(settingHash);
-            optiSetting = optiSettingWrapper.optiSetting;
+            OptiTypeWrapper optiTypeWrapper = new OptiTypeWrapper();
+            optiTypeWrapper.LoadOptiType(settingHash);
+            switch (optiTypeWrapper.optiType)
+            {
+                case OptiType.LocalSearch:
+                    OptiSettingWrapper<LocalSearchSetting> localSearchSettingWrapper = new OptiSettingWrapper<LocalSearchSetting>();
+                    localSearchSettingWrapper.LoadOptiSetting(settingHash);
+                    optiSetting = localSearchSettingWrapper.optiSetting;
+                    LoadLocalSearchSetting();
+                    break;
+                default:
+                    Debug.Log("OptiType is not set");
+                    break;
+            }
+        }
 
-            mutationRate = optiSetting.mutationRate;
-            sigma = optiSetting.sigma;
-            initTemperature = optiSetting.initTemperature;
-            cooling = optiSetting.cooling;
-            targetScore = optiSetting.targetScore;
-            worstScore = optiSetting.worstScore;
-            maxSteps = optiSetting.maxSteps;
-            Debug.Log($"Loaded OptiSetting: {settingHash}");
+        public void LoadLocalSearchSetting()
+        {
+            optiType = OptiType.LocalSearch;
+            mutationRate = ((LocalSearchSetting)optiSetting).mutationRate;
+            sigma = ((LocalSearchSetting)optiSetting).sigma;
+            worstScore = ((LocalSearchSetting)optiSetting).worstScore;
+            maxSteps = ((LocalSearchSetting)optiSetting).maxSteps;
         }
     }
 }
