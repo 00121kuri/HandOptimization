@@ -48,7 +48,8 @@ namespace GraspingOptimization
             BsonDocument document = BsonDocument.Parse(json);
             try
             {
-                collection.InsertOne(document);
+                var filter = Builders<BsonDocument>.Filter.Eq("_id", this._id);
+                collection.ReplaceOne(filter, document, new ReplaceOptions { IsUpsert = true });
             }
             catch (System.Exception e)
             {
@@ -116,7 +117,8 @@ namespace GraspingOptimization
             BsonDocument document = BsonDocument.Parse(json);
             try
             {
-                collection.InsertOne(document);
+                var filter = Builders<BsonDocument>.Filter.Eq("_id", this._id);
+                collection.ReplaceOne(filter, document, new ReplaceOptions { IsUpsert = true });
             }
             catch (System.Exception e)
             {

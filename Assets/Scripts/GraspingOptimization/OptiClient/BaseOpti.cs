@@ -24,6 +24,8 @@ namespace GraspingOptimization
 
         public bool isRunning = false;
 
+        public SettingHash settingHash;
+
         public BaseOpti(GameObject targetObj, GameObject virtualObj, Hands hands, HandPoseLogger handPoseLogger, HandPoseReader handPoseReader)
         {
             this.targetObj = targetObj;
@@ -39,6 +41,38 @@ namespace GraspingOptimization
         /// </summary>
         public abstract IEnumerator StartOptimization(Action onFinished = null);
 
-        public abstract void InitOpti(string optiSettingHash, string sequenceDt);
+        public abstract void InitOpti(SettingHash settingHash, string sequenceDt);
+
+        public void ExportCurrentHandPoseData(string sequenceId, string sequenceDt, int frameCount)
+        {
+            HandPoseData outHandPoseData = handPoseLogger.GetHandPoseData(sequenceId, sequenceDt, frameCount);
+            handPoseLogger.ExportDB(JsonUtility.ToJson(outHandPoseData));
+        }
+
+        public void ExportResult(
+            string sequenceId,
+            string sequenceDt,
+            int frameCount,
+            string optiSettingHash,
+            string envSettingHash,
+            HandChromosome minScoreChromosome,
+            Vector3 initPosition,
+            Quaternion initRotation
+        )
+        {
+            OptiResult optiResult = new OptiResult(
+                    sequenceId,
+                    sequenceDt,
+                    frameCount,
+                    optiSettingHash,
+                    envSettingHash,
+                    minScoreChromosome.score,
+                    minScoreChromosome.resultPosition,
+                    minScoreChromosome.resultRotation,
+                    initPosition,
+                    initRotation
+                );
+            optiResult.ExportDB();
+        }
     }
 }

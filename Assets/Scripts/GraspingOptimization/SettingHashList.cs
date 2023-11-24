@@ -99,7 +99,7 @@ namespace GraspingOptimization
                 if (timeSinceLastConnectAttempt >= reconnectInterval)
                 {
                     timeSinceLastConnectAttempt = 0.0f; // タイマーをリセット
-                    if (!ws.IsAlive && tryReconnect)
+                    if (!ws.IsAlive && tryReconnect && isWaiting)
                     {
                         ws.Connect(); // 再接続を試みる
                         requestSent = false;

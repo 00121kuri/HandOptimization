@@ -63,8 +63,9 @@ namespace GraspingOptimization
                     {
                         case OptiType.LocalSearch:
                             localSearch = new LocalSearch(targetObj, virtualObj, hands, handPoseLogger, handPoseReader);
-                            localSearch.InitOpti(settingHash.optiSettingHash, settingHash.sequenceDt);
+                            localSearch.InitOpti(settingHash, settingHash.sequenceDt);
                             isRunning = true;
+                            settingHashList.isWaiting = false;
                             StartCoroutine(localSearch.StartOptimization(onFinished: () => { isRunning = false; }));
                             break;
                         default:
@@ -74,6 +75,7 @@ namespace GraspingOptimization
                 }
                 else
                 {
+                    settingHashList.isWaiting = true;
                     Application.targetFrameRate = 3;
                 }
             }

@@ -35,13 +35,16 @@ namespace GraspingOptimization
         /// </summary>
         public int maxSteps;
 
-        public LocalSearchSetting(float mutationRate, float sigma, float worstScore, int maxSteps = 1000, float mean = 0f) : base()
+        public bool isUsePreviousResult = false;
+
+        public LocalSearchSetting(float mutationRate, float sigma, float worstScore, int maxSteps = 1000, float mean = 0f, bool isUsePreviousResult = false) : base()
         {
             this.mutationRate = mutationRate;
             this.sigma = sigma;
             this.worstScore = worstScore;
             this.maxSteps = maxSteps;
             this.mean = mean;
+            this.isUsePreviousResult = isUsePreviousResult;
             Debug.Log(JsonUtility.ToJson(this));
         }
     }
@@ -50,13 +53,17 @@ namespace GraspingOptimization
     {
         LocalSearchSetting localSearchSetting;
 
+        OptiClientDisplay optiClientDisplay;
+
         public LocalSearch(GameObject targetObj, GameObject virtualObj, Hands hands, HandPoseLogger handPoseLogger, HandPoseReader handPoseReader) : base(targetObj, virtualObj, hands, handPoseLogger, handPoseReader)
         {
+            optiClientDisplay = GameObject.Find("OptiClientDisplay").GetComponent<OptiClientDisplay>();
             Debug.Log("LocalSearch");
         }
 
         public override IEnumerator StartOptimization(Action onFinished)
         {
+            HandChromosome previousResultChromosome = null;
             // フレームごとのループ
             for (int frameCount = 0; ; frameCount++)
             {
@@ -67,23 +74,31 @@ namespace GraspingOptimization
                     // データを最後まで読み終わったら終了
                     Debug.Log("handPoseData is null");
                     if (onFinished != null) onFinished();
+                    optiClientDisplay.WaitingDisplay();
                     yield break;
                 }
 
                 // 1フレームにおける初期の手のポーズと物体の位置を設定
                 handPoseReader.SetHandPose(handPoseData);
 
-                // 初期の物体の位置
-                Vector3 initPosition;
-                Quaternion initRotation;
-
-                HandChromosome initChromosome = hands.GetCurrentHandChromosome();
+                HandChromosome initChromosome = new HandChromosome();
+                if (localSearchSetting.isUsePreviousResult && previousResultChromosome != null)
+                {
+                    initChromosome.jointGeneList = previousResultChromosome.jointGeneList;
+                }
+                else
+                {
+                    initChromosome = hands.GetCurrentHandChromosome();
+                }
                 HandChromosome minScoreChromosome = initChromosome;
                 minScoreChromosome.EvaluationHand(hands, targetObj, virtualObj, handPoseData.objectData.position, handPoseData.objectData.rotation, minScoreChromosome);
 
                 // 1ステップのループ
                 for (int stepCount = 0; stepCount < localSearchSetting.maxSteps; stepCount++)
                 {
+                    // 初期の物体の位置
+                    Vector3 initPosition = Vector3.zero;
+                    Quaternion initRotation = Quaternion.identity;
                     if (minScoreChromosome.score < localSearchSetting.worstScore)
                     {
                         // 前のステップの結果を使う
@@ -109,21 +124,34 @@ namespace GraspingOptimization
                         minScoreChromosome = neighborChromosome;
                     }
 
-                    Debug.Log($"frameCount: {frameCount}, stepCount: {stepCount}, score: {minScoreChromosome.score}");
+                    // 画面を更新
+                    optiClientDisplay.UpdateDisplay(sequenceDt, sequenceId, frameCount, stepCount);
+                    //Debug.Log($"frameCount: {frameCount}, stepCount: {stepCount}, score: {minScoreChromosome.score}");
 
                     yield return null;
                 }
+
+                // minScoreChromosomeを反映
+                hands.SetHandChromosome(minScoreChromosome);
+                virtualObj.transform.SetPositionAndRotation(minScoreChromosome.resultPosition, minScoreChromosome.resultRotation);
+
+                // 結果を出力
+                ExportResult(sequenceId, sequenceDt, frameCount, settingHash.optiSettingHash, settingHash.envSettingHash, minScoreChromosome, handPoseData.objectData.position, handPoseData.objectData.rotation);
+                ExportCurrentHandPoseData(sequenceId, sequenceDt, frameCount);
+                previousResultChromosome = minScoreChromosome;
             }
         }
 
-        public override void InitOpti(string optiSettingHash, string dt)
+        public override void InitOpti(SettingHash settingHash, string dt)
         {
             sequenceDt = dt;
             sequenceId = Guid.NewGuid().ToString("N");
 
+            this.settingHash = settingHash;
+
             // ハッシュ値から設定を読み込む
             OptiSettingWrapper<LocalSearchSetting> optiSettingWrapper = new OptiSettingWrapper<LocalSearchSetting>();
-            optiSettingWrapper.LoadOptiSetting(optiSettingHash);
+            optiSettingWrapper.LoadOptiSetting(settingHash.optiSettingHash);
             localSearchSetting = optiSettingWrapper.optiSetting;
 
             // 初期化

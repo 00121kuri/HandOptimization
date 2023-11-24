@@ -23,6 +23,10 @@ namespace GraspingOptimization
         private float worstScore;
         [SerializeField]
         private int maxSteps;
+        [SerializeField]
+        private float mean;
+        [SerializeField]
+        private bool isUsePreviousResult;
 
         //private T optiSetting;
 
@@ -32,7 +36,7 @@ namespace GraspingOptimization
             switch (optiType)
             {
                 case OptiType.LocalSearch:
-                    optiSetting = new LocalSearchSetting(mutationRate, sigma, worstScore, maxSteps);
+                    optiSetting = new LocalSearchSetting(mutationRate, sigma, worstScore, maxSteps, mean, isUsePreviousResult);
                     OptiSettingWrapper<LocalSearchSetting> localSearchSettingWrapper = new OptiSettingWrapper<LocalSearchSetting>((LocalSearchSetting)optiSetting);
                     settingHash = localSearchSettingWrapper.ExportOptiSetting();
                     OptiTypeWrapper optiTypeWrapper = new OptiTypeWrapper(OptiType.LocalSearch, settingHash);
@@ -71,6 +75,8 @@ namespace GraspingOptimization
             sigma = ((LocalSearchSetting)optiSetting).sigma;
             worstScore = ((LocalSearchSetting)optiSetting).worstScore;
             maxSteps = ((LocalSearchSetting)optiSetting).maxSteps;
+            mean = ((LocalSearchSetting)optiSetting).mean;
+            isUsePreviousResult = ((LocalSearchSetting)optiSetting).isUsePreviousResult;
         }
     }
 }
