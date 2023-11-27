@@ -24489,7 +24489,7 @@ MonoBehaviour:
   dateTime: 2023-11-13-17-20-34
   frameCount: -1
   dataType: 1
-  captureScreen: 1
+  captureScreen: 0
 --- !u!1 &1980565626 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7291273448633362635, guid: e7e358565e530214c97adba8c82fedc6, type: 3}

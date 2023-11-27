@@ -183,10 +183,8 @@ namespace GraspingOptimization
 
         private void OnGUI()
         {
-            if (captureScreen)
-            {
-                GUILayout.Label($"Sequence DateTime: {dateTime}\nSequence ID: {sequenceId}\nFrame: {frameCount}", guiStyle);
-            }
+            GUILayout.Label($"Sequence DateTime: {dateTime}\nSequence ID: {sequenceId}\nFrame: {frameCount}", guiStyle);
+
         }
     }
 }
