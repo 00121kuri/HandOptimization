@@ -7,24 +7,25 @@ using System.Text;
 using System.IO;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using Amazon.Runtime.SharedInterfaces;
 
 namespace GraspingOptimization
 {
     [System.Serializable]
-    public class OptiSettingWrapper
+    public class OptiSettingWrapper<T> where T : OptiSetting
     {
         public string _id; // MongoDBのためのユニークなID 
-        public OptiSetting optiSetting;
+
+        public T optiSetting;
 
         public OptiSettingWrapper()
         {
 
         }
 
-        public OptiSettingWrapper(OptiSetting optiSetting)
+        public OptiSettingWrapper(T optiSetting)
         {
             this.optiSetting = optiSetting;
-            // hashを計算
             string json = JsonUtility.ToJson(optiSetting);
             this._id = Helper.GetHash(json);
         }
@@ -47,7 +48,8 @@ namespace GraspingOptimization
             BsonDocument document = BsonDocument.Parse(json);
             try
             {
-                collection.InsertOne(document);
+                var filter = Builders<BsonDocument>.Filter.Eq("_id", this._id);
+                collection.ReplaceOne(filter, document, new ReplaceOptions { IsUpsert = true });
             }
             catch (System.Exception e)
             {
@@ -58,64 +60,13 @@ namespace GraspingOptimization
     }
 
     [System.Serializable]
-    public class OptiSetting
+    public abstract class OptiSetting
     {
-        /// <summary>
-        /// 変異確率
-        /// 近傍探索の際にそれぞれの指が変化する確率
-        /// 1にすると全ての指にノイズが加えられる
-        /// </summary>
-        public float mutationRate;
-
-        /// <summary>
-        /// 近傍探索で用いるノイズの正規分布のSigma
-        /// </summary>
-        public float sigma;
-
-        /// <summary>
-        /// アニーリング法の初期温度
-        /// 0にすると単純な局所探索法になる
-        /// </summary>
-        public float initTemperature;
-
-        /// <summary>
-        /// アニーリング法の冷却係数
-        /// </summary>
-        public float cooling;
-
-        /// <summary>
-        /// 終了条件のスコア
-        /// </summary>
-        public float targetScore;
-
-        /// <summary>
-        /// 仮想オブジェクトの位置をリセットするときの閾値
-        /// 0にすると毎回リセットされる
-        /// </summary>
-        public float worstScore;
-
-        /// <summary>
-        /// 最大ステップ数
-        /// </summary>
-        public int maxSteps;
-
-
         public OptiSetting()
         {
 
         }
 
-        public OptiSetting(float mutationRate, float sigma, float initTemperature, float cooling, float targetScore, float worstScore, int maxSteps = 1000)
-        {
-            this.mutationRate = mutationRate;
-            this.sigma = sigma;
-            this.initTemperature = initTemperature;
-            this.cooling = cooling;
-            this.targetScore = targetScore;
-            this.worstScore = worstScore;
-            this.maxSteps = maxSteps;
-            Debug.Log(JsonUtility.ToJson(this));
-        }
 
         public void LoadOptiSetting(string dataDir, string hash)
         {
@@ -138,4 +89,57 @@ namespace GraspingOptimization
 
     }
 
+    /// <summary>
+    /// それぞれの設定値がどの最適化手法に対応しているかを表す
+    /// </summary>
+    [System.Serializable]
+    public class OptiTypeWrapper
+    {
+        public string _id; // OptiSettingのハッシュ値
+        public OptiType optiType;
+
+        public OptiTypeWrapper(OptiType optiType, string hash)
+        {
+            this._id = hash;
+            this.optiType = optiType;
+        }
+
+        public OptiTypeWrapper()
+        {
+
+        }
+
+        public void ExportOptiType()
+        {
+            // MongoDBに書き込み
+            IMongoCollection<BsonDocument> collection = MongoDB.GetCollection("opti-data", "opti-type");
+            string json = JsonUtility.ToJson(this);
+            BsonDocument document = BsonDocument.Parse(json);
+            try
+            {
+                var filter = Builders<BsonDocument>.Filter.Eq("_id", this._id);
+                collection.ReplaceOne(filter, document, new ReplaceOptions { IsUpsert = true });
+            }
+            catch (System.Exception e)
+            {
+                Debug.Log(e);
+            }
+        }
+
+        public void LoadOptiType(string hash)
+        {
+            // MongoDBから読み込み
+            IMongoCollection<BsonDocument> collection = MongoDB.GetCollection("opti-data", "opti-type");
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", hash);
+            var result = collection.Find(filter).FirstOrDefault();
+            string json = result.ToJson();
+            JsonUtility.FromJsonOverwrite(json, this);
+        }
+    }
+
+    [System.Serializable]
+    public enum OptiType
+    {
+        LocalSearch
+    }
 }
