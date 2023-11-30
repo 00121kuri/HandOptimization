@@ -48,15 +48,7 @@ namespace GraspingOptimization
             guiStyle.fontSize = 16;
             guiStyle.normal.textColor = Color.white;
 
-            if (captureScreen)
-            {
-                // ディレクトリの作成
-                string dirPath = $"SequenceCapture/{dateTime}/{sequenceId}";
-                if (!Directory.Exists(dirPath))
-                {
-                    Directory.CreateDirectory(dirPath);
-                }
-            }
+
 
             foreach (GameObject handObject in handObjectList)
             {
@@ -79,6 +71,15 @@ namespace GraspingOptimization
         {
             if (Input.GetKey(KeyCode.Space))
             {
+                if (captureScreen)
+                {
+                    // ディレクトリの作成
+                    string dirPath = $"SequenceCapture/{dateTime}/{sequenceId}";
+                    if (!Directory.Exists(dirPath))
+                    {
+                        Directory.CreateDirectory(dirPath);
+                    }
+                }
                 frameCount++;
                 //HandPoseData handPoseData = ReadHandPoseData(sequenceId, dateTime, frameCount);
                 HandPoseData handPoseData = ReadHandPoseDataFromDB(sequenceId, dateTime, frameCount);
@@ -183,8 +184,9 @@ namespace GraspingOptimization
 
         private void OnGUI()
         {
+#if UNITY_EDITOR            
             GUILayout.Label($"Sequence DateTime: {dateTime}\nSequence ID: {sequenceId}\nFrame: {frameCount}", guiStyle);
-
+#endif
         }
     }
 }

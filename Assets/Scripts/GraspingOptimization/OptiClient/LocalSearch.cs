@@ -37,7 +37,13 @@ namespace GraspingOptimization
 
         public bool isUsePreviousResult = false;
 
-        public LocalSearchSetting(float mutationRate, float sigma, float worstScore, int maxSteps = 1000, float mean = 0f, bool isUsePreviousResult = false) : base()
+        public float weightDistance = 1f;
+
+        public float weightRotation = 0.1f;
+
+        public float weightChromosomeDiff = 0f;
+
+        public LocalSearchSetting(float mutationRate, float sigma, float worstScore, int maxSteps = 1000, float mean = 0f, bool isUsePreviousResult = false, float weightDistance = 1f, float weightRotation = 0.1f, float weightChromosomeDiff = 0f) : base()
         {
             this.mutationRate = mutationRate;
             this.sigma = sigma;
@@ -45,6 +51,9 @@ namespace GraspingOptimization
             this.maxSteps = maxSteps;
             this.mean = mean;
             this.isUsePreviousResult = isUsePreviousResult;
+            this.weightDistance = weightDistance;
+            this.weightRotation = weightRotation;
+            this.weightChromosomeDiff = weightChromosomeDiff;
             Debug.Log(JsonUtility.ToJson(this));
         }
     }
@@ -91,7 +100,18 @@ namespace GraspingOptimization
                     initChromosome = hands.GetCurrentHandChromosome();
                 }
                 HandChromosome minScoreChromosome = initChromosome;
-                minScoreChromosome.EvaluationHand(hands, targetObj, virtualObj, handPoseData.objectData.position, handPoseData.objectData.rotation, minScoreChromosome);
+                minScoreChromosome.EvaluationHand(
+                    hands,
+                    targetObj,
+                    virtualObj,
+                    handPoseData.objectData.position,
+                    handPoseData.objectData.rotation,
+                    minScoreChromosome,
+                    initChromosome,
+                    localSearchSetting.weightDistance,
+                    localSearchSetting.weightRotation,
+                    localSearchSetting.weightChromosomeDiff
+                    );
 
                 // 1ステップのループ
                 for (int stepCount = 0; stepCount < localSearchSetting.maxSteps; stepCount++)
@@ -116,7 +136,17 @@ namespace GraspingOptimization
                     HandChromosome neighborChromosome = minScoreChromosome.GenerateNeighborChromosome(localSearchSetting.sigma, localSearchSetting.mean, localSearchSetting.mutationRate);
 
                     // 評価
-                    neighborChromosome.EvaluationHand(hands, targetObj, virtualObj, initPosition, initRotation, minScoreChromosome);
+                    neighborChromosome.EvaluationHand(
+                        hands,
+                        targetObj,
+                        virtualObj,
+                        initPosition,
+                        initRotation,
+                        minScoreChromosome,
+                        initChromosome,
+                        localSearchSetting.weightDistance,
+                        localSearchSetting.weightRotation,
+                        localSearchSetting.weightChromosomeDiff);
 
                     if (neighborChromosome.score < minScoreChromosome.score)
                     {

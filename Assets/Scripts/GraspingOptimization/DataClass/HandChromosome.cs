@@ -63,7 +63,28 @@ namespace GraspingOptimization
             return randomRotation;
         }
 
-        public void EvaluationHand(Hands hands, GameObject tangibleObj, GameObject virtualObj, Vector3 initPosition, Quaternion initRotation, HandChromosome beforeChromosome)
+        public float EvaluateChromosomeDiff(HandChromosome otherChromosome)
+        {
+            float diff = 0;
+            // 内積で類似度を求める
+            for (int i = 0; i < this.jointGeneList.Count; i++)
+            {
+                diff += Vector3.Angle(this.jointGeneList[i].localEulerAngles, otherChromosome.jointGeneList[i].localEulerAngles);
+            }
+            return diff / 180f / this.jointGeneList.Count;
+        }
+
+        public void EvaluationHand(
+            Hands hands,
+            GameObject tangibleObj,
+            GameObject virtualObj,
+            Vector3 initPosition,
+            Quaternion initRotation,
+            HandChromosome beforeChromosome,
+            HandChromosome initChromosome,
+            float weightDistance,
+            float weightRotation,
+            float weightChromosomeDiff)
         {
             // 初期位置
             int simulateTime = 20;
@@ -86,9 +107,10 @@ namespace GraspingOptimization
             //TODO: 評価関数を決める
             float distance = Vector3.Distance(tangibleObj.transform.position, this.resultPosition);
             float dot = Quaternion.Dot(tangibleObj.transform.rotation, this.resultRotation);
-            float angle = Quaternion.Angle(tangibleObj.transform.rotation, this.resultRotation);
-            this.score = distance + 0.2f * ((1 - dot) / 2);
-            //Debug.Log($"distance: {distance}, dot: {(1 - dot) / 2}, angle: {angle}, score: {this.score}");
+            float initChromosomeDiff = this.EvaluateChromosomeDiff(initChromosome);
+            //float angle = Quaternion.Angle(tangibleObj.transform.rotation, this.resultRotation);
+            this.score = weightDistance * distance + weightRotation * (1 - dot) + weightChromosomeDiff * initChromosomeDiff;
+            //Debug.Log($"distance: {distance}, dot: {(1 - dot) / 2}, initChromosomeDiff: {initChromosomeDiff}, score: {this.score}");
         }
 
         public HandChromosome GenerateNeighborChromosome(float sigma, float mean, float mutationRate)

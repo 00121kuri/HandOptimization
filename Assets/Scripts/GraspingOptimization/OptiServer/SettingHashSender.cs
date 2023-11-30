@@ -60,8 +60,13 @@ namespace GraspingOptimization
             server = new WebSocketServer(LocalConfig.serverPort);
             server.AddWebSocketService<ResSettingHash>("/");
 
-
             server.Start();
+            totalSettingCount = settingHashList.Count;
+
+        }
+
+        public void Add()
+        {
             for (int i = 0; i < maxIteration; i++)
             {
                 foreach (string optiSettingHash in optiSettingHasheList)
@@ -76,7 +81,12 @@ namespace GraspingOptimization
                 }
             }
             totalSettingCount = settingHashList.Count;
+        }
 
+        public void Clear()
+        {
+            settingHashList.Clear();
+            totalSettingCount = settingHashList.Count;
         }
 
         public SettingHash GetSettingHash()

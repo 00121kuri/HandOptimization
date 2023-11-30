@@ -27,6 +27,13 @@ namespace GraspingOptimization
         private float mean;
         [SerializeField]
         private bool isUsePreviousResult;
+        [SerializeField]
+        private float weightDistance;
+        [SerializeField]
+        private float weightRotation;
+        [SerializeField]
+        private float weightChromosomeDiff;
+
 
         //private T optiSetting;
 
@@ -36,7 +43,7 @@ namespace GraspingOptimization
             switch (optiType)
             {
                 case OptiType.LocalSearch:
-                    optiSetting = new LocalSearchSetting(mutationRate, sigma, worstScore, maxSteps, mean, isUsePreviousResult);
+                    optiSetting = new LocalSearchSetting(mutationRate, sigma, worstScore, maxSteps, mean, isUsePreviousResult, weightDistance, weightRotation, weightChromosomeDiff);
                     OptiSettingWrapper<LocalSearchSetting> localSearchSettingWrapper = new OptiSettingWrapper<LocalSearchSetting>((LocalSearchSetting)optiSetting);
                     settingHash = localSearchSettingWrapper.ExportOptiSetting();
                     OptiTypeWrapper optiTypeWrapper = new OptiTypeWrapper(OptiType.LocalSearch, settingHash);
@@ -77,6 +84,9 @@ namespace GraspingOptimization
             maxSteps = ((LocalSearchSetting)optiSetting).maxSteps;
             mean = ((LocalSearchSetting)optiSetting).mean;
             isUsePreviousResult = ((LocalSearchSetting)optiSetting).isUsePreviousResult;
+            weightDistance = ((LocalSearchSetting)optiSetting).weightDistance;
+            weightRotation = ((LocalSearchSetting)optiSetting).weightRotation;
+            weightChromosomeDiff = ((LocalSearchSetting)optiSetting).weightChromosomeDiff;
         }
     }
 }

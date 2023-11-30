@@ -47,6 +47,10 @@ namespace GraspingOptimization
 
         void Start()
         {
+#if UNITY_EDITOR
+#else
+isClient = true;
+#endif
             settingHashList = new List<SettingHash>();
             if (isClient)
             {
