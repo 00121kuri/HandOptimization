@@ -155,7 +155,14 @@ namespace GraspingOptimization
                     }
 
                     // 画面を更新
-                    optiClientDisplay.UpdateDisplay(sequenceDt, sequenceId, frameCount, stepCount);
+                    try
+                    {
+                        optiClientDisplay.UpdateDisplay(sequenceDt, sequenceId, frameCount, stepCount);
+                    }
+                    catch (NullReferenceException e)
+                    {
+                        Debug.Log(e);
+                    }
                     //Debug.Log($"frameCount: {frameCount}, stepCount: {stepCount}, score: {minScoreChromosome.score}");
 
                     yield return null;

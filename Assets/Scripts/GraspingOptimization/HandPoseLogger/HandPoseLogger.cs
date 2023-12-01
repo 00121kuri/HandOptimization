@@ -36,9 +36,6 @@ namespace GraspingOptimization
 
         private IMongoCollection<BsonDocument> collection;
 
-        // MongoDBに接続するための接続文字列
-        private string connectionString = "mongodb://localhost:27017";
-
 
         // Start is called before the first frame update
         void Start()

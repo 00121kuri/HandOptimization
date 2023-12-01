@@ -35,9 +35,16 @@ namespace GraspingOptimization
             // MongoDBから読み込み
             IMongoCollection<BsonDocument> collection = MongoDB.GetCollection("opti-data", "opti-setting");
             var filter = Builders<BsonDocument>.Filter.Eq("_id", hash);
-            var result = collection.Find(filter).FirstOrDefault();
-            string json = result.ToJson();
-            JsonUtility.FromJsonOverwrite(json, this);
+            try
+            {
+                var result = collection.Find(filter).FirstOrDefault();
+                string json = result.ToJson();
+                JsonUtility.FromJsonOverwrite(json, this);
+            }
+            catch (System.Exception e)
+            {
+                Debug.Log(e);
+            }
         }
 
         public string ExportOptiSetting()
@@ -131,9 +138,16 @@ namespace GraspingOptimization
             // MongoDBから読み込み
             IMongoCollection<BsonDocument> collection = MongoDB.GetCollection("opti-data", "opti-type");
             var filter = Builders<BsonDocument>.Filter.Eq("_id", hash);
-            var result = collection.Find(filter).FirstOrDefault();
-            string json = result.ToJson();
-            JsonUtility.FromJsonOverwrite(json, this);
+            try
+            {
+                var result = collection.Find(filter).FirstOrDefault();
+                string json = result.ToJson();
+                JsonUtility.FromJsonOverwrite(json, this);
+            }
+            catch (System.Exception e)
+            {
+                Debug.Log(e);
+            }
         }
     }
 

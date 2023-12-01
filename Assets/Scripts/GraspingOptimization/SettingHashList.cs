@@ -23,6 +23,8 @@ namespace GraspingOptimization
         List<string> envSettingHasheList;
         [SerializeField]
         List<string> dtList;
+        [SerializeField]
+        int maxIteration;
 
         public int settingCount;
 
@@ -81,17 +83,20 @@ isClient = true;
             }
             else
             {
-
-                foreach (string optiSettingHash in optiSettingHasheList)
+                for (int i = 0; i < maxIteration; i++)
                 {
-                    foreach (string envSettingHash in envSettingHasheList)
+                    foreach (string optiSettingHash in optiSettingHasheList)
                     {
-                        foreach (string dt in dtList)
+                        foreach (string envSettingHash in envSettingHasheList)
                         {
-                            settingHashList.Add(new SettingHash(optiSettingHash, envSettingHash, dt));
+                            foreach (string dt in dtList)
+                            {
+                                settingHashList.Add(new SettingHash(optiSettingHash, envSettingHash, dt));
+                            }
                         }
                     }
                 }
+                settingCount = settingHashList.Count;
             }
         }
 
