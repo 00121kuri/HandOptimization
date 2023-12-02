@@ -8298,7 +8298,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 261804502}
   m_LocalRotation: {x: 0.26666498, y: -0.42848757, z: 0.04987649, w: 0.8618587}
-  m_LocalPosition: {x: 0, y: 0.039, z: 0}
+  m_LocalPosition: {x: -0.025, y: 0.002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19974,10 +19974,11 @@ MonoBehaviour:
   realObject: {fileID: 1088340421}
   dataDir: C:\Users\Kuribayashi\ResearchProjects\HandOptimization\opti-data
   sequenceId: inputdata
-  dateTime: 2023-11-21-14-25-34
+  dateTime: 2023-11-13-17-20-23
   frameCount: -1
   dataType: 0
   captureScreen: 0
+  handCamera: {fileID: 261804502}
 --- !u!4 &1509916674 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 57018627950740296, guid: e7e358565e530214c97adba8c82fedc6, type: 3}
@@ -24485,11 +24486,12 @@ MonoBehaviour:
   - {fileID: 156637051}
   realObject: {fileID: 667153788}
   dataDir: D:\ResearchProjects\HandOptimization\opti-data
-  sequenceId: 7c2d589926ed4fa0965646df9176690e
-  dateTime: 2023-11-13-17-20-34
+  sequenceId: d72140ae8fa3462888f9fe88ca339a66
+  dateTime: 2023-11-21-14-25-58
   frameCount: -1
   dataType: 1
   captureScreen: 0
+  handCamera: {fileID: 261804502}
 --- !u!1 &1980565626 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7291273448633362635, guid: e7e358565e530214c97adba8c82fedc6, type: 3}

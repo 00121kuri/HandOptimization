@@ -155,9 +155,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optiSettingHasheList:
-  - 807aab2dad3a3fec11b14a02360eb477
-  - 024f3057e3e2d15442cdd76658858722
-  - 42335669ae5b0cc9834d716324856587
+  - 0f784e86f53d4568610f8cbfba90f485
+  - f7aaf01c056a11caa1ecb35de1f45b40
+  - 24a6bfee2d3e46f8377d3b8daa5c4f8a
   envSettingHasheList:
   - 6380ea35ddce8af1f94cc17af19765d9
   sequenceDtList:
@@ -169,7 +169,7 @@ MonoBehaviour:
   - 2023-11-21-14-25-58
   - 2023-11-13-17-20-23
   - 2023-11-21-14-25-34
-  maxIteration: 1
+  maxIteration: 2
   settingHashList: []
 --- !u!4 &46500816
 Transform:
@@ -199,16 +199,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optiType: 0
-  settingHash: 807aab2dad3a3fec11b14a02360eb477
-  mutationRate: 0.10526316
-  sigma: 6
+  settingHash: 24a6bfee2d3e46f8377d3b8daa5c4f8a
+  mutationRate: 0.15789473
+  sigma: 1
   worstScore: 0.005
-  maxSteps: 20000
+  maxSteps: 50000
   mean: 0
-  isUsePreviousResult: 0
+  isUsePreviousResult: 1
   weightDistance: 1
   weightRotation: 0.1
-  weightChromosomeDiff: 0.01
+  weightChromosomeDiff: 0
 --- !u!114 &46500818
 MonoBehaviour:
   m_ObjectHideFlags: 0

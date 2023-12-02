@@ -38,6 +38,11 @@ namespace GraspingOptimization
 
         GUIStyle guiStyle;
 
+        [SerializeField]
+        private GameObject handCamera;
+
+        private Vector3 handCameraOffsetPos;
+
         //public HandPoseDataList handPoseDataList = new HandPoseDataList();
         private IMongoCollection<BsonDocument> collection;
 
@@ -48,7 +53,8 @@ namespace GraspingOptimization
             guiStyle.fontSize = 16;
             guiStyle.normal.textColor = Color.white;
 
-
+            // カメラの位置と回転を保存
+            handCameraOffsetPos = handCamera.transform.position;
 
             foreach (GameObject handObject in handObjectList)
             {
@@ -85,6 +91,11 @@ namespace GraspingOptimization
                 HandPoseData handPoseData = ReadHandPoseDataFromDB(sequenceId, dateTime, frameCount);
                 if (handPoseData != null)
                 {
+                    if (frameCount == 0)
+                    {
+                        // カメラの位置と回転をシーケンスの最初のフレームに合わせる
+                        handCamera.transform.position = handCameraOffsetPos + handPoseData.objectData.position;
+                    }
                     Debug.Log($"Frame: {handPoseData.frameCount}");
                     SetHandPose(handPoseData);
 
