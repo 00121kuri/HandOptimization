@@ -155,12 +155,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optiSettingHasheList:
-  - a0d6adb069539f69c6b58b86d97fbef3
-  - dadf8a74e53994f994d905a5d238e61e
-  - 51469ef0dac85bcee7c488fe12714211
-  - b5018babc7ab0947cdd051e8cc82f95a
-  - e8d5eb8415711305ae8b5a4de9abe19e
   - 807aab2dad3a3fec11b14a02360eb477
+  - 024f3057e3e2d15442cdd76658858722
+  - 42335669ae5b0cc9834d716324856587
   envSettingHasheList:
   - 6380ea35ddce8af1f94cc17af19765d9
   sequenceDtList:
