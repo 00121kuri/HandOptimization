@@ -64,6 +64,18 @@ namespace GraspingOptimization
 
         OptiClientDisplay optiClientDisplay;
 
+        HandPoseData handPoseData;
+
+        HandChromosome initChromosome = new HandChromosome();
+
+        HandChromosome minScoreChromosome = new HandChromosome();
+
+        HandChromosome neighborChromosome = new HandChromosome();
+
+        // 初期の物体の位置
+        Vector3 initPosition = Vector3.zero;
+        Quaternion initRotation = Quaternion.identity;
+
         public LocalSearch(GameObject targetObj, GameObject virtualObj, Hands hands, HandPoseLogger handPoseLogger, HandPoseReader handPoseReader) : base(targetObj, virtualObj, hands, handPoseLogger, handPoseReader)
         {
             optiClientDisplay = GameObject.Find("OptiClientDisplay").GetComponent<OptiClientDisplay>();
@@ -77,7 +89,7 @@ namespace GraspingOptimization
             for (int frameCount = 0; ; frameCount++)
             {
                 // 手のポーズを取得
-                HandPoseData handPoseData = handPoseReader.ReadHandPoseDataFromDB("inputdata", sequenceDt, frameCount);
+                handPoseData = handPoseReader.ReadHandPoseDataFromDB("inputdata", sequenceDt, frameCount);
                 if (handPoseData == null)
                 {
                     // データを最後まで読み終わったら終了
@@ -90,7 +102,7 @@ namespace GraspingOptimization
                 // 1フレームにおける初期の手のポーズと物体の位置を設定
                 handPoseReader.SetHandPose(handPoseData);
 
-                HandChromosome initChromosome = new HandChromosome();
+
                 if (localSearchSetting.isUsePreviousResult && previousResultChromosome != null)
                 {
                     initChromosome.jointGeneList = previousResultChromosome.jointGeneList;
@@ -99,7 +111,7 @@ namespace GraspingOptimization
                 {
                     initChromosome = hands.GetCurrentHandChromosome();
                 }
-                HandChromosome minScoreChromosome = initChromosome;
+                minScoreChromosome = initChromosome;
                 minScoreChromosome.EvaluationHand(
                     hands,
                     targetObj,
@@ -116,9 +128,7 @@ namespace GraspingOptimization
                 // 1ステップのループ
                 for (int stepCount = 0; stepCount < localSearchSetting.maxSteps; stepCount++)
                 {
-                    // 初期の物体の位置
-                    Vector3 initPosition = Vector3.zero;
-                    Quaternion initRotation = Quaternion.identity;
+
                     if (minScoreChromosome.score < localSearchSetting.worstScore)
                     {
                         // 前のステップの結果を使う
@@ -133,7 +143,7 @@ namespace GraspingOptimization
                     }
 
                     // 近傍のHandChromosomeを生成
-                    HandChromosome neighborChromosome = minScoreChromosome.GenerateNeighborChromosome(localSearchSetting.sigma, localSearchSetting.mean, localSearchSetting.mutationRate);
+                    neighborChromosome = minScoreChromosome.GenerateNeighborChromosome(localSearchSetting.sigma, localSearchSetting.mean, localSearchSetting.mutationRate);
 
                     // 評価
                     neighborChromosome.EvaluationHand(

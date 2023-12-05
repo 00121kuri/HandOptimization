@@ -30,6 +30,8 @@ namespace GraspingOptimization
 
         private LocalSearch localSearch;
 
+        OptiTypeWrapper optiTypeWrapper = new OptiTypeWrapper();
+
         void Start()
         {
             Physics.autoSimulation = false;
@@ -57,7 +59,6 @@ namespace GraspingOptimization
                 {
                     InitEnv(settingHash.envSettingHash);
                     // BDから設定を取得
-                    OptiTypeWrapper optiTypeWrapper = new OptiTypeWrapper();
                     optiTypeWrapper.LoadOptiType(settingHash.optiSettingHash);
                     switch (optiTypeWrapper.optiType)
                     {
@@ -75,6 +76,7 @@ namespace GraspingOptimization
                 }
                 else
                 {
+                    localSearch = null;
                     settingHashList.isWaiting = true;
                     Application.targetFrameRate = 3;
                 }

@@ -46,6 +46,9 @@ namespace GraspingOptimization
         //public HandPoseDataList handPoseDataList = new HandPoseDataList();
         private IMongoCollection<BsonDocument> collection;
 
+        [SerializeField]
+        private bool isDisplay = false;
+
         void Start()
         {
             // GUIの文字の設定
@@ -195,9 +198,10 @@ namespace GraspingOptimization
 
         private void OnGUI()
         {
-#if UNITY_EDITOR            
-            GUILayout.Label($"Sequence DateTime: {dateTime}\nSequence ID: {sequenceId}\nFrame: {frameCount}", guiStyle);
-#endif
+            if (isDisplay)
+            {
+                GUILayout.Label($"Sequence DateTime: {dateTime}\nSequence ID: {sequenceId}\nFrame: {frameCount}", guiStyle);
+            }
         }
     }
 }

@@ -66,12 +66,17 @@ namespace GraspingOptimization
         public float EvaluateChromosomeDiff(HandChromosome otherChromosome)
         {
             float diff = 0;
+            float dot = 0;
             // 内積で類似度を求める
             for (int i = 0; i < this.jointGeneList.Count; i++)
             {
-                diff += Vector3.Angle(this.jointGeneList[i].localEulerAngles, otherChromosome.jointGeneList[i].localEulerAngles);
+                dot = Quaternion.Dot(
+                    Quaternion.Euler(this.jointGeneList[i].localEulerAngles),
+                    Quaternion.Euler(otherChromosome.jointGeneList[i].localEulerAngles)
+                );
+                diff += 1 - dot;
             }
-            return diff / 180f / this.jointGeneList.Count;
+            return diff / this.jointGeneList.Count;
         }
 
         public void EvaluationHand(
