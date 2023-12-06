@@ -114,6 +114,7 @@ isClient = true;
                     timeSinceLastConnectAttempt = 0.0f; // タイマーをリセット
                     if (!ws.IsAlive && tryReconnect && isWaiting)
                     {
+                        ws.Close();
                         ws.Connect(); // 再接続を試みる
                         requestSent = false;
                     }
