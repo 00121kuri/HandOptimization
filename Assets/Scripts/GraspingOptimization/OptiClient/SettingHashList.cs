@@ -47,6 +47,10 @@ namespace GraspingOptimization
         [SerializeField]
         private FPSCounter fpsCounter;
 
+        OptiClientInfo clientInfo;
+
+        string clientInfoJson;
+
         void Start()
         {
 #if UNITY_EDITOR
@@ -115,17 +119,17 @@ isClient = true;
                     }
                     else if (!requestSent && isWaiting)
                     {
-                        OptiClientInfo clientInfo = new OptiClientInfo(ClientState.Waiting);
-                        string json = JsonUtility.ToJson(clientInfo);
-                        ws.Send(json);
+                        clientInfo = new OptiClientInfo(ClientState.Waiting);
+                        clientInfoJson = JsonUtility.ToJson(clientInfo);
+                        ws.Send(clientInfoJson);
                         requestSent = true;
                     }
                     else if (!requestSent && !isWaiting)
                     {
                         stepsPerSecond = fpsCounter.GetFPS();
-                        OptiClientInfo clientInfo = new OptiClientInfo(ClientState.Running, stepsPerSecond);
-                        string json = JsonUtility.ToJson(clientInfo);
-                        ws.Send(json);
+                        clientInfo = new OptiClientInfo(ClientState.Running, stepsPerSecond);
+                        clientInfoJson = JsonUtility.ToJson(clientInfo);
+                        ws.Send(clientInfoJson);
                     }
                 }
             }
