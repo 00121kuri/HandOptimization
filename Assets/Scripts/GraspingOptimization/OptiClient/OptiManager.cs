@@ -32,6 +32,9 @@ namespace GraspingOptimization
 
         OptiTypeWrapper optiTypeWrapper = new OptiTypeWrapper();
 
+        [SerializeField]
+        private bool isExportLog = false;
+
         void Start()
         {
             Physics.autoSimulation = false;
@@ -63,7 +66,7 @@ namespace GraspingOptimization
                     switch (optiTypeWrapper.optiType)
                     {
                         case OptiType.LocalSearch:
-                            localSearch = new LocalSearch(targetObj, virtualObj, hands, handPoseLogger, handPoseReader);
+                            localSearch = new LocalSearch(targetObj, virtualObj, hands, handPoseLogger, handPoseReader, isExportLog);
                             localSearch.InitOpti(settingHash, settingHash.sequenceDt);
                             isRunning = true;
                             settingHashList.isWaiting = false;

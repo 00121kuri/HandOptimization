@@ -72,11 +72,17 @@ namespace GraspingOptimization
 
         HandChromosome neighborChromosome = new HandChromosome();
 
+        HandChromosome previousResultChromosome = null;
+
         // 初期の物体の位置
         Vector3 initPosition = Vector3.zero;
         Quaternion initRotation = Quaternion.identity;
 
-        public LocalSearch(GameObject targetObj, GameObject virtualObj, Hands hands, HandPoseLogger handPoseLogger, HandPoseReader handPoseReader) : base(targetObj, virtualObj, hands, handPoseLogger, handPoseReader)
+        string logDir;
+
+        string logfile;
+
+        public LocalSearch(GameObject targetObj, GameObject virtualObj, Hands hands, HandPoseLogger handPoseLogger, HandPoseReader handPoseReader, bool isExportLog) : base(targetObj, virtualObj, hands, handPoseLogger, handPoseReader, isExportLog)
         {
             optiClientDisplay = GameObject.Find("OptiClientDisplay").GetComponent<OptiClientDisplay>();
             Debug.Log("LocalSearch");
@@ -84,10 +90,19 @@ namespace GraspingOptimization
 
         public override IEnumerator StartOptimization(Action onFinished)
         {
-            HandChromosome previousResultChromosome = null;
+            if (isExportLog)
+            {
+                logDir = $"opti-data/logs/{sequenceDt}/{sequenceId}";
+                System.IO.Directory.CreateDirectory(logDir);
+            }
             // フレームごとのループ
             for (int frameCount = 0; ; frameCount++)
             {
+                if (isExportLog)
+                {
+                    logfile = $"{logDir}/{frameCount}-log.csv";
+                    FileLog.AppendLog(logfile, "frameCount,score\n");
+                }
                 // 手のポーズを取得
                 handPoseData = handPoseReader.ReadHandPoseDataFromDB("inputdata", sequenceDt, frameCount);
                 if (handPoseData == null)
@@ -162,6 +177,13 @@ namespace GraspingOptimization
                     {
                         // 近傍の方が良かったら更新
                         minScoreChromosome = neighborChromosome;
+                        if (isExportLog)
+                        {
+                            // ログを出力
+                            FileLog.AppendLog(
+                                logfile,
+                                $"{stepCount},{minScoreChromosome.score}\n");
+                        }
                     }
 
                     // 画面を更新

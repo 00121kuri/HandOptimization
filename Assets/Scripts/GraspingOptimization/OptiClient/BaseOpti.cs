@@ -26,13 +26,16 @@ namespace GraspingOptimization
 
         public SettingHash settingHash;
 
-        public BaseOpti(GameObject targetObj, GameObject virtualObj, Hands hands, HandPoseLogger handPoseLogger, HandPoseReader handPoseReader)
+        public bool isExportLog = false;
+
+        public BaseOpti(GameObject targetObj, GameObject virtualObj, Hands hands, HandPoseLogger handPoseLogger, HandPoseReader handPoseReader, bool isExportLog = false)
         {
             this.targetObj = targetObj;
             this.virtualObj = virtualObj;
             this.hands = hands;
             this.handPoseLogger = handPoseLogger;
             this.handPoseReader = handPoseReader;
+            this.isExportLog = isExportLog;
         }
 
         /// <summary>
