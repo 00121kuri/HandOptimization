@@ -72,10 +72,6 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # Assets
-Assets/Samples
-Assets/SAColliderBuilder
-Assets/OpenCV+Unity
-Assets/Plugins/UniRx
 Assets/Scripts/GraspingOptimization/LocalConfig.cs
 Assets/Scripts/GraspingOptimization/LocalConfig.cs.meta
 
