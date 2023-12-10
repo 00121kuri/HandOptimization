@@ -31,7 +31,7 @@ namespace GraspingOptimization
         [SerializeField]
         List<SettingHash> settingHashList;
 
-        int totalSettingCount;
+        int totalSettingCount = 0;
 
         private WebSocketServer server;
 
@@ -39,6 +39,21 @@ namespace GraspingOptimization
         public Dictionary<string, OptiClientInfo> clientInfos = new Dictionary<string, OptiClientInfo>();
 
         private float totalStepsPerSecond = 0.0f;
+
+        // [SerializeField]
+        // private ListViewController listViewController;
+
+        // List<string> listItems = new List<string>();
+
+        [SerializeField]
+        private ListViewController optiSettingListViewController;
+
+        [SerializeField]
+        private ListViewController envSettingListViewController;
+
+        [SerializeField]
+        private ListViewController sequenceDtListViewController;
+
 
 
 
@@ -80,7 +95,7 @@ namespace GraspingOptimization
                     }
                 }
             }
-            totalSettingCount = settingHashList.Count;
+            totalSettingCount += settingHashList.Count;
         }
 
         public void Clear()
@@ -133,6 +148,33 @@ namespace GraspingOptimization
                     totalStepsPerSecond += info.Value.stepsPerSecond;
                 }
             }
+            // エラーは発生しないが，正常に動作しない
+            //UpdateClientListView();
+        }
+
+        // public void UpdateClientListView()
+        // {
+        //     foreach (var clientInfo in clientInfos)
+        //     {
+        //         string text = $"Client ID: {clientInfo.Key}, State: {clientInfo.Value.clientState}, StepsPerSecond: {clientInfo.Value.stepsPerSecond.ToString("f1")}";
+        //         listItems.Add(text);
+        //     }
+        //     listViewController.ClearListView();
+        //     foreach (string item in listItems)
+        //     {
+        //         listViewController.AddListItem(item);
+        //     }
+        //     listItems.Clear();
+
+        //     Debug.Log("UpdateClientListView");
+        // }
+
+        public void AddFromInputField()
+        {
+            optiSettingHasheList = optiSettingListViewController.GetList();
+            envSettingHasheList = envSettingListViewController.GetList();
+            sequenceDtList = sequenceDtListViewController.GetList();
+            Add();
         }
 
         void OnGUI()
