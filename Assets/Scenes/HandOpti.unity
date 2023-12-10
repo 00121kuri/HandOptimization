@@ -10653,7 +10653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23449ab198ad2ae4fa100d9314dcb766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isClient: 0
+  isClient: 1
   optiSettingHasheList:
   - 3fde2a8528405dd18833e0741bf9576e
   envSettingHasheList:
