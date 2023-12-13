@@ -232,6 +232,61 @@ MonoBehaviour:
   dataDir: 
   settingHash: 6380ea35ddce8af1f94cc17af19765d9
   virtualObject: {fileID: 577393971069882330, guid: 95223ff4023acb746ab3530b08a0de8a, type: 3}
+--- !u!1 &136006636
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 136006638}
+  - component: {fileID: 136006637}
+  m_Layer: 0
+  m_Name: Settings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &136006637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136006636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a901a9eb05407684fb28ec58946c6f1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  optiType: 0
+  settingHash: 7ff3ef0c3cdeaf0fc9dfc754cdc96aff
+  mutationRate: 0.05263158
+  sigma: 1
+  worstScore: 0
+  maxSteps: 100
+  mean: 0
+  isUsePreviousResult: 1
+  weightDistance: 1
+  weightRotation: 0.1
+  weightChromosomeDiff: 0.01
+--- !u!4 &136006638
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136006636}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.097415775, y: -0.058182836, z: -0.03672746}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &177370183
 GameObject:
   m_ObjectHideFlags: 0
@@ -848,7 +903,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 46500815}
         m_TargetAssemblyTypeName: GraspingOptimization.SettingHashSender, Assembly-CSharp
-        m_MethodName: AddFromInputField
+        m_MethodName: Clear
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

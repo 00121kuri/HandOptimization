@@ -82,6 +82,7 @@ namespace GraspingOptimization
 
         public void Add()
         {
+            int addedCount = 0;
             for (int i = 0; i < maxIteration; i++)
             {
                 foreach (string optiSettingHash in optiSettingHasheList)
@@ -91,11 +92,12 @@ namespace GraspingOptimization
                         foreach (string sequenceDt in sequenceDtList)
                         {
                             settingHashList.Add(new SettingHash(optiSettingHash, envSettingHash, sequenceDt));
+                            addedCount++;
                         }
                     }
                 }
             }
-            totalSettingCount += settingHashList.Count;
+            totalSettingCount += addedCount;
         }
 
         public void Clear()
