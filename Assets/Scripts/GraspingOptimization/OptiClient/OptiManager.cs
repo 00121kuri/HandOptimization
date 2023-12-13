@@ -35,6 +35,8 @@ namespace GraspingOptimization
         [SerializeField]
         private bool isExportLog = false;
 
+        private bool isUpdateRequired = false;
+
         void Start()
         {
             Physics.autoSimulation = false;
@@ -50,12 +52,11 @@ namespace GraspingOptimization
                 handList.Add(hand);
             }
             hands = new Hands(handList);
-
         }
 
         void Update()
         {
-            if (!isRunning)
+            if (!isRunning && !isUpdateRequired)
             {
                 settingHash = settingHashList.GetNextSettingHash();
                 if (settingHash != null)
@@ -80,7 +81,11 @@ namespace GraspingOptimization
                 else
                 {
                     localSearch = null;
-                    settingHashList.isWaiting = true;
+                    isUpdateRequired = SelfUpdate.instance.IsUpdateRequired();
+                    if (!isUpdateRequired)
+                    {
+                        settingHashList.isWaiting = true;
+                    }
                     Application.targetFrameRate = 3;
                 }
             }
