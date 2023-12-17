@@ -27,6 +27,7 @@ namespace GraspingOptimization
             {
                 // ネットワークフォルダが見つからない場合など
                 Debug.Log("updateInfo is null");
+                updateButton.SetActive(false);
                 return false;
             }
 
