@@ -52,11 +52,14 @@ namespace GraspingOptimization
                 handList.Add(hand);
             }
             hands = new Hands(handList);
+            isUpdateRequired = SelfUpdate.instance.IsUpdateRequired();
+            Application.targetFrameRate = 3;
         }
 
         void Update()
         {
-            if (!isRunning && !isUpdateRequired)
+            if (isUpdateRequired) return;
+            if (!isRunning)
             {
                 settingHash = settingHashList.GetNextSettingHash();
                 if (settingHash != null)
@@ -81,11 +84,7 @@ namespace GraspingOptimization
                 else
                 {
                     localSearch = null;
-                    isUpdateRequired = SelfUpdate.instance.IsUpdateRequired();
-                    if (!isUpdateRequired)
-                    {
-                        settingHashList.isWaiting = true;
-                    }
+                    settingHashList.isWaiting = true;
                     Application.targetFrameRate = 3;
                 }
             }
