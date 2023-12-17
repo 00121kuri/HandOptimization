@@ -23,6 +23,13 @@ namespace GraspingOptimization
         public bool IsUpdateRequired()
         {
             UpdateInfo updateInfo = GetUpdateInfo();
+            if (updateInfo == null)
+            {
+                // ネットワークフォルダが見つからない場合など
+                Debug.Log("updateInfo is null");
+                return false;
+            }
+
             bool isUpdateRequired;
             if (updateInfo.appVersion == Application.version)
             {
@@ -42,10 +49,18 @@ namespace GraspingOptimization
 
         public UpdateInfo GetUpdateInfo()
         {
-            UpdateInfo updateInfo = new UpdateInfo();
+            UpdateInfo updateInfo = null;
             string updateInfoPath = LocalConfig.updateInfoPath;
-            string updateInfoJson = System.IO.File.ReadAllText(updateInfoPath);
-            updateInfo = JsonUtility.FromJson<UpdateInfo>(updateInfoJson);
+            try
+            {
+                string updateInfoJson = System.IO.File.ReadAllText(updateInfoPath);
+                updateInfo = JsonUtility.FromJson<UpdateInfo>(updateInfoJson);
+            }
+            catch (System.Exception e)
+            {
+                Debug.Log(e);
+                return null; // ネットワークフォルダが見つからない場合など
+            }
             return updateInfo;
         }
 
