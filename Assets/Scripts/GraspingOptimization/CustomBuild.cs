@@ -4,7 +4,8 @@ using UnityEditor;
 using System.IO;
 using GraspingOptimization;
 
-namespace GraspingOptimization {
+namespace GraspingOptimization
+{
     public class CustomBuildScript
     {
         [MenuItem("Build/Build Client")]
@@ -25,28 +26,35 @@ namespace GraspingOptimization {
             buildPlayerOptions.options |= BuildOptions.Development; // 開発ビルドを有効にする
             buildPlayerOptions.options |= BuildOptions.ConnectWithProfiler; // プロファイラと接続する
 
-            // 保存先のディレクトリを削除
-            if (Directory.Exists(updateAppDirectory))
-            {
-                Directory.Delete(updateAppDirectory, true);
-            }
-            // 保存先のディレクトリを作成
-            Directory.CreateDirectory(updateAppDirectory);
-
             // ビルドの実行
             BuildPipeline.BuildPlayer(buildPlayerOptions);
 
-            // ビルド後に指定のディレクトリにコピー
-            DirectoryCopier.CopyDirectory(tempDirectory, updateAppDirectory);
+            try
+            {
+                // 保存先のディレクトリを削除
+                if (Directory.Exists(updateAppDirectory))
+                {
+                    Directory.Delete(updateAppDirectory, true);
+                }
+                // 保存先のディレクトリを作成
+                Directory.CreateDirectory(updateAppDirectory);
 
-            // updateInfo.jsonの作成
-            UpdateInfo updateInfo = new UpdateInfo();
-            updateInfo.appDirectory = LocalConfig.updateAppDirectory;
-            updateInfo.appVersion = Application.version;
-            string updateInfoPath = LocalConfig.updateInfoPath;
-            updateInfo.ExportJson(updateInfoPath);
+                // ビルド後に指定のディレクトリにコピー
+                DirectoryCopier.CopyDirectory(tempDirectory, updateAppDirectory);
 
-            Debug.Log("Build completed");
+                // updateInfo.jsonの作成
+                UpdateInfo updateInfo = new UpdateInfo();
+                updateInfo.appDirectory = LocalConfig.updateAppDirectory;
+                updateInfo.appVersion = Application.version;
+                string updateInfoPath = LocalConfig.updateInfoPath;
+                updateInfo.ExportJson(updateInfoPath);
+
+                Debug.Log("Build completed");
+            }
+            catch (System.Exception e)
+            {
+                Debug.Log(e);
+            }
         }
     }
 }
