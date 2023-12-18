@@ -59,6 +59,7 @@ namespace GraspingOptimization
             string optiSettingHash,
             string envSettingHash,
             HandChromosome minScoreChromosome,
+            HandChromosome initChromosome,
             Vector3 initPosition,
             Quaternion initRotation
         )
@@ -69,9 +70,8 @@ namespace GraspingOptimization
                     frameCount,
                     optiSettingHash,
                     envSettingHash,
-                    minScoreChromosome.score,
-                    minScoreChromosome.resultPosition,
-                    minScoreChromosome.resultRotation,
+                    minScoreChromosome,
+                    initChromosome,
                     initPosition,
                     initRotation
                 );

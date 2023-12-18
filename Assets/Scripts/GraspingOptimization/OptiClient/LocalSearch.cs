@@ -66,6 +66,11 @@ namespace GraspingOptimization
 
         HandPoseData handPoseData;
 
+        // 各フレームのハンドトラッキングからの入力値
+        //HandChromosome inputChromosome = new HandChromosome();
+
+        // 各フレームの初期値
+        // isUsePreviousResultがtrueの場合は前のフレームの結果になる
         HandChromosome initChromosome = new HandChromosome();
 
         HandChromosome minScoreChromosome = new HandChromosome();
@@ -116,6 +121,7 @@ namespace GraspingOptimization
 
                 // 1フレームにおける初期の手のポーズと物体の位置を設定
                 handPoseReader.SetHandPose(handPoseData);
+                //inputChromosome = hands.GetCurrentHandChromosome();
 
 
                 if (localSearchSetting.isUsePreviousResult && previousResultChromosome != null)
@@ -205,7 +211,7 @@ namespace GraspingOptimization
                 virtualObj.transform.SetPositionAndRotation(minScoreChromosome.resultPosition, minScoreChromosome.resultRotation);
 
                 // 結果を出力
-                ExportResult(sequenceId, sequenceDt, frameCount, settingHash.optiSettingHash, settingHash.envSettingHash, minScoreChromosome, handPoseData.objectData.position, handPoseData.objectData.rotation);
+                ExportResult(sequenceId, sequenceDt, frameCount, settingHash.optiSettingHash, settingHash.envSettingHash, minScoreChromosome, initChromosome, handPoseData.objectData.position, handPoseData.objectData.rotation);
                 ExportCurrentHandPoseData(sequenceId, sequenceDt, frameCount);
                 previousResultChromosome = minScoreChromosome;
             }

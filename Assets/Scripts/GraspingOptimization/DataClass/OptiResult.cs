@@ -24,13 +24,14 @@ namespace GraspingOptimization
         public float score;
         public float distance;
         public float angleDiff;
+        public float chromosomeAngleDiff;
 
         public Vector3 resultPos;
         public Quaternion resultRot;
         public Vector3 initPos;
         public Quaternion initRot;
 
-        public OptiResult(string sequenceId, string dateTime, int frameCount, string optiSettingHash, string envSettingHash, float score, Vector3 resultPos, Quaternion resultRot, Vector3 initPos, Quaternion initRot)
+        public OptiResult(string sequenceId, string dateTime, int frameCount, string optiSettingHash, string envSettingHash, HandChromosome minScoreChromosome, HandChromosome initChromosome, Vector3 initPos, Quaternion initRot)
         {
             this._id = $"{dateTime}-{sequenceId}-{frameCount}";
             this.sequenceId = sequenceId;
@@ -38,13 +39,14 @@ namespace GraspingOptimization
             this.frameCount = frameCount;
             this.optiSettingHash = optiSettingHash;
             this.envSettingHash = envSettingHash;
-            this.score = score;
-            this.resultPos = resultPos;
-            this.resultRot = resultRot;
+            this.score = minScoreChromosome.score;
+            this.resultPos = minScoreChromosome.resultPosition;
+            this.resultRot = minScoreChromosome.resultRotation;
             this.initPos = initPos;
             this.initRot = initRot;
             this.distance = Vector3.Distance(resultPos, initPos);
             this.angleDiff = Quaternion.Angle(resultRot, initRot);
+            this.chromosomeAngleDiff = minScoreChromosome.EvaluateTotalChromosomeAngleDiff(initChromosome);
         }
 
         public void Export(string filePath)

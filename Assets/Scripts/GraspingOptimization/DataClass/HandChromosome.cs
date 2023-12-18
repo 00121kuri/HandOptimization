@@ -79,6 +79,26 @@ namespace GraspingOptimization
             return diff / this.jointGeneList.Count;
         }
 
+        /// <summary>
+        /// 関節の角度の差のトータルを求める (deg)
+        /// </summary>
+        /// <param name="otherChromosome"></param>
+        /// <returns></returns>
+        public float EvaluateTotalChromosomeAngleDiff(HandChromosome otherChromosome)
+        {
+            float totalAngleDiff = 0;
+            float angleDiff = 0;
+            for (int i = 0; i < this.jointGeneList.Count; i++)
+            {
+                angleDiff = Quaternion.Angle(
+                    Quaternion.Euler(this.jointGeneList[i].localEulerAngles),
+                    Quaternion.Euler(otherChromosome.jointGeneList[i].localEulerAngles)
+                );
+                totalAngleDiff += angleDiff;
+            }
+            return totalAngleDiff;
+        }
+
         public void EvaluationHand(
             Hands hands,
             GameObject tangibleObj,

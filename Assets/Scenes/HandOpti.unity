@@ -10104,16 +10104,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optiType: 0
-  settingHash: 3fde2a8528405dd18833e0741bf9576e
+  settingHash: 59f5306ebd7eee53a814588cbf7e190b
   mutationRate: 0.05263158
   sigma: 1
   worstScore: 0.005
-  maxSteps: 33333
+  maxSteps: 100
   mean: 0
   isUsePreviousResult: 1
   weightDistance: 1
   weightRotation: 0.1
-  weightChromosomeDiff: 0
+  weightChromosomeDiff: 0.01
 --- !u!4 &1805669879
 Transform:
   m_ObjectHideFlags: 0
@@ -10835,7 +10835,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isClient: 0
   optiSettingHasheList:
-  - 3fde2a8528405dd18833e0741bf9576e
+  - 59f5306ebd7eee53a814588cbf7e190b
   envSettingHasheList:
   - 6380ea35ddce8af1f94cc17af19765d9
   dtList:
