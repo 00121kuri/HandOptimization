@@ -212,6 +212,7 @@ MonoBehaviour:
   weightDistance: 1
   weightRotation: 0.1
   weightChromosomeDiff: 0
+  isUseInputChromosome: 0
 --- !u!114 &46500818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,7 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optiType: 0
-  settingHash: bd867519a4800fad299a4f07a4e945bb
+  settingHash: 84214b566d61de5048647b9414223830
   mutationRate: 0.05263158
   sigma: 1
   worstScore: 0.005
@@ -272,6 +273,7 @@ MonoBehaviour:
   weightDistance: 1
   weightRotation: 0.1
   weightChromosomeDiff: 0.1
+  isUseInputChromosome: 1
 --- !u!4 &136006638
 Transform:
   m_ObjectHideFlags: 0

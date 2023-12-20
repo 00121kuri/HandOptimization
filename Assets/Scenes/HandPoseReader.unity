@@ -19974,7 +19974,7 @@ MonoBehaviour:
   realObject: {fileID: 1088340421}
   dataDir: C:\Users\Kuribayashi\ResearchProjects\HandOptimization\opti-data
   sequenceId: inputdata
-  dateTime: 2023-11-13-17-20-23
+  dateTime: 2023-11-21-14-25-58
   frameCount: -1
   dataType: 0
   captureScreen: 0
@@ -24487,13 +24487,13 @@ MonoBehaviour:
   - {fileID: 156637051}
   realObject: {fileID: 667153788}
   dataDir: D:\ResearchProjects\HandOptimization\opti-data
-  sequenceId: 65571a21c38f40c4a9d64e2f0337fb3f
-  dateTime: 2023-11-13-17-20-34
+  sequenceId: b5946b9327d04d2d9dc74e56089d24be
+  dateTime: 2023-11-21-14-25-58
   frameCount: -1
   dataType: 1
   captureScreen: 0
   handCamera: {fileID: 261804502}
-  isDisplay: 0
+  isDisplay: 1
 --- !u!1 &1980565626 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7291273448633362635, guid: e7e358565e530214c97adba8c82fedc6, type: 3}
