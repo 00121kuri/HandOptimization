@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GraspingOptimization;
-using UnityEngine.InputSystem.Interactions;
 using MongoDB.Driver;
 using System;
 

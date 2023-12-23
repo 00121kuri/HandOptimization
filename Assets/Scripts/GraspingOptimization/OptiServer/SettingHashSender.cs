@@ -9,7 +9,6 @@ using WebSocketSharp;
 using WebSocketSharp.Server;
 using UniRx;
 using MongoDB.Driver;
-using OpenCvSharp;
 
 namespace GraspingOptimization
 {

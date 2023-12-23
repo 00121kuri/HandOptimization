@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GraspingOptimization;
-using LeapInternal;
+//using LeapInternal;
 using System;
 using UnityEngine.UIElements;
 
