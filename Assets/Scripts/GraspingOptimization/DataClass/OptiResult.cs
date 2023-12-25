@@ -65,7 +65,14 @@ namespace GraspingOptimization
             IMongoCollection<BsonDocument> collection = MongoDB.GetCollection("opti-data", "result");
             string json = JsonUtility.ToJson(this);
             BsonDocument document = BsonDocument.Parse(json);
-            collection.InsertOne(document);
+            try
+            {
+                collection.InsertOne(document);
+            }
+            catch (MongoWriteException e)
+            {
+                Debug.Log(e.Message);
+            }
         }
     }
 }
