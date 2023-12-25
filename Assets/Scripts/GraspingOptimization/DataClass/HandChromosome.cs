@@ -107,9 +107,11 @@ namespace GraspingOptimization
             Quaternion initRotation,
             HandChromosome beforeChromosome,
             HandChromosome initChromosome,
+            HandChromosome inputChromosome,
             float weightDistance,
             float weightRotation,
-            float weightChromosomeDiff)
+            float weightChromosomeDiff,
+            float wieghtInputChromosomeDiff)
         {
             // 初期位置
             int simulateTime = 20;
@@ -133,8 +135,9 @@ namespace GraspingOptimization
             float distance = Vector3.Distance(tangibleObj.transform.position, this.resultPosition);
             float dot = Quaternion.Dot(tangibleObj.transform.rotation, this.resultRotation);
             float initChromosomeDiff = this.EvaluateChromosomeDiff(initChromosome);
+            float inputChromosomeDiff = this.EvaluateChromosomeDiff(inputChromosome);
             //float angle = Quaternion.Angle(tangibleObj.transform.rotation, this.resultRotation);
-            this.score = weightDistance * distance + weightRotation * (1 - dot) + weightChromosomeDiff * initChromosomeDiff;
+            this.score = weightDistance * distance + weightRotation * (1 - dot) + weightChromosomeDiff * initChromosomeDiff + wieghtInputChromosomeDiff * inputChromosomeDiff;
             //Debug.Log($"distance: {distance}, dot: {(1 - dot) / 2}, initChromosomeDiff: {initChromosomeDiff}, score: {this.score}");
         }
 

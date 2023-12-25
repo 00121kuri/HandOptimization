@@ -42,10 +42,12 @@ namespace GraspingOptimization
 
         public float weightChromosomeDiff = 0f;
 
-        // 入力値をchromosomeの比較に使用するかどうか
-        public bool isUseInputChromosome = false;
+        public float wieghtInputChromosomeDiff = 0f;
 
-        public LocalSearchSetting(float mutationRate, float sigma, float worstScore, int maxSteps = 1000, float mean = 0f, bool isUsePreviousResult = false, float weightDistance = 1f, float weightRotation = 0.1f, float weightChromosomeDiff = 0f, bool isUseInputChromosome = false) : base()
+        // 入力値をchromosomeの比較に使用するかどうか
+        //public bool isUseInputChromosome = false;
+
+        public LocalSearchSetting(float mutationRate, float sigma, float worstScore, int maxSteps = 1000, float mean = 0f, bool isUsePreviousResult = false, float weightDistance = 1f, float weightRotation = 0.1f, float weightChromosomeDiff = 0f, float wieghtInputChromosomeDiff = 0f) : base()
         {
             this.mutationRate = mutationRate;
             this.sigma = sigma;
@@ -56,7 +58,7 @@ namespace GraspingOptimization
             this.weightDistance = weightDistance;
             this.weightRotation = weightRotation;
             this.weightChromosomeDiff = weightChromosomeDiff;
-            this.isUseInputChromosome = isUseInputChromosome;
+            this.wieghtInputChromosomeDiff = wieghtInputChromosomeDiff;
             Debug.Log(JsonUtility.ToJson(this));
         }
     }
@@ -144,9 +146,11 @@ namespace GraspingOptimization
                     handPoseData.objectData.rotation,
                     minScoreChromosome,
                     initChromosome,
+                    inputChromosome,
                     localSearchSetting.weightDistance,
                     localSearchSetting.weightRotation,
-                    localSearchSetting.weightChromosomeDiff
+                    localSearchSetting.weightChromosomeDiff,
+                    localSearchSetting.wieghtInputChromosomeDiff
                     );
 
                 // 1ステップのループ
@@ -170,35 +174,20 @@ namespace GraspingOptimization
                     neighborChromosome = minScoreChromosome.GenerateNeighborChromosome(localSearchSetting.sigma, localSearchSetting.mean, localSearchSetting.mutationRate);
 
                     // 評価
-                    if (localSearchSetting.isUseInputChromosome)
-                    {
-                        // 入力値を使う
-                        neighborChromosome.EvaluationHand(
-                            hands,
-                            targetObj,
-                            virtualObj,
-                            initPosition,
-                            initRotation,
-                            minScoreChromosome,
-                            inputChromosome,
-                            localSearchSetting.weightDistance,
-                            localSearchSetting.weightRotation,
-                            localSearchSetting.weightChromosomeDiff);
-                    }
-                    else
-                    {
-                        neighborChromosome.EvaluationHand(
-                            hands,
-                            targetObj,
-                            virtualObj,
-                            initPosition,
-                            initRotation,
-                            minScoreChromosome,
-                            initChromosome,
-                            localSearchSetting.weightDistance,
-                            localSearchSetting.weightRotation,
-                            localSearchSetting.weightChromosomeDiff);
-                    }
+                    neighborChromosome.EvaluationHand(
+                        hands,
+                        targetObj,
+                        virtualObj,
+                        initPosition,
+                        initRotation,
+                        minScoreChromosome,
+                        initChromosome,
+                        inputChromosome,
+                        localSearchSetting.weightDistance,
+                        localSearchSetting.weightRotation,
+                        localSearchSetting.weightChromosomeDiff,
+                        localSearchSetting.wieghtInputChromosomeDiff);
+
 
                     if (neighborChromosome.score < minScoreChromosome.score)
                     {
@@ -232,14 +221,8 @@ namespace GraspingOptimization
                 virtualObj.transform.SetPositionAndRotation(minScoreChromosome.resultPosition, minScoreChromosome.resultRotation);
 
                 // 結果を出力
-                if (localSearchSetting.isUseInputChromosome)
-                {
-                    ExportResult(sequenceId, sequenceDt, frameCount, settingHash.optiSettingHash, settingHash.envSettingHash, minScoreChromosome, inputChromosome, handPoseData.objectData.position, handPoseData.objectData.rotation);
-                }
-                else
-                {
-                    ExportResult(sequenceId, sequenceDt, frameCount, settingHash.optiSettingHash, settingHash.envSettingHash, minScoreChromosome, initChromosome, handPoseData.objectData.position, handPoseData.objectData.rotation);
-                }
+                ExportResult(sequenceId, sequenceDt, frameCount, settingHash.optiSettingHash, settingHash.envSettingHash, minScoreChromosome, initChromosome, inputChromosome, handPoseData.objectData.position, handPoseData.objectData.rotation);
+
                 ExportCurrentHandPoseData(sequenceId, sequenceDt, frameCount);
                 previousResultChromosome = minScoreChromosome;
             }

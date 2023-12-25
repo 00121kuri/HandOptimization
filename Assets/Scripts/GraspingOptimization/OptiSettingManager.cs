@@ -34,7 +34,7 @@ namespace GraspingOptimization
         [SerializeField]
         private float weightChromosomeDiff;
         [SerializeField]
-        private bool isUseInputChromosome;
+        private float wieghtInputChromosomeDiff;
 
 
         //private T optiSetting;
@@ -45,7 +45,7 @@ namespace GraspingOptimization
             switch (optiType)
             {
                 case OptiType.LocalSearch:
-                    optiSetting = new LocalSearchSetting(mutationRate, sigma, worstScore, maxSteps, mean, isUsePreviousResult, weightDistance, weightRotation, weightChromosomeDiff, isUseInputChromosome);
+                    optiSetting = new LocalSearchSetting(mutationRate, sigma, worstScore, maxSteps, mean, isUsePreviousResult, weightDistance, weightRotation, weightChromosomeDiff, wieghtInputChromosomeDiff);
                     OptiSettingWrapper<LocalSearchSetting> localSearchSettingWrapper = new OptiSettingWrapper<LocalSearchSetting>((LocalSearchSetting)optiSetting);
                     settingHash = localSearchSettingWrapper.ExportOptiSetting();
                     OptiTypeWrapper optiTypeWrapper = new OptiTypeWrapper(OptiType.LocalSearch, settingHash);
@@ -89,7 +89,7 @@ namespace GraspingOptimization
             weightDistance = ((LocalSearchSetting)optiSetting).weightDistance;
             weightRotation = ((LocalSearchSetting)optiSetting).weightRotation;
             weightChromosomeDiff = ((LocalSearchSetting)optiSetting).weightChromosomeDiff;
-            isUseInputChromosome = ((LocalSearchSetting)optiSetting).isUseInputChromosome;
+            wieghtInputChromosomeDiff = ((LocalSearchSetting)optiSetting).wieghtInputChromosomeDiff;
         }
     }
 }
