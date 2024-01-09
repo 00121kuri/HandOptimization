@@ -7,8 +7,8 @@ public class PhysicsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Physics.autoSimulation = false;
-        Debug.Log("PhysicsManager: Physics.autoSimulation = " + Physics.autoSimulation);
+        Physics.simulationMode = SimulationMode.Script;
+        Debug.Log("PhysicsManager: Physics.autoSimulation = " + Physics.simulationMode.ToString());
     }
 
 
