@@ -39,8 +39,8 @@ namespace GraspingOptimization
 
         void Start()
         {
-            Physics.autoSimulation = false;
-            Debug.Log("PhysicsManager: Physics.autoSimulation = " + Physics.autoSimulation);
+            Physics.simulationMode = SimulationMode.Script;
+            Debug.Log("PhysicsManager: Physics.autoSimulation = " + Physics.simulationMode.ToString());
             // インスタンスを取得
             if (handPoseLogger == null) handPoseLogger = this.GetComponent<HandPoseLogger>();
             if (handPoseReader == null) handPoseReader = this.GetComponent<HandPoseReader>();
