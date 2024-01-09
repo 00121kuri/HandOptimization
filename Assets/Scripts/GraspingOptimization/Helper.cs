@@ -8,6 +8,8 @@ using GraspingOptimization;
 using System.Security.Cryptography;
 using System.Text;
 using System.IO;
+using MongoDB.Driver;
+using MongoDB.Bson;
 
 namespace GraspingOptimization
 {

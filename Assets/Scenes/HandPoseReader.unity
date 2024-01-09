@@ -22102,6 +22102,8 @@ MonoBehaviour:
   captureScreen: 0
   handCamera: {fileID: 261804502}
   isDisplay: 1
+  isViewer: 0
+  envSettingHash: 
 --- !u!4 &1509916674 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 57018627950740296, guid: e7e358565e530214c97adba8c82fedc6, type: 3}
@@ -27029,13 +27031,15 @@ MonoBehaviour:
   - {fileID: 156637051}
   realObject: {fileID: 667153788}
   dataDir: D:\ResearchProjects\HandOptimization\opti-data
-  sequenceId: 32a88c484eb043638d97bd26d30d3ea1
-  dateTime: 2023-12-25-15-44-27
+  sequenceId: ec5d87adbdcc4f549a96492576a5b141
+  dateTime: 2023-11-13-17-20-34
   frameCount: -1
   dataType: 1
   captureScreen: 0
   handCamera: {fileID: 261804502}
   isDisplay: 1
+  isViewer: 1
+  envSettingHash: 9726f3c590c52b5633cf8252e62f30d2
 --- !u!1 &1980565626 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7291273448633362635, guid: e7e358565e530214c97adba8c82fedc6, type: 3}

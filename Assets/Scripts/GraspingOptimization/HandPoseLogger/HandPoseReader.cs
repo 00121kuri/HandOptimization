@@ -7,7 +7,8 @@ using MongoDB.Driver;
 
 using UnityEditor;  //AssetDatabaseを使うために追加
 using System.IO;  //StreamWriterなどを使うために追加
-using System.Linq;  //Selectを使うために追加
+using System.Linq;
+using UnityEngineInternal;  //Selectを使うために追加
 
 namespace GraspingOptimization
 {
@@ -49,6 +50,15 @@ namespace GraspingOptimization
         [SerializeField]
         private bool isDisplay = false;
 
+        [SerializeField]
+        private bool isViewer = false;
+
+        private EnvSetting envSetting;
+
+        private SettingHash settingHash;
+
+        private string prevSequenceId;
+
         void Start()
         {
             // GUIの文字の設定
@@ -78,17 +88,40 @@ namespace GraspingOptimization
 
         void Update()
         {
-            if (Input.GetKey(KeyCode.Space))
+            if (isViewer && Input.GetKey(KeyCode.Space))
             {
-                if (captureScreen)
+                if (prevSequenceId != sequenceId) // sequenceIdが変わったら更新
                 {
-                    // ディレクトリの作成
-                    string dirPath = $"SequenceCapture/{dateTime}/{sequenceId}";
-                    if (!Directory.Exists(dirPath))
+                    frameCount = -1;
+
+                    if (captureScreen)
                     {
-                        Directory.CreateDirectory(dirPath);
+                        // ディレクトリの作成
+                        string dirPath = $"SequenceCapture/{dateTime}/{sequenceId}";
+                        if (!Directory.Exists(dirPath))
+                        {
+                            Directory.CreateDirectory(dirPath);
+                        }
+                    }
+                    if (dataType == DataType.Output)
+                    {
+                        settingHash = OptiDB.FetchSettingHash(sequenceId);
+                        envSetting = OptiDB.FetchEnvSetting(settingHash.envSettingHash);
+                        dateTime = settingHash.sequenceDt;
+                        Destroy(realObject);
+                        realObject = envSetting.LoadObjectInstance();
+                        try
+                        {
+                            Rigidbody rb = realObject.GetComponent<Rigidbody>();
+                            rb.isKinematic = true;
+                        }
+                        catch (System.Exception e)
+                        {
+                            Debug.Log(e);
+                        }
                     }
                 }
+
                 frameCount++;
                 //HandPoseData handPoseData = ReadHandPoseData(sequenceId, dateTime, frameCount);
                 HandPoseData handPoseData = ReadHandPoseDataFromDB(sequenceId, dateTime, frameCount);
@@ -113,7 +146,7 @@ namespace GraspingOptimization
                     Debug.Log("End of data");
                     frameCount = -1;
                 }
-
+                prevSequenceId = sequenceId;
             }
         }
 
