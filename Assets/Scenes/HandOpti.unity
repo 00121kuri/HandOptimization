@@ -10982,13 +10982,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   envSetting:
-    objectPath: bunny_zipper_res3
+    objectPath: bunny_zipper_res3_0.35 Variant
     objectPosOffset: {x: 0, y: 0, z: 0}
     objectRotOffset: {x: 0, y: 0, z: 0, w: 1}
-    objectScale: {x: 0.3, y: 0.3, z: 0.3}
+    objectScale: {x: 0.35, y: 0.35, z: 0.35}
   dataDir: 
-  settingHash: 6380ea35ddce8af1f94cc17af19765d9
-  virtualObject: {fileID: 577393971069882330, guid: 95223ff4023acb746ab3530b08a0de8a, type: 3}
+  settingHash: a95c8502a602dfb738bd377f42c117c3
+  virtualObject: {fileID: 8624087562181045742, guid: 20b00cfc16218bd488bb010b130f414b, type: 3}
 --- !u!114 &1805669878
 MonoBehaviour:
   m_ObjectHideFlags: 0
