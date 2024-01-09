@@ -24,7 +24,7 @@ namespace GraspingOptimization
             buildPlayerOptions.locationPathName = $"{tempDirectory}/opti-client-v" + Application.version + ".exe"; // アプリ名にバージョンを追加
             buildPlayerOptions.target = BuildTarget.StandaloneWindows64; // ビルドターゲットを指定
             buildPlayerOptions.options |= BuildOptions.Development; // 開発ビルドを有効にする
-            buildPlayerOptions.options |= BuildOptions.ConnectWithProfiler; // プロファイラと接続する
+            //buildPlayerOptions.options |= BuildOptions.ConnectWithProfiler; // プロファイラと接続する
 
             // ビルドの実行
             BuildPipeline.BuildPlayer(buildPlayerOptions);
