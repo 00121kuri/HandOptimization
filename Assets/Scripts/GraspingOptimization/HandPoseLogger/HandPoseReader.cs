@@ -94,15 +94,6 @@ namespace GraspingOptimization
                 {
                     frameCount = -1;
 
-                    if (captureScreen)
-                    {
-                        // ディレクトリの作成
-                        string dirPath = $"SequenceCapture/{dateTime}/{sequenceId}";
-                        if (!Directory.Exists(dirPath))
-                        {
-                            Directory.CreateDirectory(dirPath);
-                        }
-                    }
                     if (dataType == DataType.Output)
                     {
                         settingHash = OptiDB.FetchSettingHash(sequenceId);
@@ -137,6 +128,12 @@ namespace GraspingOptimization
 
                     if (captureScreen)
                     {
+                        // ディレクトリの作成
+                        string dirPath = $"SequenceCapture/{dateTime}/{sequenceId}";
+                        if (!Directory.Exists(dirPath))
+                        {
+                            Directory.CreateDirectory(dirPath);
+                        }
                         string path = $"SequenceCapture/{dateTime}/{sequenceId}/{frameCount}.png";
                         ScreenCapture.CaptureScreenshot(path);
                     }
