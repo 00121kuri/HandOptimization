@@ -42,7 +42,7 @@ namespace GraspingOptimization
 
         public float weightChromosomeDiff = 0f;
 
-        public float wieghtInputChromosomeDiff = 0f;
+        public float wieghtInputChromosomeDiff = 0f; // Typo: 既存のデータの都合上，Typoの修正はしない
 
         // 入力値をchromosomeの比較に使用するかどうか
         //public bool isUseInputChromosome = false;
