@@ -42,7 +42,7 @@ namespace GraspingOptimization
 
         public float weightChromosomeDiff = 0f;
 
-        public float wieghtInputChromosomeDiff = 0f;
+        public float weightInputChromosomeDiff = 0f;
 
         // 入力値をchromosomeの比較に使用するかどうか
         //public bool isUseInputChromosome = false;
@@ -58,7 +58,7 @@ namespace GraspingOptimization
             this.weightDistance = weightDistance;
             this.weightRotation = weightRotation;
             this.weightChromosomeDiff = weightChromosomeDiff;
-            this.wieghtInputChromosomeDiff = wieghtInputChromosomeDiff;
+            this.weightInputChromosomeDiff = wieghtInputChromosomeDiff;
             Debug.Log(JsonUtility.ToJson(this));
         }
     }
@@ -150,7 +150,7 @@ namespace GraspingOptimization
                     localSearchSetting.weightDistance,
                     localSearchSetting.weightRotation,
                     localSearchSetting.weightChromosomeDiff,
-                    localSearchSetting.wieghtInputChromosomeDiff
+                    localSearchSetting.weightInputChromosomeDiff
                     );
 
                 // 1ステップのループ
@@ -186,7 +186,7 @@ namespace GraspingOptimization
                         localSearchSetting.weightDistance,
                         localSearchSetting.weightRotation,
                         localSearchSetting.weightChromosomeDiff,
-                        localSearchSetting.wieghtInputChromosomeDiff);
+                        localSearchSetting.weightInputChromosomeDiff);
 
 
                     if (neighborChromosome.score < minScoreChromosome.score)

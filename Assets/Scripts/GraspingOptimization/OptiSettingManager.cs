@@ -89,7 +89,7 @@ namespace GraspingOptimization
             weightDistance = ((LocalSearchSetting)optiSetting).weightDistance;
             weightRotation = ((LocalSearchSetting)optiSetting).weightRotation;
             weightChromosomeDiff = ((LocalSearchSetting)optiSetting).weightChromosomeDiff;
-            wieghtInputChromosomeDiff = ((LocalSearchSetting)optiSetting).wieghtInputChromosomeDiff;
+            wieghtInputChromosomeDiff = ((LocalSearchSetting)optiSetting).weightInputChromosomeDiff;
         }
     }
 }
