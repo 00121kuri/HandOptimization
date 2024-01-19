@@ -18,10 +18,19 @@ namespace GraspingOptimization
         public Vector3 resultPosition;
         public Quaternion resultRotation;
 
+        public float distanceScore;
+        public float rotationScore;
+        public float initChromosomeDiffScore;
+        public float inputChromosomeDiffScore;
+
         public HandChromosome()
         {
             this.jointGeneList = new List<JointGene>();
             this.score = float.MaxValue;
+            this.distanceScore = float.MaxValue;
+            this.rotationScore = float.MaxValue;
+            this.initChromosomeDiffScore = float.MaxValue;
+            this.inputChromosomeDiffScore = float.MaxValue;
         }
 
         // public void SetCurrentJointRotation(Hand hand)
@@ -132,13 +141,36 @@ namespace GraspingOptimization
             this.resultRotation = virtualObj.transform.rotation;
 
             //TODO: 評価関数を決める
-            float distance = Vector3.Distance(tangibleObj.transform.position, this.resultPosition);
-            float dot = Quaternion.Dot(tangibleObj.transform.rotation, this.resultRotation);
-            float initChromosomeDiff = this.EvaluateChromosomeDiff(initChromosome);
-            float inputChromosomeDiff = this.EvaluateChromosomeDiff(inputChromosome);
+            this.distanceScore = Vector3.Distance(tangibleObj.transform.position, this.resultPosition);
+            this.rotationScore = 1 - Quaternion.Dot(tangibleObj.transform.rotation, this.resultRotation);
+            this.initChromosomeDiffScore = this.EvaluateChromosomeDiff(initChromosome);
+            this.inputChromosomeDiffScore = this.EvaluateChromosomeDiff(inputChromosome);
             //float angle = Quaternion.Angle(tangibleObj.transform.rotation, this.resultRotation);
-            this.score = weightDistance * distance + weightRotation * (1 - dot) + weightChromosomeDiff * initChromosomeDiff + wieghtInputChromosomeDiff * inputChromosomeDiff;
-            //Debug.Log($"distance: {distance}, dot: {(1 - dot) / 2}, initChromosomeDiff: {initChromosomeDiff}, score: {this.score}");
+            this.score = this.GetTotalScore(weightDistance, weightRotation, weightChromosomeDiff, wieghtInputChromosomeDiff);
+            //Debug.Log($"distance: {this.distanceScore}, rotation: {this.rotationScore}, initChromosomeDiff: {this.initChromosomeDiffScore}, inputChromosomeDiff: {this.inputChromosomeDiffScore}, score: {this.score}");
+        }
+
+        public float GetTotalScore(
+            float weightDistance,
+            float weightRotation,
+            float weightChromosomeDiff,
+            float wieghtInputChromosomeDiff
+            )
+        {
+            float totalScore = 0;
+            totalScore += weightDistance * this.distanceScore;
+            totalScore += weightRotation * this.rotationScore;
+            totalScore += weightChromosomeDiff * this.initChromosomeDiffScore;
+            totalScore += wieghtInputChromosomeDiff * this.inputChromosomeDiffScore;
+            return totalScore;
+        }
+
+        public float GetObjectScore(
+            float weightDistance,
+            float weightRotation
+        )
+        {
+            return weightDistance * this.distanceScore + weightRotation * this.rotationScore;
         }
 
         public HandChromosome GenerateNeighborChromosome(float sigma, float mean, float mutationRate)

@@ -4,6 +4,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 using GraspingOptimization;
+using System;
 
 namespace GraapshingOptimization.Tests
 {
@@ -32,6 +33,17 @@ namespace GraapshingOptimization.Tests
             Assert.AreEqual(Helper.ClampAngle(360f, -10f, 10f), 0f);
             Assert.AreEqual(Helper.ClampAngle(370f, -10f, 10f), 10f);
             Assert.AreEqual(Helper.ClampAngle(380f, -10f, 10f), 10f);
+        }
+
+        [Test]
+        public void GaussianTest(
+            [Random(0f, 1f, 100)] float sigma
+        )
+        {
+            float z = Helper.Gaussian(sigma, 0f);
+            Assert.True(
+                Math.Abs(z) <= sigma * 3f);
+            Debug.Log($"n sigma: n < {Math.Ceiling(Math.Abs(z) / sigma)}");
         }
 
     }

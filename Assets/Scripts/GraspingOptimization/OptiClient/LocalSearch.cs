@@ -157,7 +157,7 @@ namespace GraspingOptimization
                 for (int stepCount = 0; stepCount < localSearchSetting.maxSteps; stepCount++)
                 {
 
-                    if (minScoreChromosome.score < localSearchSetting.worstScore)
+                    if (minScoreChromosome.GetObjectScore(localSearchSetting.weightDistance, localSearchSetting.weightRotation) < localSearchSetting.worstScore)
                     {
                         // 前のステップの結果を使う
                         initPosition = minScoreChromosome.resultPosition;
