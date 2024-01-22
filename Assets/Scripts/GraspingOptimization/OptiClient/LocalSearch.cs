@@ -102,7 +102,7 @@ namespace GraspingOptimization
         {
             if (isExportLog)
             {
-                logDir = $"opti-data/logs/{sequenceDt}/{sequenceId}";
+                logDir = $"opti-logs/{sequenceDt}/{sequenceId}";
                 System.IO.Directory.CreateDirectory(logDir);
             }
             // フレームごとのループ
@@ -111,7 +111,7 @@ namespace GraspingOptimization
                 if (isExportLog)
                 {
                     logfile = $"{logDir}/{frameCount}-log.csv";
-                    FileLog.AppendLog(logfile, "frameCount,score\n");
+                    FileLog.AppendLog(logfile, "frameCount,score,distanceScore,rotationScore,initChromosomeDiffScore,inputChromosomeDiffScore\n");
                 }
                 // 手のポーズを取得
                 handPoseData = handPoseReader.ReadHandPoseDataFromDB("inputdata", sequenceDt, frameCount);
@@ -152,6 +152,14 @@ namespace GraspingOptimization
                     localSearchSetting.weightChromosomeDiff,
                     localSearchSetting.wieghtInputChromosomeDiff
                     );
+
+                if (isExportLog)
+                {
+                    // ログを出力
+                    FileLog.AppendLog(
+                        logfile,
+                        $"-1,{minScoreChromosome.score},{minScoreChromosome.distanceScore},{minScoreChromosome.rotationScore},{minScoreChromosome.initChromosomeDiffScore},{minScoreChromosome.inputChromosomeDiffScore}\n");
+                }
 
                 // 1ステップのループ
                 for (int stepCount = 0; stepCount < localSearchSetting.maxSteps; stepCount++)
@@ -198,7 +206,7 @@ namespace GraspingOptimization
                             // ログを出力
                             FileLog.AppendLog(
                                 logfile,
-                                $"{stepCount},{minScoreChromosome.score}\n");
+                                $"{stepCount},{minScoreChromosome.score},{minScoreChromosome.distanceScore},{minScoreChromosome.rotationScore},{minScoreChromosome.initChromosomeDiffScore},{minScoreChromosome.inputChromosomeDiffScore}\n");
                         }
                     }
 
