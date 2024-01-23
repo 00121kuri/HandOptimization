@@ -137,7 +137,7 @@ namespace GraspingOptimization
                 {
                     initChromosome = hands.GetCurrentHandChromosome();
                 }
-                minScoreChromosome = initChromosome;
+                minScoreChromosome = initChromosome.DeepCopy();
                 minScoreChromosome.EvaluationHand(
                     hands,
                     targetObj,
@@ -200,7 +200,7 @@ namespace GraspingOptimization
                     if (neighborChromosome.score < minScoreChromosome.score)
                     {
                         // 近傍の方が良かったら更新
-                        minScoreChromosome = neighborChromosome;
+                        minScoreChromosome = neighborChromosome.DeepCopy();
                         if (isExportLog)
                         {
                             // ログを出力
@@ -232,7 +232,7 @@ namespace GraspingOptimization
                 ExportResult(sequenceId, sequenceDt, frameCount, settingHash.optiSettingHash, settingHash.envSettingHash, minScoreChromosome, initChromosome, inputChromosome, handPoseData.objectData.position, handPoseData.objectData.rotation);
 
                 ExportCurrentHandPoseData(sequenceId, sequenceDt, frameCount);
-                previousResultChromosome = minScoreChromosome;
+                previousResultChromosome = minScoreChromosome.DeepCopy();
             }
         }
 

@@ -84,5 +84,19 @@ namespace GraspingOptimization
             }
             return sb.ToString();
         }
+
+        /// <summary>
+        /// 対象のディープコピーを行う
+        /// シリアライズ(Serializable 属性)されていないクラスではエラー
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="src"></param>
+        /// <returns></returns>
+        public static T DeepCopy<T>(this T src)
+        {
+            // Jsonをシリアライズしてディープコピーを行う
+            string json = JsonUtility.ToJson(src);
+            return JsonUtility.FromJson<T>(json);
+        }
     }
 }
