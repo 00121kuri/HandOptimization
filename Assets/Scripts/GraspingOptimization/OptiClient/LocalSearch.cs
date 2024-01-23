@@ -229,7 +229,7 @@ namespace GraspingOptimization
                 virtualObj.transform.SetPositionAndRotation(minScoreChromosome.resultPosition, minScoreChromosome.resultRotation);
 
                 // 結果を出力
-                ExportResult(sequenceId, sequenceDt, frameCount, settingHash.optiSettingHash, settingHash.envSettingHash, minScoreChromosome, initChromosome, inputChromosome, handPoseData.objectData.position, handPoseData.objectData.rotation);
+                ExportResult(sequenceId, sequenceDt, frameCount, settingHash.optiSettingHash, settingHash.envSettingHash, minScoreChromosome, handPoseData.objectData.position, handPoseData.objectData.rotation);
 
                 ExportCurrentHandPoseData(sequenceId, sequenceDt, frameCount);
                 previousResultChromosome = minScoreChromosome.DeepCopy();
