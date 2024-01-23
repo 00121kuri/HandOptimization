@@ -72,6 +72,19 @@ namespace GraspingOptimization
             return angle;
         }
 
+        public static float ClampAngle180(float angle)
+        {
+            return Mathf.Repeat(angle + 180, 360) - 180;
+        }
+
+        public static Vector3 ClampVector180(Vector3 vector)
+        {
+            vector.x = ClampAngle180(vector.x);
+            vector.y = ClampAngle180(vector.y);
+            vector.z = ClampAngle180(vector.z);
+            return vector;
+        }
+
         // Jsonに変換し，ハッシュを返す
         public static string GetHash(string json)
         {

@@ -4,6 +4,7 @@ using UnityEngine;
 using GraspingOptimization;
 using UnityEditor;
 
+
 namespace GraspingOptimization
 {
     /// <summary>
@@ -75,13 +76,12 @@ namespace GraspingOptimization
         public float EvaluateChromosomeDiff(HandChromosome otherChromosome)
         {
             float diff = 0;
-            float dot = 0;
             // 内積で類似度を求める
             for (int i = 0; i < this.jointGeneList.Count; i++)
             {
-                dot = Quaternion.Dot(
-                    Quaternion.Euler(this.jointGeneList[i].localEulerAngles),
-                    Quaternion.Euler(otherChromosome.jointGeneList[i].localEulerAngles)
+                float dot = Quaternion.Dot(
+                    Quaternion.Euler(Helper.ClampVector180(this.jointGeneList[i].localEulerAngles)),
+                    Quaternion.Euler(Helper.ClampVector180(otherChromosome.jointGeneList[i].localEulerAngles))
                 );
                 diff += 1 - dot;
             }
@@ -145,6 +145,12 @@ namespace GraspingOptimization
             this.rotationScore = 1 - Quaternion.Dot(tangibleObj.transform.rotation, this.resultRotation);
             this.initChromosomeDiffScore = this.EvaluateChromosomeDiff(initChromosome);
             this.inputChromosomeDiffScore = this.EvaluateChromosomeDiff(inputChromosome);
+            if (this.inputChromosomeDiffScore > 1f)
+            {
+                Debug.Log("inputChromosomeDiffScore > 1f");
+                Debug.Log(JsonUtility.ToJson(this));
+                Debug.Log(JsonUtility.ToJson(inputChromosome));
+            }
             //float angle = Quaternion.Angle(tangibleObj.transform.rotation, this.resultRotation);
             this.score = this.GetTotalScore(weightDistance, weightRotation, weightChromosomeDiff, wieghtInputChromosomeDiff);
             //Debug.Log($"distance: {this.distanceScore}, rotation: {this.rotationScore}, initChromosomeDiff: {this.initChromosomeDiffScore}, inputChromosomeDiff: {this.inputChromosomeDiffScore}, score: {this.score}");

@@ -128,6 +128,9 @@ namespace GraspingOptimization
                 handPoseReader.SetHandPose(handPoseData);
                 inputChromosome = hands.GetCurrentHandChromosome();
 
+                // jsonに変換してログに出力
+                // Debug.Log(JsonUtility.ToJson(inputChromosome));
+
 
                 if (localSearchSetting.isUsePreviousResult && previousResultChromosome != null)
                 {
@@ -203,6 +206,7 @@ namespace GraspingOptimization
                         minScoreChromosome = neighborChromosome.DeepCopy();
                         if (isExportLog)
                         {
+                            //Debug.Log($"{stepCount},{minScoreChromosome.score},{minScoreChromosome.distanceScore},{minScoreChromosome.rotationScore},{minScoreChromosome.initChromosomeDiffScore},{minScoreChromosome.inputChromosomeDiffScore}");
                             // ログを出力
                             FileLog.AppendLog(
                                 logfile,
