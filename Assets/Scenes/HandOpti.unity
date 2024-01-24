@@ -11002,17 +11002,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optiType: 0
-  settingHash: 7bb9198768ff885c6a86ece8d9784d2b
+  settingHash: 95fdc7b6995e7b60ec0ea03aa50abb01
   mutationRate: 0.05263158
   sigma: 1
   worstScore: 0.005
-  maxSteps: 50000
+  maxSteps: 10000
   mean: 0
   isUsePreviousResult: 1
   weightDistance: 1
   weightRotation: 0.1
-  weightChromosomeDiff: 0.01
-  wieghtInputChromosomeDiff: 0.01
+  weightChromosomeDiff: 1
+  wieghtInputChromosomeDiff: 1
 --- !u!4 &1805669879
 Transform:
   m_ObjectHideFlags: 0
