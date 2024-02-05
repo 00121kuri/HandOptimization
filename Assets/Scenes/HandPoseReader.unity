@@ -7267,14 +7267,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 49505914}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2712533, y: -0.24753901, z: -0.004440717, w: 0.93012166}
-  m_LocalPosition: {x: -0.068, y: -0.081, z: 0.069}
+  m_LocalRotation: {x: 0.18791294, y: -0.35793802, z: 0.03917621, w: 0.91380215}
+  m_LocalPosition: {x: -0.097, y: 0.15, z: 0.011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1490524235}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 30.159, y: -32.368, z: -9.49}
+  m_LocalEulerAnglesHint: {x: 21.807, y: -43.53, z: -3.886}
 --- !u!4 &57778535 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5320102307783730736, guid: 9c21586619d13ca4ba65adf12182f19d, type: 3}
@@ -22115,11 +22115,12 @@ MonoBehaviour:
   realObject: {fileID: 1088340421}
   dataDir: C:\Users\Kuribayashi\ResearchProjects\HandOptimization\opti-data
   sequenceId: inputdata
-  dateTime: 2023-11-16-19-18-26
+  dateTime: 2023-12-25-15-44-58
   frameCount: -1
   dataType: 0
   captureScreen: 0
   captureName: b4_thesis
+  autoCameraPos: 0
   handCamera: {fileID: 49505914}
   isDisplay: 0
   isViewer: 1
@@ -26979,6 +26980,7 @@ MonoBehaviour:
   dataType: 1
   captureScreen: 0
   captureName: b4_thesis
+  autoCameraPos: 0
   handCamera: {fileID: 49505914}
   isDisplay: 0
   isViewer: 1
