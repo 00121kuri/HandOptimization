@@ -40,6 +40,9 @@ namespace GraspingOptimization
         [SerializeField]
         private string captureName = null;
 
+        [SerializeField]
+        private bool autoCameraPos = true;
+
         GUIStyle guiStyle;
 
         [SerializeField]
@@ -121,7 +124,7 @@ namespace GraspingOptimization
                 HandPoseData handPoseData = ReadHandPoseDataFromDB(sequenceId, dateTime, frameCount);
                 if (handPoseData != null)
                 {
-                    if (frameCount == 0)
+                    if (frameCount == 0 && autoCameraPos)
                     {
                         // カメラの位置と回転をシーケンスの最初のフレームに合わせる
                         handCamera.transform.position = handCameraOffsetPos + handPoseData.objectData.position;
