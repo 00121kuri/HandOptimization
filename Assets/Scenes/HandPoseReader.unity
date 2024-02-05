@@ -7243,6 +7243,38 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1201482578}
   m_SourcePrefab: {fileID: 100100000, guid: e7e358565e530214c97adba8c82fedc6, type: 3}
+--- !u!1 &49505914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 49505915}
+  m_Layer: 0
+  m_Name: CamOffset (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &49505915
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49505914}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.2712533, y: -0.24753901, z: -0.004440717, w: 0.93012166}
+  m_LocalPosition: {x: -0.068, y: -0.081, z: 0.069}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1490524235}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 30.159, y: -32.368, z: -9.49}
 --- !u!4 &57778535 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5320102307783730736, guid: 9c21586619d13ca4ba65adf12182f19d, type: 3}
@@ -9208,7 +9240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &261804503
 Transform:
   m_ObjectHideFlags: 0
@@ -21968,6 +22000,98 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linePrefab: {fileID: 3628777910255435861, guid: e4ad0897285fd4b41bdd67fdd4a2b86a, type: 3}
+--- !u!1 &1490524234
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1490524235}
+  - component: {fileID: 1490524237}
+  - component: {fileID: 1490524236}
+  m_Layer: 0
+  m_Name: HandCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1490524235
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490524234}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 49505915}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &1490524236
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490524234}
+  m_Enabled: 1
+--- !u!20 &1490524237
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490524234}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.01
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1 &1509916672 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1015311468456129628, guid: e7e358565e530214c97adba8c82fedc6, type: 3}
@@ -21991,12 +22115,13 @@ MonoBehaviour:
   realObject: {fileID: 1088340421}
   dataDir: C:\Users\Kuribayashi\ResearchProjects\HandOptimization\opti-data
   sequenceId: inputdata
-  dateTime: 2023-12-25-15-44-58
+  dateTime: 2023-11-16-19-18-26
   frameCount: -1
   dataType: 0
   captureScreen: 0
-  handCamera: {fileID: 261804502}
-  isDisplay: 1
+  captureName: b4_thesis
+  handCamera: {fileID: 49505914}
+  isDisplay: 0
   isViewer: 1
 --- !u!4 &1509916674 stripped
 Transform:
@@ -26848,13 +26973,14 @@ MonoBehaviour:
   - {fileID: 156637051}
   realObject: {fileID: 667153788}
   dataDir: D:\ResearchProjects\HandOptimization\opti-data
-  sequenceId: 0ac8729afc6e42a98fed24282a3756d9
+  sequenceId: c9d3967206e94fa4a8964485b586fcb0
   dateTime: 2023-12-25-15-44-41
   frameCount: -1
   dataType: 1
   captureScreen: 0
-  handCamera: {fileID: 261804502}
-  isDisplay: 1
+  captureName: b4_thesis
+  handCamera: {fileID: 49505914}
+  isDisplay: 0
   isViewer: 1
 --- !u!1 &1980565626 stripped
 GameObject:
@@ -36761,3 +36887,4 @@ SceneRoots:
   - {fileID: 1228870314}
   - {fileID: 773372290003444315}
   - {fileID: 261804503}
+  - {fileID: 49505915}

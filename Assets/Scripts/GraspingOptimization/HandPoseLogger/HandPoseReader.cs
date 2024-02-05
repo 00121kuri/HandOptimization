@@ -37,6 +37,9 @@ namespace GraspingOptimization
         [SerializeField]
         bool captureScreen = false;
 
+        [SerializeField]
+        private string captureName = null;
+
         GUIStyle guiStyle;
 
         [SerializeField]
@@ -129,12 +132,20 @@ namespace GraspingOptimization
                     if (captureScreen)
                     {
                         // ディレクトリの作成
-                        string dirPath = $"SequenceCapture/{dateTime}/{sequenceId}";
+                        string dirPath;
+                        if (captureName == null)
+                        {
+                            dirPath = $"SequenceCapture/{dateTime}/{sequenceId}";
+                        }
+                        else
+                        {
+                            dirPath = $"SequenceCapture/{captureName}/{dateTime}/{sequenceId}";
+                        }
                         if (!Directory.Exists(dirPath))
                         {
                             Directory.CreateDirectory(dirPath);
                         }
-                        string path = $"SequenceCapture/{dateTime}/{sequenceId}/{frameCount}.png";
+                        string path = $"{dirPath}/{frameCount}.png";
                         ScreenCapture.CaptureScreenshot(path);
                     }
                 }
