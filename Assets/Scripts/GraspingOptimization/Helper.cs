@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using System.IO.Compression;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
+using GraspingOptimization;
+using System.Security.Cryptography;
+using System.Text;
+using System.IO;
+using MongoDB.Driver;
+using MongoDB.Bson;
 
 namespace GraspingOptimization
 {
@@ -64,6 +70,46 @@ namespace GraspingOptimization
             angle = Mathf.Clamp(angle, from, to);
 
             return angle;
+        }
+
+        public static float ClampAngle180(float angle)
+        {
+            return Mathf.Repeat(angle + 180, 360) - 180;
+        }
+
+        public static Vector3 ClampVector180(Vector3 vector)
+        {
+            vector.x = ClampAngle180(vector.x);
+            vector.y = ClampAngle180(vector.y);
+            vector.z = ClampAngle180(vector.z);
+            return vector;
+        }
+
+        // Jsonに変換し，ハッシュを返す
+        public static string GetHash(string json)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(json);
+            byte[] hashBytes = new MD5CryptoServiceProvider().ComputeHash(bytes);
+            StringBuilder sb = new StringBuilder();
+            foreach (byte b in hashBytes)
+            {
+                sb.Append(b.ToString("x2"));
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// 対象のディープコピーを行う
+        /// シリアライズ(Serializable 属性)されていないクラスではエラー
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="src"></param>
+        /// <returns></returns>
+        public static T DeepCopy<T>(this T src)
+        {
+            // Jsonをシリアライズしてディープコピーを行う
+            string json = JsonUtility.ToJson(src);
+            return JsonUtility.FromJson<T>(json);
         }
     }
 }

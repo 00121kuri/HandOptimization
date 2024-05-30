@@ -2,23 +2,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GraspingOptimization;
-using LeapInternal;
+//using LeapInternal;
+using System;
+using UnityEngine.UIElements;
 
 namespace GraspingOptimization
 {
+    [System.Serializable]
+    enum DataType
+    {
+        Input,
+        Output
+    }
+
     /// <summary>
     /// jsonで保存するためのデータクラス
     /// </summary>
     [System.Serializable]
     public class HandPoseData
     {
+        public string _id; // MongoDBのためのユニークなID
+        public string sequenceId;
+
+        public string dateTime;
         public int frameCount;
         public List<HandData> handDataList;
+        public ObjectData objectData;
 
 
-        public HandPoseData()
+        public HandPoseData(string sequenceId, string dateTime, int frameCount)
         {
+            this.sequenceId = sequenceId;
+            this.frameCount = frameCount;
+            this.dateTime = dateTime;
+            this._id = $"{dateTime}-{sequenceId}-{frameCount}";
             handDataList = new List<HandData>();
+        }
+    }
+
+    [System.Serializable]
+    public class ObjectData
+    {
+        public Vector3 position;
+        public Quaternion rotation;
+
+        public ObjectData(Vector3 position, Quaternion rotation)
+        {
+            this.position = position;
+            this.rotation = rotation;
         }
     }
 
@@ -27,6 +58,9 @@ namespace GraspingOptimization
     {
         public HandType handType;
         public List<FingerData> fingerDataList;
+
+        public JointData wristJoint;
+        public JointData elbowJoint;
 
 
         public HandData(HandType handType)
@@ -54,15 +88,18 @@ namespace GraspingOptimization
     public class JointData
     {
         public JointType jointType;
-        public Vector3 localPosition;
-        public Quaternion localRotation;
+        public Vector3 position;
+        public Quaternion rotation;
+
+        public Vector3 localScale;
 
 
-        public JointData(Vector3 localPosition, Quaternion localRotation, JointType jointType)
+        public JointData(Vector3 position, Quaternion rotation, Vector3 localScale, JointType jointType)
         {
             this.jointType = jointType;
-            this.localPosition = localPosition;
-            this.localRotation = localRotation;
+            this.position = position;
+            this.rotation = rotation;
+            this.localScale = localScale;
         }
     }
 }

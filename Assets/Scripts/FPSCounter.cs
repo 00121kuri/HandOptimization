@@ -10,18 +10,13 @@ public class FPSCounter : MonoBehaviour
     private float m_timeleft;
     private float m_fps;
 
-    private void Awake()
-    {
-        //Application.targetFrameRate = 90;
-    }
-
     private void Update()
     {
         m_timeleft -= Time.deltaTime;
         m_accum += Time.timeScale / Time.deltaTime;
         m_frames++;
 
-        if ( 0 < m_timeleft ) return;
+        if (0 < m_timeleft) return;
 
         m_fps = m_accum / m_frames;
         m_timeleft = m_updateInterval;
@@ -29,8 +24,20 @@ public class FPSCounter : MonoBehaviour
         m_frames = 0;
     }
 
+    public float GetFPS()
+    {
+        return m_fps;
+    }
+
     private void OnGUI()
     {
-        GUILayout.Label( "FPS: " + m_fps.ToString( "f2" ) );
+        GUILayout.BeginArea(new Rect(0, 0, Screen.width, Screen.height));
+        GUILayout.BeginVertical();
+        {
+            GUILayout.FlexibleSpace();
+            GUILayout.Label("FPS: " + m_fps.ToString("f2"));
+        }
+        GUILayout.EndVertical();
+        GUILayout.EndArea();
     }
 }
