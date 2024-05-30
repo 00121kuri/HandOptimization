@@ -206,6 +206,25 @@ namespace GraspingOptimization
 
             return neighborChromosome;
         }
+
+        public HandChromosome ClampChromosomeAngle()
+        {
+            HandChromosome clampedChromosome = new HandChromosome();
+            foreach (JointGene jointGene in this.jointGeneList)
+            {
+                Vector3 jointAngle = jointGene.localEulerAngles;
+                for (int j = 0; j < 3; j++)
+                {
+                    jointAngle[j] = Helper.ClampAngle(
+                            jointAngle[j],
+                            JointLimit.GetMinRotation(jointGene.fingerType, jointGene.jointType)[j],
+                            JointLimit.GetMaxRotation(jointGene.fingerType, jointGene.jointType)[j]
+                        );
+                }
+                clampedChromosome.jointGeneList.Add(new JointGene(jointGene.jointType, jointGene.fingerType, jointGene.handType, jointAngle));
+            }
+            return clampedChromosome;
+        }
     }
 
     [System.Serializable]
