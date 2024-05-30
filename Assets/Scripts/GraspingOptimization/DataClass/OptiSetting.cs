@@ -1,13 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using GraspingOptimization;
-using System.Security.Cryptography;
-using System.Text;
 using System.IO;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using Amazon.Runtime.SharedInterfaces;
 
 namespace GraspingOptimization
 {

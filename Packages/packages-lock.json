@@ -189,20 +189,11 @@
       "url": "https://packages.unity.com"
     },
     "org.nuget.awssdk.core": {
-      "version": "3.7.100-14",
-      "depth": 3,
+      "version": "3.7.304",
+      "depth": 0,
       "source": "registry",
       "dependencies": {
         "org.nuget.microsoft.bcl.asyncinterfaces": "1.1.0"
-      },
-      "url": "https://unitynuget-registry.azurewebsites.net"
-    },
-    "org.nuget.awssdk.securitytoken": {
-      "version": "3.7.100-14",
-      "depth": 2,
-      "source": "registry",
-      "dependencies": {
-        "org.nuget.awssdk.core": "3.7.100-14"
       },
       "url": "https://unitynuget-registry.azurewebsites.net"
     },
@@ -272,7 +263,6 @@
       "source": "registry",
       "dependencies": {
         "org.nuget.mongodb.bson": "2.22.0",
-        "org.nuget.awssdk.securitytoken": "3.7.100-14",
         "org.nuget.dnsclient": "1.6.1",
         "org.nuget.microsoft.extensions.logging.abstractions": "2.0.0",
         "org.nuget.mongodb.libmongocrypt": "1.8.0",
