@@ -213,17 +213,12 @@ namespace GraspingOptimization
             realObject.transform.position = handPoseData.objectData.position;
             realObject.transform.rotation = handPoseData.objectData.rotation;
 
+            SetWristPose(handPoseData);
+
             // 手のデータを設定
             foreach (HandData handData in handPoseData.handDataList)
             {
                 Hand hand = hands.Find(x => x.handType == handData.handType);
-                // elbow, wrist
-                hand.elbowObject.transform.position = handData.elbowJoint.position;
-                hand.elbowObject.transform.rotation = handData.elbowJoint.rotation;
-                hand.elbowObject.transform.localScale = handData.elbowJoint.localScale;
-                hand.wristObject.transform.position = handData.wristJoint.position;
-                hand.wristObject.transform.rotation = handData.wristJoint.rotation;
-                hand.wristObject.transform.localScale = handData.wristJoint.localScale;
 
                 // fingers
                 foreach (FingerData fingerData in handData.fingerDataList)
@@ -237,6 +232,21 @@ namespace GraspingOptimization
                         joint.jointObject.transform.localScale = jointData.localScale;
                     }
                 }
+            }
+        }
+
+        public void SetWristPose(HandPoseData handPoseData)
+        {
+            foreach (HandData handData in handPoseData.handDataList)
+            {
+                Hand hand = hands.Find(x => x.handType == handData.handType);
+                // elbow, wrist
+                hand.elbowObject.transform.position = handData.elbowJoint.position;
+                hand.elbowObject.transform.rotation = handData.elbowJoint.rotation;
+                hand.elbowObject.transform.localScale = handData.elbowJoint.localScale;
+                hand.wristObject.transform.position = handData.wristJoint.position;
+                hand.wristObject.transform.rotation = handData.wristJoint.rotation;
+                hand.wristObject.transform.localScale = handData.wristJoint.localScale;
             }
         }
 

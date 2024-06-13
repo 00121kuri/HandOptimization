@@ -25,12 +25,14 @@ namespace GraspingOptimization
         [SerializeField]
         private string dateTime;
 
-        private int frameCount = -1;
+        private int frameCount = 0;
 
         private Vector3 initialObjectPosition;
         private Quaternion initialObjectRotation;
 
         private HandChromosome receivedHandChromosome = new HandChromosome();
+
+        private HandPoseData handPoseData;
 
         void Start()
         {
@@ -39,19 +41,14 @@ namespace GraspingOptimization
         }
         public override void Initialize()
         {
+            Physics.simulationMode = SimulationMode.FixedUpdate;
             return;
         }
 
         public override void OnEpisodeBegin()
         {
             // 手のポーズを取得
-            frameCount++;
-            HandPoseData handPoseData = handPoseReader.ReadHandPoseDataFromDB(sequenceId, dateTime, frameCount);
-            if (handPoseData == null)
-            {
-                frameCount = -1;
-                return;
-            }
+            handPoseData = handPoseReader.ReadHandPoseDataFromDB(sequenceId, dateTime, frameCount);
 
             handPoseReader.SetHandPose(handPoseData);
             virtualObject.transform.position = handPoseData.objectData.position;
@@ -64,8 +61,34 @@ namespace GraspingOptimization
 
         public override void CollectObservations(VectorSensor sensor)
         {
-            // HandChromosome handChromosome = hands.GetCurrentHandChromosome();
+            handPoseData = handPoseReader.ReadHandPoseDataFromDB(sequenceId, dateTime, frameCount);
+            if (handPoseData == null)
+            {
+                frameCount = 0;
+                return;
+            }
+            else
+            {
+                frameCount++;
+            }
+            // トラッキングされた手と物体の情報をそのまま与える
+            foreach (HandData handData in handPoseData.handDataList)
+            {
+                foreach (FingerData fingerData in handData.fingerDataList)
+                {
+                    foreach (JointData jointData in fingerData.jointDataList)
+                    {
+                        sensor.AddObservation(jointData.position);
+                        sensor.AddObservation(jointData.rotation);
+                    }
+                }
+            }
+            sensor.AddObservation(handPoseData.objectData.position);
+            sensor.AddObservation(handPoseData.objectData.rotation);
+
+            // 現在の手と物体の情報を与える
             sensor.AddObservation(virtualObject.transform.position);
+            sensor.AddObservation(virtualObject.transform.rotation);
         }
 
 
@@ -83,7 +106,17 @@ namespace GraspingOptimization
 
             receivedHandChromosome = receivedHandChromosome.ClampChromosomeAngle();
 
+            // 手首の位置は参照データのものを用いる
+            handPoseReader.SetWristPose(handPoseData);
             hands.SetHandChromosome(receivedHandChromosome);
+
+            // 十分なステップ数実行する
+            // int simulateTime = 20;
+            // int simulateStep = 1;
+            // for (int i = 0; i < simulateTime; i++)
+            // {
+            //     Physics.Simulate(Time.fixedDeltaTime * simulateStep);
+            // }
 
             if (virtualObject.transform.position.y < 0)
             {

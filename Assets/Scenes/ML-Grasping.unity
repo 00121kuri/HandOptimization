@@ -25892,7 +25892,7 @@ MonoBehaviour:
   realObject: {fileID: 667153788}
   dataDir: 
   sequenceId: inputdata
-  dateTime: 2023-12-25-15-44-41
+  dateTime: 2023-11-21-14-25-58
   frameCount: -1
   dataType: 0
   captureScreen: 0
@@ -25913,8 +25913,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DecisionPeriod: 20
-  DecisionStep: 10
+  DecisionPeriod: 4
+  DecisionStep: 2
   TakeActionsBetweenDecisions: 1
 --- !u!114 &1977019975
 MonoBehaviour:
@@ -25949,7 +25949,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 3
+    VectorObservationSize: 147
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 57
@@ -25958,7 +25958,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 31b38a6205b16c342a0af0999f854c3f, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: HandBehavior
