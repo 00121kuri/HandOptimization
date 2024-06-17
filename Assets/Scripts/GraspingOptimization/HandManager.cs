@@ -25,6 +25,7 @@ namespace GraspingOptimization
         void Start()
         {
             hand = new Hand(fingerObjectList, handType, elbowObject, wristObject);
+            Debug.Log("finger list count in hand manager" + hand.fingerList.Count);
         }
     }
 }
