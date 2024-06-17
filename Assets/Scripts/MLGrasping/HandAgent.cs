@@ -34,6 +34,10 @@ namespace GraspingOptimization
 
         private HandPoseData handPoseData;
 
+        private int episodeStep = 0;
+
+        private int maxEpisodeStep = 200;
+
         void Start()
         {
             hands.hands.Add(handManager.hand);
@@ -50,6 +54,16 @@ namespace GraspingOptimization
             // 手のポーズを取得
             handPoseData = handPoseReader.ReadHandPoseDataFromDB(sequenceId, dateTime, frameCount);
 
+            if (handPoseData == null)
+            {
+                frameCount = 0;
+                return;
+            }
+            else
+            {
+                frameCount++;
+            }
+
             handPoseReader.SetHandPose(handPoseData);
             virtualObject.transform.position = handPoseData.objectData.position;
             virtualObject.transform.rotation = handPoseData.objectData.rotation;
@@ -61,16 +75,13 @@ namespace GraspingOptimization
 
         public override void CollectObservations(VectorSensor sensor)
         {
-            handPoseData = handPoseReader.ReadHandPoseDataFromDB(sequenceId, dateTime, frameCount);
+            // handPoseData = handPoseReader.ReadHandPoseDataFromDB(sequenceId, dateTime, frameCount);
+
             if (handPoseData == null)
             {
-                frameCount = 0;
                 return;
             }
-            else
-            {
-                frameCount++;
-            }
+
             // トラッキングされた手と物体の情報をそのまま与える
             foreach (HandData handData in handPoseData.handDataList)
             {
@@ -107,7 +118,7 @@ namespace GraspingOptimization
             receivedHandChromosome = receivedHandChromosome.ClampChromosomeAngle();
 
             // 手首の位置は参照データのものを用いる
-            handPoseReader.SetWristPose(handPoseData);
+            // handPoseReader.SetWristPose(handPoseData);
             hands.SetHandChromosome(receivedHandChromosome);
 
             // 十分なステップ数実行する
@@ -118,10 +129,17 @@ namespace GraspingOptimization
             //     Physics.Simulate(Time.fixedDeltaTime * simulateStep);
             // }
 
-            if (virtualObject.transform.position.y < 0)
+            // キャプチャしたデータの位置による
+            // if (virtualObject.transform.position.y < 0)
+            // {
+            //     Debug.Log("Object fell");
+            //     EndEpisode();
+            // }
+
+            if (episodeStep > maxEpisodeStep)
             {
-                Debug.Log("Object fell");
-                AddReward(-1.0f);
+                episodeStep = 0;
+                Debug.Log("Episode step exceeded");
                 EndEpisode();
             }
 
@@ -131,12 +149,14 @@ namespace GraspingOptimization
 
             if (distance > 0.05f)
             {
+                Debug.Log("Object dropped");
                 EndEpisode();
             }
             else
             {
                 AddReward(0.05f - distance);
             }
+            episodeStep++;
         }
 
         // public override void Heuristic(in ActionBuffers actionsOut)
