@@ -145,16 +145,18 @@ namespace GraspingOptimization
 
             // 物体の位置が初期位置・姿勢に近くなるように報酬を与える
             float distance = Vector3.Distance(virtualObject.transform.position, initialObjectPosition);
-            // float dot = 1 - Quaternion.Dot(virtualObject.transform.rotation, initialObjectRotation);
+            float dot = Quaternion.Dot(virtualObject.transform.rotation, initialObjectRotation);
 
-            if (distance > 0.05f)
+            float reward = 10.0f * (0.05f - distance) + 0.5f * dot;
+
+            if (reward < 0)
             {
                 Debug.Log("Object dropped");
                 EndEpisode();
             }
             else
             {
-                AddReward(0.05f - distance);
+                AddReward(reward);
             }
             episodeStep++;
         }
