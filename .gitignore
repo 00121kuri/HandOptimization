@@ -82,3 +82,6 @@ opti-data
 build-app
 SequenceCapture
 opti-logs
+
+# ML Agents
+Assets/ML-Agents/Timers/*
