@@ -25892,7 +25892,7 @@ MonoBehaviour:
   realObject: {fileID: 667153788}
   dataDir: 
   sequenceId: inputdata
-  dateTime: 2023-11-21-14-25-58
+  dateTime: 
   frameCount: -1
   dataType: 0
   captureScreen: 0
@@ -25935,7 +25935,7 @@ MonoBehaviour:
   handManager: {fileID: 156637056}
   virtualObject: {fileID: 667153788}
   sequenceId: inputdata
-  dateTime: 2023-12-25-15-44-41
+  dateTime: 2023-11-21-14-25-58
 --- !u!114 &1977019976
 MonoBehaviour:
   m_ObjectHideFlags: 0
