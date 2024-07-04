@@ -94,10 +94,18 @@ namespace GraspingOptimization
                     }
                 }
             }
+
+            // 実物体の位置・姿勢
             sensor.AddObservation(handPoseData.objectData.position);
             sensor.AddObservation(handPoseData.objectData.rotation);
 
-            // 現在の手と物体の情報を与える
+            // 前フレームのAction
+            foreach (JointGene jointGene in receivedHandChromosome.jointGeneList)
+            {
+                sensor.AddObservation(jointGene.localEulerAngles);
+            }
+
+            // 仮想物体の位置・姿勢
             sensor.AddObservation(virtualObject.transform.position);
             sensor.AddObservation(virtualObject.transform.rotation);
         }
@@ -147,9 +155,11 @@ namespace GraspingOptimization
             float distance = Vector3.Distance(virtualObject.transform.position, initialObjectPosition);
             float dot = Quaternion.Dot(virtualObject.transform.rotation, initialObjectRotation);
 
-            float reward = 10.0f * (0.05f - distance) + 0.5f * dot;
+            float worstDistance = 0.1f;
+            float rewardDistance = worstDistance - distance;
+            float reward = 10.0f * rewardDistance + 0.5f * dot;
 
-            if (reward < 0)
+            if (rewardDistance < 0)
             {
                 Debug.Log("Object dropped");
                 EndEpisode();
