@@ -5,6 +5,7 @@ using Unity.MLAgents;
 using GraspingOptimization;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
+using System;
 
 namespace GraspingOptimization
 {
@@ -38,10 +39,15 @@ namespace GraspingOptimization
 
         private int maxEpisodeStep = 200;
 
+        private int fixedPerUpdate;
+        private int fixedCount = 0;
+
         void Start()
         {
             hands.hands.Add(handManager.hand);
             handPoseReader = this.GetComponent<HandPoseReader>();
+            fixedPerUpdate = (int)Math.Round(1.0 / Time.fixedDeltaTime / Application.targetFrameRate);
+            Debug.Log("Fixed per update: " + fixedPerUpdate);
         }
         public override void Initialize()
         {
@@ -52,17 +58,8 @@ namespace GraspingOptimization
         public override void OnEpisodeBegin()
         {
             // 手のポーズを取得
+            frameCount = 0;
             handPoseData = handPoseReader.ReadHandPoseDataFromDB(sequenceId, dateTime, frameCount);
-
-            if (handPoseData == null)
-            {
-                frameCount = 0;
-                return;
-            }
-            else
-            {
-                frameCount++;
-            }
 
             handPoseReader.SetHandPose(handPoseData);
             virtualObject.transform.position = handPoseData.objectData.position;
@@ -75,11 +72,16 @@ namespace GraspingOptimization
 
         public override void CollectObservations(VectorSensor sensor)
         {
-            // handPoseData = handPoseReader.ReadHandPoseDataFromDB(sequenceId, dateTime, frameCount);
-
-            if (handPoseData == null)
+            // Debug.Log("Observation collected");
+            if (fixedCount < fixedPerUpdate)
             {
-                return;
+                fixedCount++;
+
+            }
+            else
+            {
+                fixedCount = 0;
+                UpdateHandPose();
             }
 
             // トラッキングされた手と物体の情報をそのまま与える
@@ -126,7 +128,7 @@ namespace GraspingOptimization
             receivedHandChromosome = receivedHandChromosome.ClampChromosomeAngle();
 
             // 手首の位置は参照データのものを用いる
-            // handPoseReader.SetWristPose(handPoseData);
+            handPoseReader.SetWristPose(handPoseData);
             hands.SetHandChromosome(receivedHandChromosome);
 
             // 十分なステップ数実行する
@@ -144,12 +146,12 @@ namespace GraspingOptimization
             //     EndEpisode();
             // }
 
-            if (episodeStep > maxEpisodeStep)
-            {
-                episodeStep = 0;
-                Debug.Log("Episode step exceeded");
-                EndEpisode();
-            }
+            // if (episodeStep > maxEpisodeStep)
+            // {
+            //     episodeStep = 0;
+            //     Debug.Log("Episode step exceeded");
+            //     EndEpisode();
+            // }
 
             // 物体の位置が初期位置・姿勢に近くなるように報酬を与える
             float distance = Vector3.Distance(virtualObject.transform.position, initialObjectPosition);
@@ -168,7 +170,22 @@ namespace GraspingOptimization
             {
                 AddReward(reward);
             }
-            episodeStep++;
+            // episodeStep++;
+        }
+
+        private void UpdateHandPose()
+        {
+            handPoseData = handPoseReader.ReadHandPoseDataFromDB(sequenceId, dateTime, frameCount);
+
+            if (handPoseData == null)
+            {
+                EndEpisode();
+                return;
+            }
+            else
+            {
+                frameCount++;
+            }
         }
 
         // public override void Heuristic(in ActionBuffers actionsOut)
@@ -176,4 +193,5 @@ namespace GraspingOptimization
 
         // }
     }
+
 }
