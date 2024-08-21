@@ -111,5 +111,22 @@ namespace GraspingOptimization
             string json = JsonUtility.ToJson(src);
             return JsonUtility.FromJson<T>(json);
         }
+
+        /// <summary>
+        /// 相対座標を計算する関数
+        /// </summary>
+        /// <param name="targetPosition">変換するworld座標</param>
+        /// <param name="referencePosition">基準となるworld座標</param>
+        /// <returns></returns>
+        public static Vector3 CalculateRelativePosition(Vector3 targetPosition, Vector3 referencePosition)
+        {
+            return targetPosition - referencePosition;
+        }
+
+        // 相対回転を計算する関数
+        public static Quaternion CalculateRelativeRotation(Quaternion targetRotation, Quaternion referenceRotation)
+        {
+            return Quaternion.Inverse(referenceRotation) * targetRotation;
+        }
     }
 }

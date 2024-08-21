@@ -84,6 +84,10 @@ namespace GraspingOptimization
         }
     }
 
+    /// <summary>
+    /// 1つのジョイントのデータ
+    /// world座標系での位置と回転、local座標系でのスケールを持つ
+    /// </summary>
     [System.Serializable]
     public class JointData
     {

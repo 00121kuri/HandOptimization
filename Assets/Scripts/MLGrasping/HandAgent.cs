@@ -35,10 +35,6 @@ namespace GraspingOptimization
 
         private HandPoseData handPoseData;
 
-        private int episodeStep = 0;
-
-        private int maxEpisodeStep = 200;
-
         private int fixedPerUpdate;
         private int fixedCount = 0;
 
@@ -81,25 +77,38 @@ namespace GraspingOptimization
             else
             {
                 fixedCount = 0;
-                UpdateHandPose();
+                var success = UpdateHandPose();
+                if (!success)
+                {
+                    EndEpisode();
+                    return;
+                }
             }
 
             // トラッキングされた手と物体の情報をそのまま与える
+            if (handPoseData.handDataList.Count == 0)
+            {
+                Debug.Log("No hand data");
+                return;
+            }
             foreach (HandData handData in handPoseData.handDataList)
             {
+                sensor.AddObservation(handData.wristJoint.position);
+                sensor.AddObservation(handData.wristJoint.rotation);
                 foreach (FingerData fingerData in handData.fingerDataList)
                 {
                     foreach (JointData jointData in fingerData.jointDataList)
                     {
-                        sensor.AddObservation(jointData.position);
-                        sensor.AddObservation(jointData.rotation);
+                        // 手首からの相対位置・姿勢
+                        sensor.AddObservation(Helper.CalculateRelativePosition(jointData.position, handData.wristJoint.position));
+                        sensor.AddObservation(Helper.CalculateRelativeRotation(jointData.rotation, handData.wristJoint.rotation));
                     }
                 }
             }
 
-            // 実物体の位置・姿勢
-            sensor.AddObservation(handPoseData.objectData.position);
-            sensor.AddObservation(handPoseData.objectData.rotation);
+            // 実物体の手首からの相対位置・姿勢 
+            sensor.AddObservation(Helper.CalculateRelativePosition(handPoseData.objectData.position, handPoseData.handDataList[0].wristJoint.position));
+            sensor.AddObservation(Helper.CalculateRelativeRotation(handPoseData.objectData.rotation, handPoseData.handDataList[0].wristJoint.rotation));
 
             // 前フレームのAction
             foreach (JointGene jointGene in receivedHandChromosome.jointGeneList)
@@ -107,9 +116,13 @@ namespace GraspingOptimization
                 sensor.AddObservation(jointGene.localEulerAngles);
             }
 
-            // 仮想物体の位置・姿勢
-            sensor.AddObservation(virtualObject.transform.position);
-            sensor.AddObservation(virtualObject.transform.rotation);
+            // 仮想物体の手首からの相対位置・姿勢
+            sensor.AddObservation(Helper.CalculateRelativePosition(virtualObject.transform.position, handPoseData.handDataList[0].wristJoint.position));
+            sensor.AddObservation(Helper.CalculateRelativeRotation(virtualObject.transform.rotation, handPoseData.handDataList[0].wristJoint.rotation));
+
+            // 仮想物体の速度
+            sensor.AddObservation(virtualObject.GetComponent<Rigidbody>().velocity);
+            sensor.AddObservation(virtualObject.GetComponent<Rigidbody>().angularVelocity);
         }
 
 
@@ -131,37 +144,15 @@ namespace GraspingOptimization
             handPoseReader.SetWristPose(handPoseData);
             hands.SetHandChromosome(receivedHandChromosome);
 
-            // 十分なステップ数実行する
-            // int simulateTime = 20;
-            // int simulateStep = 1;
-            // for (int i = 0; i < simulateTime; i++)
-            // {
-            //     Physics.Simulate(Time.fixedDeltaTime * simulateStep);
-            // }
-
-            // キャプチャしたデータの位置による
-            // if (virtualObject.transform.position.y < 0)
-            // {
-            //     Debug.Log("Object fell");
-            //     EndEpisode();
-            // }
-
-            // if (episodeStep > maxEpisodeStep)
-            // {
-            //     episodeStep = 0;
-            //     Debug.Log("Episode step exceeded");
-            //     EndEpisode();
-            // }
-
             // 物体の位置が初期位置・姿勢に近くなるように報酬を与える
             float distance = Vector3.Distance(virtualObject.transform.position, initialObjectPosition);
             float dot = Quaternion.Dot(virtualObject.transform.rotation, initialObjectRotation);
 
+            float stepReward = 1.0f;
             float worstDistance = 0.1f;
-            float rewardDistance = worstDistance - distance;
-            float reward = 10.0f * rewardDistance + 0.5f * dot;
+            float reward = stepReward + 10.0f * distance + 0.5f * dot;
 
-            if (rewardDistance < 0)
+            if (distance > worstDistance)
             {
                 Debug.Log("Object dropped");
                 EndEpisode();
@@ -170,22 +161,21 @@ namespace GraspingOptimization
             {
                 AddReward(reward);
             }
-            // episodeStep++;
         }
 
-        private void UpdateHandPose()
+        private bool UpdateHandPose()
         {
             handPoseData = handPoseReader.ReadHandPoseDataFromDB(sequenceId, dateTime, frameCount);
 
             if (handPoseData == null)
             {
-                EndEpisode();
-                return;
+                return false;
             }
             else
             {
                 frameCount++;
             }
+            return true;
         }
 
         // public override void Heuristic(in ActionBuffers actionsOut)
