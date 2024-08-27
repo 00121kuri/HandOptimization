@@ -148,9 +148,9 @@ namespace GraspingOptimization
             float distance = Vector3.Distance(virtualObject.transform.position, initialObjectPosition);
             float dot = Quaternion.Dot(virtualObject.transform.rotation, initialObjectRotation);
 
-            float stepReward = 1.0f;
+            // float stepReward = 1.0f;
             float worstDistance = 0.1f;
-            float reward = stepReward + 10.0f * distance + 0.5f * dot;
+            float reward = 10.0f * distance + 0.5f * dot;
 
             if (distance > worstDistance)
             {
