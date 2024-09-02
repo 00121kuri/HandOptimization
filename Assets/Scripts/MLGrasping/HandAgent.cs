@@ -6,6 +6,7 @@ using GraspingOptimization;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
 using System;
+using System.Linq;
 
 namespace GraspingOptimization
 {
@@ -16,6 +17,9 @@ namespace GraspingOptimization
 
         private HandPoseReader handPoseReader;
 
+        [SerializeField]
+        private OptiClientDisplay optiClientDisplay;
+
         private Hands hands = new Hands(new List<Hand>());
 
         [SerializeField]
@@ -24,6 +28,8 @@ namespace GraspingOptimization
         [SerializeField]
         private string sequenceId;
         [SerializeField]
+        private List<string> dateTimeList;
+
         private string dateTime;
 
         private int frameCount = 0;
@@ -38,10 +44,17 @@ namespace GraspingOptimization
         private int fixedPerUpdate;
         private int fixedCount = 0;
 
+        private int episodeCount = 0;
+        private int droppedEpisodeCount = 0;
+
         void Start()
         {
             hands.hands.Add(handManager.hand);
             handPoseReader = this.GetComponent<HandPoseReader>();
+            if (optiClientDisplay == null)
+            {
+                Debug.LogError("OptiClientDisplay is not set.");
+            }
             fixedPerUpdate = (int)Math.Round(1.0 / Time.fixedDeltaTime / Application.targetFrameRate);
             Debug.Log("Fixed per update: " + fixedPerUpdate);
         }
@@ -53,8 +66,12 @@ namespace GraspingOptimization
 
         public override void OnEpisodeBegin()
         {
+            episodeCount++;
+
+            Debug.Log("Drop rate: " + (float)droppedEpisodeCount / episodeCount + " (" + droppedEpisodeCount + "/" + episodeCount + ")");
             // 手のポーズを取得
             frameCount = 0;
+            dateTime = Helper.GetRandom(dateTimeList);
             handPoseData = handPoseReader.ReadHandPoseDataFromDB(sequenceId, dateTime, frameCount);
 
             handPoseReader.SetHandPose(handPoseData);
@@ -69,28 +86,12 @@ namespace GraspingOptimization
         public override void CollectObservations(VectorSensor sensor)
         {
             // Debug.Log("Observation collected");
-            if (fixedCount < fixedPerUpdate)
+            if (handPoseData == null)
             {
-                fixedCount++;
-
-            }
-            else
-            {
-                fixedCount = 0;
-                var success = UpdateHandPose();
-                if (!success)
-                {
-                    EndEpisode();
-                    return;
-                }
-            }
-
-            // トラッキングされた手と物体の情報をそのまま与える
-            if (handPoseData.handDataList.Count == 0)
-            {
-                Debug.Log("No hand data");
+                // Debug.Log("No hand data");
                 return;
             }
+            optiClientDisplay.UpdateDisplay(sequenceId, dateTime, frameCount);
             foreach (HandData handData in handPoseData.handDataList)
             {
                 sensor.AddObservation(handData.wristJoint.position);
@@ -154,12 +155,29 @@ namespace GraspingOptimization
 
             if (distance > worstDistance)
             {
-                Debug.Log("Object dropped");
+                // Debug.Log("Object dropped");
+                droppedEpisodeCount++;
                 EndEpisode();
+                return;
             }
             else
             {
                 AddReward(reward);
+            }
+
+            if (fixedCount < fixedPerUpdate)
+            {
+                fixedCount++;
+            }
+            else
+            {
+                fixedCount = 0;
+                var success = UpdateHandPose();
+                if (!success)
+                {
+                    EndEpisode();
+                    return;
+                }
             }
         }
 
@@ -169,6 +187,7 @@ namespace GraspingOptimization
 
             if (handPoseData == null)
             {
+                frameCount = 0;
                 return false;
             }
             else

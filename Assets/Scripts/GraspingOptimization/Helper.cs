@@ -33,6 +33,22 @@ namespace GraspingOptimization
             return (float)z;
         }
 
+        /// <summary>
+        /// 配列やリストの中からランダムに1つ返す関数
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Params"></param>
+        /// <returns></returns>
+        internal static T GetRandom<T>(params T[] Params)
+        {
+            return Params[UnityEngine.Random.Range(0, Params.Length)];
+        }
+
+        internal static T GetRandom<T>(List<T> Params)
+        {
+            return Params[UnityEngine.Random.Range(0, Params.Count)];
+        }
+
         public static List<int> GetRandomIndexN(int listCount, int n)
         {
             var indexList = new List<int>(listCount);
