@@ -150,7 +150,7 @@ namespace GraspingOptimization
 
             // float stepReward = 1.0f;
             float worstDistance = 0.1f;
-            float reward = 10.0f * distance + 0.5f * dot;
+            float reward = -10.0f * distance + 0.5f * dot;
 
             if (distance > worstDistance)
             {
