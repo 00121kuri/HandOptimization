@@ -25,6 +25,8 @@ namespace GraspingOptimization
         [SerializeField]
         private GameObject virtualObject;
 
+        private Rigidbody virtualObjectRigidbody;
+
         [SerializeField]
         private string sequenceId;
         [SerializeField]
@@ -39,6 +41,8 @@ namespace GraspingOptimization
 
         private HandChromosome receivedHandChromosome = new HandChromosome();
 
+        private List<Vector3> actionList = new List<Vector3>();
+
         private HandPoseData handPoseData;
 
         private int fixedPerUpdate;
@@ -51,6 +55,7 @@ namespace GraspingOptimization
         {
             hands.hands.Add(handManager.hand);
             handPoseReader = this.GetComponent<HandPoseReader>();
+            virtualObjectRigidbody = virtualObject.GetComponent<Rigidbody>();
             if (optiClientDisplay == null)
             {
                 Debug.LogError("OptiClientDisplay is not set.");
@@ -79,8 +84,8 @@ namespace GraspingOptimization
             virtualObject.transform.rotation = handPoseData.objectData.rotation;
             initialObjectPosition = virtualObject.transform.position;
             initialObjectRotation = virtualObject.transform.rotation;
-            virtualObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            virtualObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+            virtualObjectRigidbody.velocity = Vector3.zero;
+            virtualObjectRigidbody.angularVelocity = Vector3.zero;
         }
 
         public override void CollectObservations(VectorSensor sensor)
@@ -94,6 +99,7 @@ namespace GraspingOptimization
             optiClientDisplay.UpdateDisplay(sequenceId, dateTime, frameCount);
             foreach (HandData handData in handPoseData.handDataList)
             {
+                // 手首の位置・姿勢
                 sensor.AddObservation(handData.wristJoint.position);
                 sensor.AddObservation(handData.wristJoint.rotation);
                 foreach (FingerData fingerData in handData.fingerDataList)
@@ -122,8 +128,8 @@ namespace GraspingOptimization
             sensor.AddObservation(Helper.CalculateRelativeRotation(virtualObject.transform.rotation, handPoseData.handDataList[0].wristJoint.rotation));
 
             // 仮想物体の速度
-            sensor.AddObservation(virtualObject.GetComponent<Rigidbody>().velocity);
-            sensor.AddObservation(virtualObject.GetComponent<Rigidbody>().angularVelocity);
+            sensor.AddObservation(virtualObjectRigidbody.velocity);
+            sensor.AddObservation(virtualObjectRigidbody.angularVelocity);
         }
 
 
@@ -131,12 +137,14 @@ namespace GraspingOptimization
         {
             // Debug.Log("Action received");
             var actions = actionBuffers.ContinuousActions;
+            actionList.Clear();
 
             receivedHandChromosome = hands.GetCurrentHandChromosome();
 
             for (int i = 0; i < receivedHandChromosome.jointGeneList.Count; i++)
             {
                 receivedHandChromosome.jointGeneList[i].localEulerAngles += new Vector3(actions[i * 3], actions[i * 3 + 1], actions[i * 3 + 2]);
+                actionList.Add(new Vector3(actions[i * 3], actions[i * 3 + 1], actions[i * 3 + 2]));
             }
 
             receivedHandChromosome = receivedHandChromosome.ClampChromosomeAngle();
@@ -148,10 +156,18 @@ namespace GraspingOptimization
             // 物体の位置が初期位置・姿勢に近くなるように報酬を与える
             float distance = Vector3.Distance(virtualObject.transform.position, initialObjectPosition);
             float dot = Quaternion.Dot(virtualObject.transform.rotation, initialObjectRotation);
+            // actionListの内積の和を計算
+            float actionDot = 0.0f;
+            foreach (Vector3 action in actionList)
+            {
+                actionDot += Vector3.Dot(action, action);
+            }
+            actionDot /= actionList.Count;
+
 
             // float stepReward = 1.0f;
             float worstDistance = 0.1f;
-            float reward = -10.0f * distance + 0.5f * dot;
+            float reward = 10.0f * (-distance) + 1.0f * dot + 0.1f * actionDot;
 
             if (distance > worstDistance)
             {
