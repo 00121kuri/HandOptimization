@@ -41,7 +41,7 @@ namespace GraspingOptimization
 
         private HandChromosome receivedHandChromosome = new HandChromosome();
 
-        private List<Vector3> actionList = new List<Vector3>();
+        private HandChromosome prevHandChromosome = new HandChromosome();
 
         private HandPoseData handPoseData;
 
@@ -137,14 +137,13 @@ namespace GraspingOptimization
         {
             // Debug.Log("Action received");
             var actions = actionBuffers.ContinuousActions;
-            actionList.Clear();
 
             receivedHandChromosome = hands.GetCurrentHandChromosome();
+            prevHandChromosome = receivedHandChromosome.DeepCopy();
 
             for (int i = 0; i < receivedHandChromosome.jointGeneList.Count; i++)
             {
                 receivedHandChromosome.jointGeneList[i].localEulerAngles += new Vector3(actions[i * 3], actions[i * 3 + 1], actions[i * 3 + 2]);
-                actionList.Add(new Vector3(actions[i * 3], actions[i * 3 + 1], actions[i * 3 + 2]));
             }
 
             receivedHandChromosome = receivedHandChromosome.ClampChromosomeAngle();
@@ -158,11 +157,11 @@ namespace GraspingOptimization
             float dot = Quaternion.Dot(virtualObject.transform.rotation, initialObjectRotation);
             // actionListの内積の和を計算
             float actionDot = 0.0f;
-            foreach (Vector3 action in actionList)
+            for (int i = 0; i < receivedHandChromosome.jointGeneList.Count; i++)
             {
-                actionDot += Vector3.Dot(action, action);
+                actionDot += Vector3.Dot(receivedHandChromosome.jointGeneList[i].localEulerAngles, prevHandChromosome.jointGeneList[i].localEulerAngles);
             }
-            actionDot /= actionList.Count;
+            actionDot /= receivedHandChromosome.jointGeneList.Count;
 
 
             // float stepReward = 1.0f;
