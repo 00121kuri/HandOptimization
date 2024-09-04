@@ -41,7 +41,7 @@ namespace GraspingOptimization
 
         private HandChromosome receivedHandChromosome = new HandChromosome();
 
-        private HandChromosome prevHandChromosome = new HandChromosome();
+        // private HandChromosome prevHandChromosome = new HandChromosome();
 
         private HandPoseData handPoseData;
 
@@ -139,7 +139,7 @@ namespace GraspingOptimization
             var actions = actionBuffers.ContinuousActions;
 
             receivedHandChromosome = hands.GetCurrentHandChromosome();
-            prevHandChromosome = receivedHandChromosome.DeepCopy();
+            // prevHandChromosome = receivedHandChromosome.DeepCopy();
 
             for (int i = 0; i < receivedHandChromosome.jointGeneList.Count; i++)
             {
@@ -156,17 +156,21 @@ namespace GraspingOptimization
             float distance = Vector3.Distance(virtualObject.transform.position, initialObjectPosition);
             float dot = Quaternion.Dot(virtualObject.transform.rotation, initialObjectRotation);
             // actionListの内積の和を計算
-            float actionDot = 0.0f;
-            for (int i = 0; i < receivedHandChromosome.jointGeneList.Count; i++)
-            {
-                actionDot += Vector3.Dot(receivedHandChromosome.jointGeneList[i].localEulerAngles, prevHandChromosome.jointGeneList[i].localEulerAngles);
-            }
-            actionDot /= receivedHandChromosome.jointGeneList.Count;
+            // float actionDot = 0.0f;
+            // for (int i = 0; i < receivedHandChromosome.jointGeneList.Count; i++)
+            // {
+            //     Quaternion q1 = Quaternion.Euler(receivedHandChromosome.jointGeneList[i].localEulerAngles);
+            //     Quaternion q2 = Quaternion.Euler(prevHandChromosome.jointGeneList[i].localEulerAngles);
+            //     actionDot += Mathf.Abs(Quaternion.Dot(q1, q2));
+            // }
+            // actionDot /= receivedHandChromosome.jointGeneList.Count;
 
 
             // float stepReward = 1.0f;
             float worstDistance = 0.1f;
-            float reward = 10.0f * (-distance) + 1.0f * dot + 0.1f * actionDot;
+            float reward = 10.0f * (-distance) + 0.5f * dot;
+
+            //Debug.Log("Reward: " + reward + " Distance: " + distance + " Dot: " + dot + " ActionDot: " + actionDot);
 
             if (distance > worstDistance)
             {
