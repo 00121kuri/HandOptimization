@@ -14173,7 +14173,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: OptiClient
+  m_Text: Count
 --- !u!222 &850253603
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -26200,6 +26200,8 @@ MonoBehaviour:
   sequenceId: inputdata
   dateTimeList:
   - 2023-11-21-14-25-58
+  framesPerEpisode: 1
+  stepsPerOneFrame: 20
 --- !u!114 &1977019976
 MonoBehaviour:
   m_ObjectHideFlags: 0

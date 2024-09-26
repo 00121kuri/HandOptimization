@@ -34,6 +34,17 @@ namespace GraspingOptimization
 
         private string dateTime;
 
+        private List<SequenceMetadata> sequenceMetadataList = new List<SequenceMetadata>();
+
+        [SerializeField]
+        private int framesPerEpisode = 1; // 1エピソードで学習するフレーム数
+        private int currentFramesPerEpisode = 0; // 現在のエピソードのフレーム数
+
+        [SerializeField]
+        private int stepsPerOneFrame = 10; // 1フレームあたりのステップ数
+
+        private int currentStepsPerOneFrame = 0; // 現在のフレームのステップ数
+
         private int frameCount = 0;
 
         private Vector3 initialObjectPosition;
@@ -45,7 +56,7 @@ namespace GraspingOptimization
 
         private HandPoseData handPoseData;
 
-        private int fixedPerUpdate;
+        private int fixedPerUpdate; // 1UpdateあたりのFixedUpdateの回数
         private int fixedCount = 0;
 
         private int episodeCount = 0;
@@ -62,6 +73,17 @@ namespace GraspingOptimization
             }
             fixedPerUpdate = (int)Math.Round(1.0 / Time.fixedDeltaTime / Application.targetFrameRate);
             Debug.Log("Fixed per update: " + fixedPerUpdate);
+
+            foreach (string dateTime in dateTimeList)
+            {
+                SequenceMetadata sequenceMetadata = new SequenceMetadata();
+                sequenceMetadata.Load(sequenceId, dateTime);
+                sequenceMetadataList.Add(sequenceMetadata);
+            }
+            if (sequenceMetadataList.Count == 0)
+            {
+                Debug.LogError("No sequence metadata");
+            }
         }
         public override void Initialize()
         {
@@ -73,13 +95,21 @@ namespace GraspingOptimization
         {
             episodeCount++;
 
+            currentFramesPerEpisode = 0;
+            currentStepsPerOneFrame = 0;
+            fixedCount = 0;
+
             Debug.Log("Drop rate: " + (float)droppedEpisodeCount / episodeCount + " (" + droppedEpisodeCount + "/" + episodeCount + ")");
-            // 手のポーズを取得
-            frameCount = 0;
-            dateTime = Helper.GetRandom(dateTimeList);
+            // シーケンスと開始フレームをランダムに選択
+            var sequenceMetadata = Helper.GetRandom(sequenceMetadataList);
+            frameCount = UnityEngine.Random.Range(0, sequenceMetadata.totalFrameCount - framesPerEpisode);
+            dateTime = sequenceMetadata.dateTime;
+            sequenceId = sequenceMetadata.sequenceId;
+
             handPoseData = handPoseReader.ReadHandPoseDataFromDB(sequenceId, dateTime, frameCount);
 
             handPoseReader.SetHandPose(handPoseData);
+
             virtualObject.transform.position = handPoseData.objectData.position;
             virtualObject.transform.rotation = handPoseData.objectData.rotation;
             initialObjectPosition = virtualObject.transform.position;
@@ -184,6 +214,22 @@ namespace GraspingOptimization
                 AddReward(reward);
             }
 
+            bool end = UpdateHandPose();
+            if (end)
+            {
+                EndEpisode();
+                return;
+            }
+        }
+
+
+        /// <summary>
+        /// 次の状態に進み，必要があれば手のポーズを更新する
+        /// エピソードの終了条件を満たした場合はtrueを返す
+        /// </summary>
+        /// <returns></returns>
+        private bool UpdateHandPose()
+        {
             if (fixedCount < fixedPerUpdate)
             {
                 fixedCount++;
@@ -191,29 +237,34 @@ namespace GraspingOptimization
             else
             {
                 fixedCount = 0;
-                var success = UpdateHandPose();
-                if (!success)
+
+                if (currentStepsPerOneFrame < stepsPerOneFrame)
                 {
-                    EndEpisode();
-                    return;
+                    currentStepsPerOneFrame++;
+                }
+                else
+                {
+                    // 1フレームのステップ数に達した場合
+                    currentStepsPerOneFrame = 0;
+
+                    SequenceMetadata sequenceMetadata = sequenceMetadataList.Find(x => x._id == $"{sequenceId}-{dateTime}");
+
+                    // 次のフレームに進む
+                    if (currentFramesPerEpisode < framesPerEpisode - 1 && frameCount < sequenceMetadata.totalFrameCount)
+                    {
+                        frameCount++;
+                        currentFramesPerEpisode++;
+
+                        handPoseData = handPoseReader.ReadHandPoseDataFromDB(sequenceId, dateTime, frameCount);
+                    }
+                    else
+                    {
+                        // エピソードの最後まで到達した場合
+                        return true;
+                    }
                 }
             }
-        }
-
-        private bool UpdateHandPose()
-        {
-            handPoseData = handPoseReader.ReadHandPoseDataFromDB(sequenceId, dateTime, frameCount);
-
-            if (handPoseData == null)
-            {
-                frameCount = 0;
-                return false;
-            }
-            else
-            {
-                frameCount++;
-            }
-            return true;
+            return false;
         }
 
         // public override void Heuristic(in ActionBuffers actionsOut)
