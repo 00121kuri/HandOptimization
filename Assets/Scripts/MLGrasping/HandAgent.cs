@@ -102,7 +102,14 @@ namespace GraspingOptimization
             Debug.Log("Drop rate: " + (float)droppedEpisodeCount / episodeCount + " (" + droppedEpisodeCount + "/" + episodeCount + ")");
             // シーケンスと開始フレームをランダムに選択
             var sequenceMetadata = Helper.GetRandom(sequenceMetadataList);
-            frameCount = UnityEngine.Random.Range(0, sequenceMetadata.totalFrameCount - framesPerEpisode);
+            if (sequenceMetadata.totalFrameCount < framesPerEpisode)
+            {
+                frameCount = 0;
+            }
+            else
+            {
+                frameCount = UnityEngine.Random.Range(0, sequenceMetadata.totalFrameCount - framesPerEpisode);
+            }
             dateTime = sequenceMetadata.dateTime;
             sequenceId = sequenceMetadata.sequenceId;
 
