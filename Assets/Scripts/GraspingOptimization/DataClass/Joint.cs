@@ -21,6 +21,7 @@ namespace GraspingOptimization
         //public Vector3 maxRotation;
         public JointType jointType;
 
+
         public Joint(GameObject jointObject, JointType jointType)
         {
             this.jointObject = jointObject;
@@ -37,6 +38,56 @@ namespace GraspingOptimization
             //this.minRotation = minRotation;
             //this.maxRotation = maxRotation;
             this.jointType = jointType;
+        }
+
+        public bool isCollision()
+        {
+            return this.jointManager.currentCollision != null && this.jointManager.currentCollision.contacts.Length > 0;
+        }
+
+        public Vector3 CalculateAverageContactPoint()
+        {
+            Collision collision = this.jointManager.currentCollision;
+            if (collision == null)
+            {
+                Debug.Log("collision is null");
+                return Vector3.zero;
+            }
+            Vector3 averageContactPoint = Vector3.zero;
+            foreach (ContactPoint contactPoint in collision.contacts)
+            {
+                averageContactPoint += contactPoint.point;
+            }
+            averageContactPoint /= collision.contacts.Length;
+            return averageContactPoint;
+        }
+
+        public Vector3 CalculateAverageContactNormal()
+        {
+            Collision collision = this.jointManager.currentCollision;
+            if (collision == null)
+            {
+                Debug.Log("collision is null");
+                return Vector3.zero;
+            }
+            Vector3 averageContactNormal = Vector3.zero;
+            foreach (ContactPoint contactPoint in collision.contacts)
+            {
+                averageContactNormal += contactPoint.normal;
+            }
+            averageContactNormal /= collision.contacts.Length;
+            return averageContactNormal;
+        }
+
+        public float GetImpulseMagnitude()
+        {
+            Collision collision = this.jointManager.currentCollision;
+            if (collision == null)
+            {
+                Debug.Log("collision is null");
+                return 0;
+            }
+            return collision.impulse.magnitude;
         }
     }
 }
