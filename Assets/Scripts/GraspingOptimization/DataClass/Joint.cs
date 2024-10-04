@@ -12,13 +12,10 @@ namespace GraspingOptimization
     [System.Serializable]
     public class Joint
     {
-        public List<Contact> contactList;
         public GameObject jointObject;
         public JointManager jointManager;
         public FollowTarget followTarget;
         public Rigidbody rb;
-        //public Vector3 minRotation;
-        //public Vector3 maxRotation;
         public JointType jointType;
 
 
@@ -34,9 +31,6 @@ namespace GraspingOptimization
             {
                 this.rb = jointObject.GetComponent<Rigidbody>();
             }
-            this.contactList = this.jointManager.contactList;
-            //this.minRotation = minRotation;
-            //this.maxRotation = maxRotation;
             this.jointType = jointType;
         }
 
