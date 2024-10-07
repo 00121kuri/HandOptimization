@@ -140,10 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 3
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -513,10 +511,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 3
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -544,10 +540,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 3
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -912,10 +906,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -7423,10 +7415,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 3
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -7454,10 +7444,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 2
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -7840,10 +7828,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -8147,10 +8133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -8344,10 +8328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 1
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -8370,10 +8352,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -8567,10 +8547,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -9003,10 +8981,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -9232,10 +9208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 1
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -9399,10 +9373,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -9737,10 +9709,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -9944,10 +9914,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 3
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -9970,10 +9938,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 3
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -10338,10 +10304,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 2
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -10562,10 +10526,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -10711,10 +10673,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -11127,10 +11087,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -11324,10 +11282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -11714,10 +11670,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -11911,10 +11865,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -12130,10 +12082,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -12345,10 +12295,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -12371,10 +12319,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -12742,10 +12688,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 1
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -13110,10 +13054,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 2
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -13323,10 +13265,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 2
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -13520,10 +13460,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 1
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -13556,10 +13494,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 2
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -13884,10 +13820,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 2
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -14081,10 +14015,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -14447,10 +14379,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 2
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -14644,10 +14574,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 3
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -14841,10 +14769,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 3
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -14974,10 +14900,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 1
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -15171,10 +15095,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 3
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -15499,10 +15421,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -15696,10 +15616,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -15843,10 +15761,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -15974,10 +15890,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -16121,10 +16035,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -16318,10 +16230,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 3
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -16542,10 +16452,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 3
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -16568,10 +16476,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -16787,10 +16693,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -17023,10 +16927,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -17170,10 +17072,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -17525,10 +17425,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -17551,10 +17449,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 1
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -17945,10 +17841,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 1
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -18152,10 +18046,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -18389,10 +18281,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -18415,10 +18305,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -18811,10 +18699,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 2
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -18837,10 +18723,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -19257,10 +19141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -19476,10 +19358,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -19524,10 +19404,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -19550,10 +19428,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -19770,10 +19646,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -20148,10 +20022,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -20350,10 +20222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 3
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -20552,10 +20422,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 1
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -20770,10 +20638,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 3
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -20990,10 +20856,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -21016,10 +20880,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -21525,10 +21387,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -21893,10 +21753,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -22090,10 +21948,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -22446,10 +22302,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -22472,10 +22326,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -22795,10 +22647,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -23014,10 +22864,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 1
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -23211,10 +23059,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 1
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -23408,10 +23254,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -23434,10 +23278,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -23857,10 +23699,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 2
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -23883,10 +23723,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 2
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -24080,10 +23918,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 3
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -24282,10 +24118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -24308,10 +24142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 1
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -24334,10 +24166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 1
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -24552,10 +24382,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 1
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -24578,10 +24406,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 2
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -24785,10 +24611,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -25004,10 +24828,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 1
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -25030,10 +24852,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -25227,10 +25047,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 2
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -25424,10 +25242,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 2
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -25450,10 +25266,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 2
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -25799,10 +25613,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -26200,8 +26012,8 @@ MonoBehaviour:
   sequenceId: inputdata
   dateTimeList:
   - 2023-11-21-14-25-58
-  framesPerEpisode: 1
-  stepsPerOneFrame: 20
+  framesPerEpisode: 50
+  stepsPerOneFrame: 1
 --- !u!114 &1977019976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26215,7 +26027,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 217
+    VectorObservationSize: 490
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 76
@@ -26250,10 +26062,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -26640,10 +26450,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -27094,10 +26902,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -27309,10 +27115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -27466,10 +27270,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -27492,10 +27294,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -27660,10 +27460,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 1
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -27875,10 +27673,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -28072,10 +27868,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -28098,10 +27892,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -28371,10 +28163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 0
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -34899,10 +34689,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 3
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}
@@ -34925,10 +34713,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2dda6c348799e4db6794d4ea8631a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactList: []
   jointType: 2
   joint:
-    contactList: []
     jointObject: {fileID: 0}
     jointManager: {fileID: 0}
     followTarget: {fileID: 0}

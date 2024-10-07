@@ -134,6 +134,8 @@ namespace GraspingOptimization
                 return;
             }
             optiClientDisplay.UpdateDisplay(sequenceId, dateTime, frameCount);
+
+            // 目標の手首の位置・姿勢
             foreach (HandData handData in handPoseData.handDataList)
             {
                 // 手首の位置・姿勢
@@ -167,6 +169,38 @@ namespace GraspingOptimization
             // 仮想物体の速度
             sensor.AddObservation(virtualObjectRigidbody.velocity);
             sensor.AddObservation(virtualObjectRigidbody.angularVelocity);
+
+            // シミュレーション上の手指の位置・姿勢
+            foreach (Hand hand in hands.hands)
+            {
+                // 手首の位置・姿勢
+                var wristPosition = hand.wristObject.transform.position;
+                var wristRotation = hand.wristObject.transform.rotation;
+                sensor.AddObservation(wristPosition);
+                sensor.AddObservation(wristRotation);
+                foreach (Finger finger in hand.fingerList)
+                {
+                    foreach (Joint joint in finger.jointList)
+                    {
+                        // 手首からの相対位置・姿勢
+                        sensor.AddObservation(Helper.CalculateRelativePosition(joint.jointObject.transform.position, wristPosition));
+                        sensor.AddObservation(Helper.CalculateRelativeRotation(joint.jointObject.transform.rotation, wristRotation));
+                        // jointの接触点の位置・法線・力
+                        if (joint.isCollision())
+                        {
+                            sensor.AddObservation(Helper.CalculateRelativePosition(joint.CalculateAverageContactPoint(), wristPosition));
+                            sensor.AddObservation(joint.CalculateAverageContactNormal());
+                            sensor.AddObservation(joint.GetImpulseMagnitude());
+                        }
+                        else
+                        {
+                            sensor.AddObservation(Vector3.zero);
+                            sensor.AddObservation(Vector3.zero);
+                            sensor.AddObservation(0.0f);
+                        }
+                    }
+                }
+            }
         }
 
 

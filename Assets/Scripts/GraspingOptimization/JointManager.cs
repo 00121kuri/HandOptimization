@@ -7,83 +7,39 @@ namespace GraspingOptimization
 {
     public class JointManager : MonoBehaviour
     {
-        /*
-        public bool isCollision = false;
-        public Transform oldContactPoint = null; // 接触点
-        public Transform newContactPoint = null; // 物体上の接触点
-        public float minSeparation = 0.001f; // 最もseparationが小さい接触点のseparation
-        */
-
-        public List<Contact> contactList = new();
-        //[SerializeField]
-        //Vector3 minRotation;
-        //[SerializeField]
-        //Vector3 maxRotation;
-
         [SerializeField]
         JointType jointType;
 
         public Joint joint = null;
-        //public GameObject HandManagerObject;
 
-
+        public Collision currentCollision;
 
 
         void Start()
         {
             joint = new Joint(this.gameObject, jointType);
-            /*
-            oldContactPoint = new GameObject("oldContactPoint").transform;
-            oldContactPoint.SetParent(this.transform);
-            newContactPoint = new GameObject("newContactPoint").transform;
-            newContactPoint.SetParent(this.transform);
-            */
         }
 
         void OnCollisionStay(Collision collision)
         {
-            // 初期化
-            /*
-            minSeparation = 0.001f;
-            oldContactPoint.position = Vector3.zero;
-            newContactPoint.position = Vector3.zero;
-            isCollision = true;
-            */
-
-            /* 現在は不要のため削除
-            DeleteContancts(joint);
-            //Debug.Log("OnCollisionStay");
-            float forcePerContact = collision.impulse.magnitude / collision.contactCount;
-
-            foreach (ContactPoint contactPoint in collision.contacts)
-            {
-                Contact contact = new Contact(
-                    new GameObject("contactPointObject"),
-                    contactPoint.point,
-                    contactPoint.normal,
-                    forcePerContact,
-                    contactPoint.separation
-                );
-                contact.contactPointObject.transform.SetParent(this.transform);
-                contact.contactPointObject.transform.position = contactPoint.point;
-                joint.contactList.Add(contact);
-            }
-            */
+            currentCollision = collision;
         }
 
         void OnCollisionExit(Collision collision)
         {
-            //DeleteContancts(joint);
+            currentCollision = null;
         }
 
-        private void DeleteContancts(Joint joint)
+        public void showContact()
         {
-            // 接触点を削除
-            foreach (Contact contact in joint.contactList)
+            if (currentCollision == null)
             {
-                Destroy(contact.contactPointObject);
+                return;
             }
-            joint.contactList.Clear();
+            foreach (ContactPoint contact in currentCollision.contacts)
+            {
+                Debug.DrawLine(contact.point, contact.point + contact.normal * currentCollision.impulse.magnitude / currentCollision.contacts.Length, Color.red);
+            }
         }
     }
 }
