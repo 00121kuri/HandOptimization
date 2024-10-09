@@ -7812,7 +7812,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finger:
     jointList: []
-    isCollision: 0
     fingerType: 0
   jointObjectList: []
   fingerType: 0
@@ -8115,7 +8114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd4148403de6a4d40a93b0b033aad6c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linePrefab: {fileID: 3628777910255435861, guid: e4ad0897285fd4b41bdd67fdd4a2b86a, type: 3}
 --- !u!1 &162584012 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7200093082371218085, guid: e7e358565e530214c97adba8c82fedc6, type: 3}
@@ -10506,7 +10504,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finger:
     jointList: []
-    isCollision: 0
     fingerType: 0
   jointObjectList:
   - {fileID: 497660782}
@@ -10694,7 +10691,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finger:
     jointList: []
-    isCollision: 0
     fingerType: 0
   jointObjectList:
   - {fileID: 576603564}
@@ -11424,7 +11420,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finger:
     jointList: []
-    isCollision: 0
     fingerType: 0
   jointObjectList:
   - {fileID: 620603509}
@@ -11891,7 +11886,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finger:
     jointList: []
-    isCollision: 0
     fingerType: 0
   jointObjectList:
   - {fileID: 638612580}
@@ -12279,7 +12273,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finger:
     jointList: []
-    isCollision: 0
     fingerType: 0
   jointObjectList: []
   fingerType: 0
@@ -12340,7 +12333,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finger:
     jointList: []
-    isCollision: 0
     fingerType: 0
   jointObjectList: []
   fingerType: 0
@@ -16673,7 +16665,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finger:
     jointList: []
-    isCollision: 0
     fingerType: 0
   jointObjectList:
   - {fileID: 828894663}
@@ -16722,7 +16713,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd4148403de6a4d40a93b0b033aad6c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linePrefab: {fileID: 3628777910255435861, guid: e4ad0897285fd4b41bdd67fdd4a2b86a, type: 3}
 --- !u!114 &1174319420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16822,7 +16812,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd4148403de6a4d40a93b0b033aad6c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linePrefab: {fileID: 3628777910255435861, guid: e4ad0897285fd4b41bdd67fdd4a2b86a, type: 3}
 --- !u!114 &1185942682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17093,7 +17082,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finger:
     jointList: []
-    isCollision: 0
     fingerType: 0
   jointObjectList:
   - {fileID: 1208470309}
@@ -17405,7 +17393,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finger:
     jointList: []
-    isCollision: 0
     fingerType: 0
   jointObjectList:
   - {fileID: 1234110477}
@@ -18067,7 +18054,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finger:
     jointList: []
-    isCollision: 0
     fingerType: 0
   jointObjectList: []
   fingerType: 0
@@ -18261,7 +18247,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finger:
     jointList: []
-    isCollision: 0
     fingerType: 0
   jointObjectList:
   - {fileID: 783670291}
@@ -18326,7 +18311,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finger:
     jointList: []
-    isCollision: 0
     fingerType: 0
   jointObjectList: []
   fingerType: 0
@@ -19338,7 +19322,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finger:
     jointList: []
-    isCollision: 0
     fingerType: 0
   jointObjectList:
   - {fileID: 1318912704}
@@ -19384,7 +19367,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finger:
     jointList: []
-    isCollision: 0
     fingerType: 0
   jointObjectList:
   - {fileID: 1323922769}
@@ -19449,7 +19431,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finger:
     jointList: []
-    isCollision: 0
     fingerType: 0
   jointObjectList: []
   fingerType: 0
@@ -20443,7 +20424,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finger:
     jointList: []
-    isCollision: 0
     fingerType: 0
   jointObjectList:
   - {fileID: 1425480748}
@@ -20840,7 +20820,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finger:
     jointList: []
-    isCollision: 0
     fingerType: 0
   jointObjectList: []
   fingerType: 0
@@ -20901,7 +20880,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finger:
     jointList: []
-    isCollision: 0
     fingerType: 0
   jointObjectList: []
   fingerType: 0
@@ -21175,7 +21153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd4148403de6a4d40a93b0b033aad6c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linePrefab: {fileID: 3628777910255435861, guid: e4ad0897285fd4b41bdd67fdd4a2b86a, type: 3}
 --- !u!1 &1490524234
 GameObject:
   m_ObjectHideFlags: 0
@@ -24363,7 +24340,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finger:
     jointList: []
-    isCollision: 0
     fingerType: 0
   jointObjectList:
   - {fileID: 1751893104}
@@ -24632,7 +24608,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finger:
     jointList: []
-    isCollision: 0
     fingerType: 0
   jointObjectList:
   - {fileID: 1767680398}
@@ -26005,15 +25980,13 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 10000
+  MaxStep: 0
   handManager: {fileID: 156637056}
   optiClientDisplay: {fileID: 850253601}
   virtualObject: {fileID: 667153788}
   sequenceId: inputdata
   dateTimeList:
   - 2023-11-21-14-25-58
-  framesPerEpisode: 50
-  stepsPerOneFrame: 1
 --- !u!114 &1977019976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26045,6 +26018,19 @@ MonoBehaviour:
   m_UseChildActuators: 1
   m_DeterministicInference: 0
   m_ObservableAttributeHandling: 0
+--- !u!114 &1977019977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977019972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b3bc20569924c14c809871485de8d1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jsonFileName: parameters.json
 --- !u!1 &1980565626 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7291273448633362635, guid: e7e358565e530214c97adba8c82fedc6, type: 3}
@@ -26430,7 +26416,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finger:
     jointList: []
-    isCollision: 0
     fingerType: 0
   jointObjectList:
   - {fileID: 1985884748}
@@ -27099,7 +27084,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finger:
     jointList: []
-    isCollision: 0
     fingerType: 0
   jointObjectList: []
   fingerType: 0
@@ -27441,7 +27425,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finger:
     jointList: []
-    isCollision: 0
     fingerType: 0
   jointObjectList:
   - {fileID: 542401979}
@@ -27657,7 +27640,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finger:
     jointList: []
-    isCollision: 0
     fingerType: 0
   jointObjectList: []
   fingerType: 0
@@ -33753,6 +33735,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1015311468456129628, guid: e7e358565e530214c97adba8c82fedc6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1977019974}
+    - targetCorrespondingSourceObject: {fileID: 1015311468456129628, guid: e7e358565e530214c97adba8c82fedc6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1977019977}
     - targetCorrespondingSourceObject: {fileID: 6790918509453130065, guid: e7e358565e530214c97adba8c82fedc6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 156637053}

@@ -36,12 +36,10 @@ namespace GraspingOptimization
 
         private List<SequenceMetadata> sequenceMetadataList = new List<SequenceMetadata>();
 
-        [SerializeField]
-        private int framesPerEpisode = 1; // 1エピソードで学習するフレーム数
+        private int framesPerEpisode; // 1エピソードで学習するフレーム数
         private int currentFramesPerEpisode = 0; // 現在のエピソードのフレーム数
 
-        [SerializeField]
-        private int stepsPerOneFrame = 10; // 1フレームあたりのステップ数
+        private int stepsPerOneFrame; // 1フレームあたりのステップ数
 
         private int currentStepsPerOneFrame = 0; // 現在のフレームのステップ数
 
@@ -64,6 +62,9 @@ namespace GraspingOptimization
 
         void Start()
         {
+            framesPerEpisode = ParameterLoader.LoadedParameters.framesPerEpisode;
+            stepsPerOneFrame = ParameterLoader.LoadedParameters.stepsPerOneFrame;
+
             hands.hands.Add(handManager.hand);
             handPoseReader = this.GetComponent<HandPoseReader>();
             virtualObjectRigidbody = virtualObject.GetComponent<Rigidbody>();
