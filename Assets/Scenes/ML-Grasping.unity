@@ -25985,8 +25985,6 @@ MonoBehaviour:
   optiClientDisplay: {fileID: 850253601}
   virtualObject: {fileID: 667153788}
   sequenceId: inputdata
-  dateTimeList:
-  - 2023-11-21-14-25-58
 --- !u!114 &1977019976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26009,7 +26007,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 5d0cde68c0c88404591acda88adfbab9, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: HandBehavior

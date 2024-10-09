@@ -29,7 +29,7 @@ namespace GraspingOptimization
 
         [SerializeField]
         private string sequenceId;
-        [SerializeField]
+
         private List<string> dateTimeList;
 
         private string dateTime;
@@ -64,6 +64,7 @@ namespace GraspingOptimization
         {
             framesPerEpisode = ParameterLoader.LoadedParameters.framesPerEpisode;
             stepsPerOneFrame = ParameterLoader.LoadedParameters.stepsPerOneFrame;
+            dateTimeList = ParameterLoader.LoadedParameters.dateTimeList;
 
             hands.hands.Add(handManager.hand);
             handPoseReader = this.GetComponent<HandPoseReader>();
